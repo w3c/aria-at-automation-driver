@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="SampleTtsEngine"
+	Name="AutomationTtsEngine"
 	ProjectGUID="{214761EA-9911-4031-AC43-92CC12536E17}"
-	RootNamespace="SampleTtsEngine"
+	RootNamespace="AutomationTtsEngine"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -67,7 +67,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="nothrownew.obj"
 				LinkIncremental="2"
-				ModuleDefinitionFile="SampleTtsEngine.def"
+				ModuleDefinitionFile="AutomationTtsEngine.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -149,7 +149,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="nothrownew.obj"
 				LinkIncremental="2"
-				ModuleDefinitionFile="SampleTtsEngine.def"
+				ModuleDefinitionFile="AutomationTtsEngine.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="17"
@@ -228,7 +228,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="nothrownew.obj"
 				LinkIncremental="1"
-				ModuleDefinitionFile="SampleTtsEngine.def"
+				ModuleDefinitionFile="AutomationTtsEngine.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -310,7 +310,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="nothrownew.obj"
 				LinkIncremental="1"
-				ModuleDefinitionFile="SampleTtsEngine.def"
+				ModuleDefinitionFile="AutomationTtsEngine.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -354,15 +354,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\SampleTtsEngine.cpp"
+				RelativePath=".\AutomationTtsEngine.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SampleTtsEngine.def"
+				RelativePath=".\AutomationTtsEngine.def"
 				>
 			</File>
 			<File
-				RelativePath=".\SampleTtsEngine.idl"
+				RelativePath=".\AutomationTtsEngine.idl"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -470,7 +470,7 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\SampleTtsEngine.rc"
+				RelativePath=".\AutomationTtsEngine.rc"
 				>
 			</File>
 			<File

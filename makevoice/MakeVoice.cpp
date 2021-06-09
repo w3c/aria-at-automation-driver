@@ -12,7 +12,7 @@
 *
 ******************************************************************************/
 #include "stdafx.h"
-#include <SampleTtsEngine_i.c>
+#include <AutomationTtsEngine_i.c>
 #include <direct.h>
 
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
@@ -150,9 +150,9 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
                     SPCAT_VOICES, 
                     argv[3], 
                     &CLSID_SampleTTSEngine, 
-                    L"Sample TTS Voice", 
+                    L"Automation Voice", 
                     0x409, 
-                    L"Sample TTS Voice", 
+                    L"Automation Voice", 
                     &cpToken,
                     &cpDataKeyAttribs);
 
@@ -163,7 +163,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
                 hr = cpDataKeyAttribs->SetStringValue(L"Gender", L"Male");
                 if (SUCCEEDED(hr))
                 {
-                    hr = cpDataKeyAttribs->SetStringValue(L"Name", L"SampleTTSVoice");
+                    hr = cpDataKeyAttribs->SetStringValue(L"Name", L"AutomationVoice");
                 }
                 if (SUCCEEDED(hr))
                 {

@@ -6,7 +6,7 @@
 // Copyright © Microsoft Corporation. All rights reserved
 
 /*****************************************************************************
-* SampleTtsEngine.idl *
+* AutomationTtsEngine.idl *
 *------------*
 *   Description:
 *       This idl file is for the sample SAPI5 Text To Speech Engine.

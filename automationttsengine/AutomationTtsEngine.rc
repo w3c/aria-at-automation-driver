@@ -48,7 +48,7 @@ END
 
 3 TEXTINCLUDE DISCARDABLE 
 BEGIN
-    "1 TYPELIB ""SampleTtsEngine.tlb""\r\n"
+    "1 TYPELIB ""AutomationTtsEngine.tlb""\r\n"
     "#include ""version.rc2""\r\n"
     "\0"
 END
@@ -70,7 +70,7 @@ IDR_SAMPLETTSENGINE     REGISTRY DISCARDABLE    "TtsEngObj.rgs"
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_PROJNAME            "SampleTtsEngine"
+    IDS_PROJNAME            "AutomationTtsEngine"
 END
 
 #endif    // English (U.S.) resources
@@ -83,7 +83,7 @@ END
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-1 TYPELIB "SampleTtsEngine.tlb"
+1 TYPELIB "AutomationTtsEngine.tlb"
 #include "version.rc2"
 
 /////////////////////////////////////////////////////////////////////////////

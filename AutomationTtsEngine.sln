@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MakeVoice", "MakeVoice\MakeVoice.vcxproj", "{E2B7E58F-08D1-401B-85B8-E20E7BF5117E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleTtsEngine", "SampleTtsEngine\SampleTtsEngine.vcxproj", "{214761EA-9911-4031-AC43-92CC12536E17}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutomationTtsEngine", "AutomationTtsEngine\AutomationTtsEngine.vcxproj", "{214761EA-9911-4031-AC43-92CC12536E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

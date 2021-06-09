@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SampleTtsEngine.cpp">
+    <ClCompile Include="AutomationTtsEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -26,7 +26,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SampleTtsEngine.def">
+    <None Include="AutomationTtsEngine.def">
       <Filter>Source Files</Filter>
     </None>
     <None Include="ttsengobj.rgs">
@@ -34,7 +34,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="SampleTtsEngine.idl">
+    <Midl Include="AutomationTtsEngine.idl">
       <Filter>Source Files</Filter>
     </Midl>
   </ItemGroup>
@@ -53,7 +53,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SampleTtsEngine.rc">
+    <ResourceCompile Include="AutomationTtsEngine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

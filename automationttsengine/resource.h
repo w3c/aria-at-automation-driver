@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by SampleTtsEngine.rc
+// Used by AutomationTtsEngine.rc
 //
 #define IDS_PROJNAME                    100
 #define IDR_SAMPLETTSENGINE             101

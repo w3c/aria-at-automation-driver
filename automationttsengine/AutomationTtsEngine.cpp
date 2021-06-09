@@ -5,13 +5,13 @@
 //
 // Copyright © Microsoft Corporation. All rights reserved
 
-// SampleTtsEngine.cpp : Implementation of DLL Exports.
+// AutomationTtsEngine.cpp : Implementation of DLL Exports.
 
 #include "stdafx.h"
 #include "resource.h"
 #include <initguid.h>
-#include "SampleTtsEngine.h"
-#include "SampleTtsEngine_i.c"
+#include "AutomationTtsEngine.h"
+#include "AutomationTtsEngine_i.c"
 #include "TtsEngObj.h"
 
 

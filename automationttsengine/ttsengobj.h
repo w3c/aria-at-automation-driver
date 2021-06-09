@@ -15,8 +15,8 @@
 #define TtsEngObj_h
 
 //--- Additional includes
-#ifndef __SampleTtsEngine_h__
-#include "SampleTtsEngine.h"
+#ifndef __AutomationTtsEngine_h__
+#include "AutomationTtsEngine.h"
 #endif
 
 #ifndef SPDDKHLP_h

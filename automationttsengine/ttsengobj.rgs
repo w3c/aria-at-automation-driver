@@ -1,20 +1,20 @@
 HKCR
 {
-	SampleTtsEngine.SampleTTSEngine.1 = s 'SampleTTSEngine Class'
+	AutomationTtsEngine.SampleTTSEngine.1 = s 'SampleTTSEngine Class'
 	{
 		CLSID = s '{A832755E-9C2A-40B4-89B2-3A92EE705852}'
 	}
-	SampleTtsEngine.SampleTTSEngine = s 'SampleTTSEngine Class'
+	AutomationTtsEngine.SampleTTSEngine = s 'SampleTTSEngine Class'
 	{
 		CLSID = s '{A832755E-9C2A-40B4-89B2-3A92EE705852}'
-		CurVer = s 'SampleTtsEngine.SampleTTSEngine.1'
+		CurVer = s 'AutomationTtsEngine.SampleTTSEngine.1'
 	}
 	NoRemove CLSID
 	{
 		ForceRemove {A832755E-9C2A-40B4-89B2-3A92EE705852} = s 'SampleTTSEngine Class'
 		{
-			ProgID = s 'SampleTtsEngine.SampleTTSEngine.1'
-			VersionIndependentProgID = s 'SampleTtsEngine.SampleTTSEngine'
+			ProgID = s 'AutomationTtsEngine.SampleTTSEngine.1'
+			VersionIndependentProgID = s 'AutomationTtsEngine.SampleTTSEngine'
 			InprocServer32 = s '%MODULE%'
 			{
 				val ThreadingModel = s 'Both'

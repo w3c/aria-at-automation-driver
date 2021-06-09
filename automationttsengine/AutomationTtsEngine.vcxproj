@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{214761EA-9911-4031-AC43-92CC12536E17}</ProjectGuid>
-    <RootNamespace>SampleTtsEngine</RootNamespace>
+    <RootNamespace>AutomationTtsEngine</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -104,7 +104,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>SampleTtsEngine.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>AutomationTtsEngine.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -134,7 +134,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>SampleTtsEngine.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>AutomationTtsEngine.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
@@ -160,7 +160,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>SampleTtsEngine.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>AutomationTtsEngine.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -189,7 +189,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>nothrownew.obj;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>SampleTtsEngine.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>AutomationTtsEngine.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -202,7 +202,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SampleTtsEngine.cpp" />
+    <ClCompile Include="AutomationTtsEngine.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -212,11 +212,11 @@
     <ClCompile Include="ttsengobj.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SampleTtsEngine.def" />
+    <None Include="AutomationTtsEngine.def" />
     <None Include="ttsengobj.rgs" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="SampleTtsEngine.idl">
+    <Midl Include="AutomationTtsEngine.idl">
       <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).h</HeaderFileName>
       <InterfaceIdentifierFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename)_i.c</InterfaceIdentifierFileName>
       <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).h</HeaderFileName>
@@ -234,7 +234,7 @@
     <ClInclude Include="ttsengver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SampleTtsEngine.rc" />
+    <ResourceCompile Include="AutomationTtsEngine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

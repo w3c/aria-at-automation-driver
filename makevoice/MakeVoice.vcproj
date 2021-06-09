@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\SampleTtsEngine"
+				AdditionalIncludeDirectories="..\AutomationTtsEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -94,7 +94,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce SampleTTSVoice"
+				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
 			/>
 		</Configuration>
 		<Configuration
@@ -123,7 +123,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\SampleTtsEngine"
+				AdditionalIncludeDirectories="..\AutomationTtsEngine"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -174,7 +174,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce SampleTTSVoice"
+				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
 			/>
 		</Configuration>
 		<Configuration
@@ -202,7 +202,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\SampleTtsEngine"
+				AdditionalIncludeDirectories="..\AutomationTtsEngine"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -253,7 +253,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce SampleTTSVoice"
+				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
 			/>
 		</Configuration>
 		<Configuration
@@ -282,7 +282,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\SampleTtsEngine"
+				AdditionalIncludeDirectories="..\AutomationTtsEngine"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -333,7 +333,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce SampleTTSVoice"
+				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
 			/>
 		</Configuration>
 	</Configurations>

@@ -24,7 +24,7 @@
 #include <atlbase.h>
 #include <stdio.h>
 #include <SPHelper.h>
-#include "SampleTtsEngine.h"
+#include "AutomationTtsEngine.h"
 
 // TODO: reference additional headers your program requires here
 
