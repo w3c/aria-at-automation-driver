@@ -17,10 +17,6 @@ limited scope is not ideal to create larger, more robust voice samples.
 Additionally, extensive error checking or error prevention routines are not
 included so that the resulting file may contain conditions not optimal to
 superior performance.
- 
-Sample Language Implementations
-===============================
-This sample is available in C++.
 
 Files
 =====
@@ -68,38 +64,6 @@ MakeVoice\stdafx.cpp                    Generates the precompiled header.
 
 MakeVoice\MakeVoice.rc                  Resource scripts.
 MakeVoice\version.rc2
-
-MakeVoice\wordlist.txt                  The list of words that are supported by
-                                        the sound font. See MSDN documentation
-                                        about SAPI samples and MakeVoice for
-                                        more information.
-
-MakeVoice\anglais.wav                   Wave audio files for the words that are
-MakeVoice\as.wav                        supported by the sound font.
-MakeVoice\blah.wav
-MakeVoice\computer_s.wav
-MakeVoice\default.wav
-MakeVoice\enter.wav
-MakeVoice\have.wav
-MakeVoice\he.wav
-MakeVoice\here.wav
-MakeVoice\je.wav
-MakeVoice\parler.wav
-MakeVoice\peut.wav
-MakeVoice\said.wav
-MakeVoice\sample.wav
-MakeVoice\selected.wav
-MakeVoice\she.wav
-MakeVoice\speak.wav
-MakeVoice\spoken.wav
-MakeVoice\text.wav
-MakeVoice\the.wav
-MakeVoice\to.wav
-MakeVoice\tts.wav
-MakeVoice\type.wav
-MakeVoice\voice.wav
-MakeVoice\wish.wav
-MakeVoice\you.wav
 
 MakeVoice\MakeVoice.vcproj              Visual C++ project file.
 

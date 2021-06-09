@@ -94,7 +94,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
+				CommandLine="&quot;$(TargetPath)&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -174,7 +174,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
+				CommandLine="&quot;$(TargetPath)&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -253,7 +253,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
+				CommandLine="&quot;$(TargetPath)&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -333,7 +333,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build and register voice file"
-				CommandLine="&quot;$(TargetPath)&quot; wordlist.txt SampleVoice.vce AutomationVoice"
+				CommandLine="&quot;$(TargetPath)&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -396,124 +396,6 @@
 				>
 			</File>
 		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
-			<File
-				RelativePath=".\anglais.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\as.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\blah.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\computer_s.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\default.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\enter.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\have.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\he.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\here.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\je.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\MakeVoice.rc"
-				>
-			</File>
-			<File
-				RelativePath=".\parler.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\peut.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\said.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\sample.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\selected.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\she.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\speak.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\spoken.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\text.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\the.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\to.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\tts.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\type.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\voice.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\wish.wav"
-				>
-			</File>
-			<File
-				RelativePath=".\you.wav"
-				>
-			</File>
-		</Filter>
-		<File
-			RelativePath=".\wordlist.txt"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

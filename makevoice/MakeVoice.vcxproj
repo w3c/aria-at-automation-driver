@@ -105,7 +105,7 @@
     </Link>
     <PostBuildEvent>
       <Message>Build and register voice file</Message>
-      <Command>"$(TargetPath)" wordlist.txt SampleVoice.vce AutomationVoice</Command>
+      <Command>"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,7 +131,7 @@
     </Link>
     <PostBuildEvent>
       <Message>Build and register voice file</Message>
-      <Command>"$(TargetPath)" wordlist.txt SampleVoice.vce AutomationVoice</Command>
+      <Command>"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,7 +153,7 @@
     </Link>
     <PostBuildEvent>
       <Message>Build and register voice file</Message>
-      <Command>"$(TargetPath)" wordlist.txt SampleVoice.vce AutomationVoice</Command>
+      <Command>"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -178,7 +178,7 @@
     </Link>
     <PostBuildEvent>
       <Message>Build and register voice file</Message>
-      <Command>"$(TargetPath)" wordlist.txt SampleVoice.vce AutomationVoice</Command>
+      <Command>"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -194,38 +194,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="anglais.wav" />
-    <Media Include="as.wav" />
-    <Media Include="blah.wav" />
-    <Media Include="computer_s.wav" />
-    <Media Include="default.wav" />
-    <Media Include="enter.wav" />
-    <Media Include="have.wav" />
-    <Media Include="he.wav" />
-    <Media Include="here.wav" />
-    <Media Include="je.wav" />
-    <Media Include="parler.wav" />
-    <Media Include="peut.wav" />
-    <Media Include="said.wav" />
-    <Media Include="sample.wav" />
-    <Media Include="selected.wav" />
-    <Media Include="she.wav" />
-    <Media Include="speak.wav" />
-    <Media Include="spoken.wav" />
-    <Media Include="text.wav" />
-    <Media Include="the.wav" />
-    <Media Include="to.wav" />
-    <Media Include="tts.wav" />
-    <Media Include="type.wav" />
-    <Media Include="voice.wav" />
-    <Media Include="wish.wav" />
-    <Media Include="you.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="MakeVoice.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="wordlist.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutomationTtsEngine\AutomationTtsEngine.vcxproj">
