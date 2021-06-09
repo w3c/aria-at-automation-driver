@@ -97,14 +97,6 @@ class ATL_NO_VTABLE CTTSEngObj :
     STDMETHOD(GetOutputFormat)( const GUID * pTargetFormatId, const WAVEFORMATEX * pTargetWaveFormatEx,
                                 GUID * pDesiredFormatId, WAVEFORMATEX ** ppCoMemDesiredWaveFormatEx );
 
-
-  private:
-    /*--- Non interface methods ---*/
-    HRESULT MapFile(const WCHAR * pszTokenValName, HANDLE * phMapping, void ** ppvData );
-    HRESULT GetNextSentence( CItemList& ItemList );
-    BOOL    AddNextSentItem( CItemList& ItemList );
-    HRESULT OutputSentence( CItemList& ItemList, ISpTTSEngineSite* pOutputSite );
-
   /*=== Member Data ===*/
   private:
     CComPtr<ISpObjectToken> m_cpToken;
