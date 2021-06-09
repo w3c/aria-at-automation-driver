@@ -1,17 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MakeVoice", "MakeVoice\MakeVoice.vcproj", "{E2B7E58F-08D1-401B-85B8-E20E7BF5117E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{214761EA-9911-4031-AC43-92CC12536E17} = {214761EA-9911-4031-AC43-92CC12536E17}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleTtsEngine", "SampleTtsEngine\SampleTtsEngine.vcproj", "{214761EA-9911-4031-AC43-92CC12536E17}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{810C11C0-038E-4CEA-84E8-B65AF9DCB646}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.txt = Readme.txt
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MakeVoice", "MakeVoice\MakeVoice.vcxproj", "{E2B7E58F-08D1-401B-85B8-E20E7BF5117E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleTtsEngine", "SampleTtsEngine\SampleTtsEngine.vcxproj", "{214761EA-9911-4031-AC43-92CC12536E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,5 +39,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21CF54A6-62D9-4766-ABDA-049CF256965A}
 	EndGlobalSection
 EndGlobal
