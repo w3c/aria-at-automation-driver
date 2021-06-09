@@ -16,6 +16,9 @@
 //--- Additional includes
 #include "stdafx.h"
 #include "TtsEngObj.h"
+#include <stdio.h>
+#include <iostream>
+#include <windows.h>
 
 //--- Local
 
@@ -80,6 +83,40 @@ STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
     return SpGenericSetObjectToken(pToken, m_cpToken);
 } /* CTTSEngObj::SetObjectToken */
 
+int emit(LPCTSTR words, ULONG len) {
+    HANDLE pipe = CreateFile(
+        L"\\\\.\\pipe\\my_pipe",
+        GENERIC_WRITE,
+        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        NULL,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        NULL
+    );
+
+    if (pipe == INVALID_HANDLE_VALUE) {
+        fprintf(stderr, "Failed to connect to pipe.");
+        return 0;
+    }
+
+    DWORD numBytesWritten = 0;
+    BOOL result = WriteFile(
+        pipe, // handle to our outbound pipe
+        words, // data to send
+        len * sizeof(wchar_t),
+        &numBytesWritten, // will store actual amount of data sent
+        NULL // not using overlapped IO
+    );
+    if (!result) {
+        fprintf(stderr, "Failed to send data.");
+        return 1;
+    }
+    // Close the pipe (automatically disconnects client too)
+    CloseHandle(pipe);
+
+    return 0;
+}
+
 //
 //=== ISpTTSEngine Implementation ============================================
 //
@@ -127,11 +164,17 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
                                 ISpTTSEngineSite* pOutputSite )
 {
     //--- Check args
-    if( SP_IS_BAD_INTERFACE_PTR( pOutputSite ) ||
-        SP_IS_BAD_READ_PTR( pTextFragList )  )
-    {
-        hr = E_INVALIDARG;
+    if(SP_IS_BAD_INTERFACE_PTR(pOutputSite) || SP_IS_BAD_READ_PTR(pTextFragList)) {
+        return E_INVALIDARG;
     }
+
+    for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext) {
+        if (textFrag->State.eAction == SPVA_Bookmark) {
+            continue;
+        }
+        if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0) {
+            break;
+        }
     }
 
     return S_OK;
@@ -150,12 +193,7 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
 STDMETHODIMP CTTSEngObj::GetOutputFormat( const GUID * pTargetFormatId, const WAVEFORMATEX * pTargetWaveFormatEx,
                                           GUID * pDesiredFormatId, WAVEFORMATEX ** ppCoMemDesiredWaveFormatEx )
 {
-
-    HRESULT hr = S_OK;
-
-    hr = SpConvertStreamFormatEnum(SPSF_11kHz16BitMono, pDesiredFormatId, ppCoMemDesiredWaveFormatEx);
-
-    return hr;
+    return SpConvertStreamFormatEnum(SPSF_11kHz16BitMono, pDesiredFormatId, ppCoMemDesiredWaveFormatEx);
 } /* CTTSEngObj::GetVoiceFormat */
 
 
