@@ -83,6 +83,18 @@ STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
     return SpGenericSetObjectToken(pToken, m_cpToken);
 } /* CTTSEngObj::SetObjectToken */
 
+std::string to_utf8(const std::wstring& s, ULONG length)
+{
+    std::string utf8;
+    int len = WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, NULL, 0, NULL, NULL);
+    if (len > 0)
+    {
+        utf8.resize(len);
+        WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, &utf8[0], len, NULL, NULL);
+    }
+    return utf8;
+}
+
 int emit(LPCTSTR words, ULONG len) {
     HANDLE pipe = CreateFile(
         L"\\\\.\\pipe\\my_pipe",
@@ -100,10 +112,11 @@ int emit(LPCTSTR words, ULONG len) {
     }
 
     DWORD numBytesWritten = 0;
+    std::string stringBuffer = to_utf8(words, len);
     BOOL result = WriteFile(
         pipe, // handle to our outbound pipe
-        words, // data to send
-        len * sizeof(wchar_t),
+        stringBuffer.c_str(), // data to send
+        stringBuffer.size(),
         &numBytesWritten, // will store actual amount of data sent
         NULL // not using overlapped IO
     );
