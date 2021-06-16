@@ -1,0 +1,4 @@
+[submodule "demo/w3c-aria-at"]
+	path = demo/w3c-aria-at
+	url = https://github.com/bocoup/aria-at
+	branch = automation-prototype
