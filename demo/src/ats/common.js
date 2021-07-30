@@ -5,7 +5,7 @@ const path = require('path');
 const debug = require('debug')('aria-at-demo:commands:common');
 const robot = require('robotjs');
 
-const TIMEOUT = 5 * 1000;
+const TIMEOUT = 50 * 1000;
 
 const typeSequence = (sequence) => {
   if (!sequence.length) {
@@ -43,8 +43,9 @@ module.exports = {
   },
   async press_until_contains({listener, args: [sequence, text]}) {
     const start = Date.now();
+    let timerId;
     const timeout = new Promise((_, reject) => {
-      setTimeout(() => {
+      timerId = setTimeout(() => {
         reject(new Error(`Timed out while waiting for "${text}"`));
       }, TIMEOUT);
     });
@@ -57,6 +58,7 @@ module.exports = {
         debug(`captured text: "${spoken}"`);
 
         if (spoken.includes(text)) {
+          clearTimeout(timerId);
           return spoken;
         }
       }
