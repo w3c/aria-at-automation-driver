@@ -37,7 +37,7 @@ exports.quit = async () => {
 
 exports.start = async () => {
   const whenFailed = watchChild(
-    nvda(['--minimal', `--config-path=${path.join(__dirname, '..', '..')}`])
+    nvda(['--minimal', `--config-path=${path.join(__dirname, 'nvda-config')}`])
   );
   return (async function f() {
     if (await Promise.race([whenFailed, exports.isRunning()])) {
