@@ -120,12 +120,14 @@ int emit(LPCTSTR words, ULONG len) {
         &numBytesWritten, // will store actual amount of data sent
         NULL // not using overlapped IO
     );
+
+    // Close the pipe (automatically disconnects client too)
+    CloseHandle(pipe);
+
     if (!result) {
         fprintf(stderr, "Failed to send data.");
         return 1;
     }
-    // Close the pipe (automatically disconnects client too)
-    CloseHandle(pipe);
 
     return 0;
 }
