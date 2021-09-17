@@ -113,6 +113,8 @@ class ATL_NO_VTABLE CTTSEngObj :
     const WCHAR*        m_pNextChar;
     const WCHAR*        m_pEndChar;
     ULONGLONG           m_ullAudioOff;
+
+    CComPtr<ISpVoice> m_cpVoice;
 };
 
 #endif //--- This must be the last line in the file

@@ -39,6 +39,8 @@ HRESULT CTTSEngObj::FinalConstruct()
     m_pWordList  = NULL;
     m_ulNumWords = 0;
 
+    hr = m_cpVoice.CoCreateInstance(CLSID_SpVoice);
+
     return hr;
 } /* CTTSEngObj::FinalConstruct */
 
@@ -182,11 +184,16 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
     if(SP_IS_BAD_INTERFACE_PTR(pOutputSite) || SP_IS_BAD_READ_PTR(pTextFragList)) {
         return E_INVALIDARG;
     }
+    HRESULT hr = S_OK;
 
     for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext) {
         if (textFrag->State.eAction == SPVA_Bookmark) {
             continue;
         }
+
+        const std::wstring& text = textFrag->pTextStart;
+        m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+
         if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0) {
             break;
         }
