@@ -10,7 +10,6 @@
 *---------------*
 *   Description:
 *       This module is the main implementation file for the CTTSEngObj class.
-*
 *******************************************************************************/
 
 //--- Additional includes
@@ -30,7 +29,6 @@
 *****************************************************************************/
 HRESULT CTTSEngObj::FinalConstruct()
 {
-
     HRESULT hr = S_OK;
 
     //--- Init vars
@@ -42,7 +40,7 @@ HRESULT CTTSEngObj::FinalConstruct()
     hr = m_cpVoice.CoCreateInstance(CLSID_SpVoice);
 
     return hr;
-} /* CTTSEngObj::FinalConstruct */
+}
 
 /*****************************************************************************
 * CTTSEngObj::FinalRelease *
@@ -52,21 +50,18 @@ HRESULT CTTSEngObj::FinalConstruct()
 *****************************************************************************/
 void CTTSEngObj::FinalRelease()
 {
-
-
     delete m_pWordList;
 
-    if( m_pVoiceData )
+    if (m_pVoiceData)
     {
-        ::UnmapViewOfFile( (void*)m_pVoiceData );
+        ::UnmapViewOfFile((void*)m_pVoiceData);
     }
 
-    if( m_hVoiceData )
+    if (m_hVoiceData)
     {
-        ::CloseHandle( m_hVoiceData );
+        ::CloseHandle(m_hVoiceData);
     }
-
-} /* CTTSEngObj::FinalRelease */
+}
 
 //
 //=== ISpObjectWithToken Implementation ======================================
@@ -83,7 +78,7 @@ void CTTSEngObj::FinalRelease()
 STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
 {
     return SpGenericSetObjectToken(pToken, m_cpToken);
-} /* CTTSEngObj::SetObjectToken */
+}
 
 std::string to_utf8(const std::wstring& s, ULONG length)
 {
@@ -108,7 +103,8 @@ int emit(LPCTSTR words, ULONG len) {
         NULL
     );
 
-    if (pipe == INVALID_HANDLE_VALUE) {
+    if (pipe == INVALID_HANDLE_VALUE)
+    {
         fprintf(stderr, "Failed to connect to pipe.");
         return 0;
     }
@@ -126,7 +122,8 @@ int emit(LPCTSTR words, ULONG len) {
     // Close the pipe (automatically disconnects client too)
     CloseHandle(pipe);
 
-    if (!result) {
+    if (!result)
+    {
         fprintf(stderr, "Failed to send data.");
         return 1;
     }
@@ -174,35 +171,37 @@ int emit(LPCTSTR words, ULONG len) {
 *       E_OUTOFMEMORY
 *
 *****************************************************************************/
-STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
-                                REFGUID rguidFormatId,
-                                const WAVEFORMATEX * pWaveFormatEx,
-                                const SPVTEXTFRAG* pTextFragList,
-                                ISpTTSEngineSite* pOutputSite )
+STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
+    REFGUID rguidFormatId,
+    const WAVEFORMATEX* pWaveFormatEx,
+    const SPVTEXTFRAG* pTextFragList,
+    ISpTTSEngineSite* pOutputSite)
 {
     //--- Check args
-    if(SP_IS_BAD_INTERFACE_PTR(pOutputSite) || SP_IS_BAD_READ_PTR(pTextFragList)) {
+    if (SP_IS_BAD_INTERFACE_PTR(pOutputSite) || SP_IS_BAD_READ_PTR(pTextFragList))
+    {
         return E_INVALIDARG;
     }
     HRESULT hr = S_OK;
 
-    for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext) {
-        if (textFrag->State.eAction == SPVA_Bookmark) {
+    for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext)
+    {
+        if (textFrag->State.eAction == SPVA_Bookmark)
+        {
             continue;
         }
 
         const std::wstring& text = textFrag->pTextStart;
         m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
 
-        if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0) {
+        if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0)
+        {
             break;
         }
     }
 
     return S_OK;
-} /* CTTSEngObj::Speak */
-
-
+}
 
 /*****************************************************************************
 * CTTSEngObj::GetVoiceFormat *
@@ -212,10 +211,8 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
 *   specified format Index. Formats are in order of quality with the best
 *   starting at 0.
 *****************************************************************************/
-STDMETHODIMP CTTSEngObj::GetOutputFormat( const GUID * pTargetFormatId, const WAVEFORMATEX * pTargetWaveFormatEx,
-                                          GUID * pDesiredFormatId, WAVEFORMATEX ** ppCoMemDesiredWaveFormatEx )
+STDMETHODIMP CTTSEngObj::GetOutputFormat(const GUID* pTargetFormatId, const WAVEFORMATEX* pTargetWaveFormatEx,
+    GUID* pDesiredFormatId, WAVEFORMATEX** ppCoMemDesiredWaveFormatEx)
 {
     return SpConvertStreamFormatEnum(SPSF_11kHz16BitMono, pDesiredFormatId, ppCoMemDesiredWaveFormatEx);
-} /* CTTSEngObj::GetVoiceFormat */
-
-
+}

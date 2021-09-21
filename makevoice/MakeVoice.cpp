@@ -22,7 +22,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
     ::CoInitialize( NULL );
 
     // Programatically create a token for the new voice and set its attributes.
-    if( SUCCEEDED( hr ) )
+    if (SUCCEEDED(hr))
     {
         CComPtr<ISpObjectToken> cpToken;
         CComPtr<ISpDataKey> cpDataKeyAttribs;
@@ -34,7 +34,8 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
                 0x409, 
                 L"Automation Voice", 
                 &cpToken,
-                &cpDataKeyAttribs);
+                &cpDataKeyAttribs
+        );
 
         //--- Set additional attributes for searching.
         if (SUCCEEDED(hr))
@@ -63,4 +64,3 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 
     return FAILED( hr );
 }
-

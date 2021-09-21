@@ -46,7 +46,7 @@ class CSentItem
 {
   public:
     CSentItem() { memset( this, 0, sizeof(*this) ); }
-    CSentItem( CSentItem& Other ) { memcpy( this, &Other, sizeof( Other ) ); }
+    CSentItem(CSentItem& Other) { memcpy( this, &Other, sizeof( Other ) ); }
 
   /*--- Data members ---*/
     const SPVSTATE* pXmlState;
@@ -85,10 +85,11 @@ class ATL_NO_VTABLE CTTSEngObj :
   /*=== Interfaces ====*/
   public:
     //--- ISpObjectWithToken ----------------------------------
-    STDMETHODIMP SetObjectToken( ISpObjectToken * pToken );
-    STDMETHODIMP GetObjectToken( ISpObjectToken ** ppToken )
-        { return SpGenericGetObjectToken( ppToken, m_cpToken ); }
-
+    STDMETHODIMP SetObjectToken(ISpObjectToken * pToken);
+    STDMETHODIMP GetObjectToken(ISpObjectToken ** ppToken)
+    {
+        return SpGenericGetObjectToken(ppToken, m_cpToken);
+    }
 
     //--- ISpTTSEngine --------------------------------------------
     STDMETHOD(Speak)( DWORD dwSpeakFlags,
@@ -117,4 +118,4 @@ class ATL_NO_VTABLE CTTSEngObj :
     CComPtr<ISpVoice> m_cpVoice;
 };
 
-#endif //--- This must be the last line in the file
+#endif // This must be the last line in the file
