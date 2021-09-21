@@ -193,6 +193,30 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
 
         const std::wstring& text = textFrag->pTextStart;
         m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+        const HANDLE handle = m_cpVoice->SpeakCompleteEvent();
+        bool isWaiting = true;
+        while (isWaiting) {
+            DWORD dwWaitId = ::MsgWaitForMultipleObjectsEx(1, &handle, 500, QS_ALLEVENTS, 0);
+            /**
+             * This section should invoke `pOutputSite->GetActions()` to determine if any one
+             * of the `SPVESACTIONS` has occurred and if so, carry out the action.
+             */
+            switch (dwWaitId) {
+                case WAIT_OBJECT_0:
+                    emit(L"Done 1", 6);
+                    isWaiting = false;
+                    break;
+                case WAIT_OBJECT_0 + 1:
+                    emit(L"Done 2", 6);
+                    isWaiting = false;
+                    break;
+                case WAIT_TIMEOUT:
+                    emit(L"WAIT_TIMEOUT", 12);
+                    break;
+                default:
+                    emit(L"default", 7);
+            }
+        }
 
         if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0) {
             break;
