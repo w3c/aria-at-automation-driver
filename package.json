@@ -1,0 +1,14 @@
+{
+  "name": "windows-sapi-tts-engine-for-automation",
+  "version": "0.0.1",
+  "description": "Sample Text-to-Speech Engine and MakeVoice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-windows": "^1.0.0-beta.6"
+  }
+}
