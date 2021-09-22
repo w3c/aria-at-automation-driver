@@ -66,7 +66,7 @@ const main = async () => {
   //
   // The node-windows method `isAdmin` is not designed for this use case:
   // https://github.com/coreybutler/node-windows/issues/91
-  if (process.argv[process.argv.length - 1] !== IS_ADMIN_FLAG) {
+  if (!process.argv.contains(IS_ADMIN_FLAG)) {
     await elevate(`"${process.execPath}" ${__filename} -- ${IS_ADMIN_FLAG}`);
   } else {
     await main();
