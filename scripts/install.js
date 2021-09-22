@@ -90,18 +90,18 @@ const main = async () => {
 };
 
 (async () => {
-  if (!await isAdmin()) {
-    const {stderr} = await elevate(`"${process.execPath}" ${__filename}`, {name:'foo'});
-    // The sudo_prompt module does not recognize exit codes from the child
-    // process, so the returned Promise may be fulfilled even in the event of
-    // an error. During normal operation, the child process is not expected to
-    // write to the standard error stream, so interpret any data on that stream
-    // as a signal that the process failed.
-    if (stderr) {
-      throw stderr;
-    }
-  } else {
-    await main();
+  if (await isAdmin()) {
+    return main();
+  }
+
+  const {stderr} = await elevate(`"${process.execPath}" ${__filename}`, {name:'foo'});
+  // The sudo_prompt module does not recognize exit codes from the child
+  // process, so the returned Promise may be fulfilled even in the event of an
+  // error. During normal operation, the child process is not expected to write
+  // to the standard error stream, so interpret any data on that stream as a
+  // signal that the process failed.
+  if (stderr) {
+    throw stderr;
   }
 })().catch((error) => {
   console.error(error);
