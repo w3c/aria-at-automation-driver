@@ -8,6 +8,12 @@ const node_windows = require('node-windows');
 
 const elevate = promisify(node_windows.elevate);
 const exec = promisify(child_process.exec);
+
+// Source: Windows Language Code Identifiers (LCID)
+// https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f
+const ENGLISH_LCID = 409;
+// Arbitrary string used to signal whether the current process is running with
+// administrative priviledges.
 const IS_ADMIN_FLAG = 'automation-voice-is-installing-as-admin';
 
 const fetchClsId = async (name) => {
@@ -44,7 +50,7 @@ const main = async () => {
   const attrs = {
     Age: 'Adult',
     Gender: 'Male',
-    Language: '409',
+    Language: ENGLISH_LCID,
     Name: name,
     Vendor: 'W3C',
   };
