@@ -64,7 +64,7 @@ const makeVoice = async ({name, id, clsId, attrs}) => {
 };
 
 const main = async () => {
-  await registerDll(path.join(__dirname, 'Release', 'AutomationTtsEngine.dll'));
+  await registerDll(path.join(__dirname, '..', 'Release', 'AutomationTtsEngine.dll'));
   const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
   const name = 'W3C Automation Voice';
   const id = 'W3CAutomationVoice';
