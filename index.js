@@ -44,7 +44,7 @@ const main = async () => {
   const attrs = {
     Age: 'Adult',
     Gender: 'Male',
-    Language: '409:',
+    Language: '409',
     Name: name,
     Vendor: 'W3C',
   };
