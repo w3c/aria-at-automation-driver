@@ -12,9 +12,6 @@ const exec = promisify(child_process.exec);
 // Source: Windows Language Code Identifiers (LCID)
 // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f
 const ENGLISH_LCID = 409;
-// Arbitrary string used to signal whether the current process is running with
-// administrative priviledges.
-const IS_ADMIN_FLAG = 'automation-voice-is-installing-as-admin';
 const CLASS_NAME = 'AutomationTtsEngine.SampleTTSEngine';
 
 // > # regsvr32
@@ -35,6 +32,22 @@ const readRegistry = async (keyName) => {
       }
       return all;
     }, {});
+};
+
+/**
+ * Determine if the current process is executing with administrative
+ * privileges. (This is done by attempting to write to the system registry.)
+ *
+ * @returns {boolean}
+ */
+const isAdmin = async () => {
+  try {
+    await exec(`reg add HKLM\\SOFTWARE\\AutomationVoiceTest /f /d test_value`);
+    await exec(`reg delete HKLM\\SOFTWARE\\AutomationVoiceTest /f`);
+  } catch ({}) {
+    return false;
+  }
+  return true;
 };
 
 const makeVoice = async ({name, id, clsId, attrs}) => {
@@ -67,12 +80,8 @@ const main = async () => {
 };
 
 (async () => {
-  // This script must be run with administrative privileges. Use an arbitrary
-  // command-line option as a signal to determine whether privilege elevation
-  // is necessary: if the option is absent, then this script should be run a
-  // second time.
-  if (!process.argv.includes(IS_ADMIN_FLAG)) {
-    await elevate(`"${process.execPath}" ${__filename} -- ${IS_ADMIN_FLAG}`, {name:'foo'});
+  if (!await isAdmin()) {
+    await elevate(`"${process.execPath}" ${__filename}`, {name:'foo'});
   } else {
     await main();
   }
