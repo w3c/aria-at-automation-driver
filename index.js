@@ -4,9 +4,9 @@ const child_process = require('child_process');
 const {promisify} = require('util');
 const path = require('path');
 
-const node_windows = require('node-windows');
+const sudo_prompt = require('sudo-prompt');
 
-const elevate = promisify(node_windows.elevate);
+const elevate = promisify(sudo_prompt.exec);
 const exec = promisify(child_process.exec);
 
 // Source: Windows Language Code Identifiers (LCID)
@@ -15,36 +15,44 @@ const ENGLISH_LCID = 409;
 // Arbitrary string used to signal whether the current process is running with
 // administrative priviledges.
 const IS_ADMIN_FLAG = 'automation-voice-is-installing-as-admin';
+const CLASS_NAME = 'AutomationTtsEngine.SampleTTSEngine';
 
-const fetchClsId = async (name) => {
-  const {stdout} = await exec(`reg query HKCR\\${name}\\CLSID`);
-  const matches = stdout.match(/{[^}]+}/g);
+// > # regsvr32
+// >
+// > Registers .dll files as command components in the registry.
+//
+// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/regsvr32
+const registerDll = (dll) => exec(`regsvr32 /s ${dll}`);
 
-  if (matches.length === 0) {
-    throw new Error(`No CLSID found for DLL named "${name}".`);
-  } else if (matches.length > 1) {
-    throw new Error(`Multiple CLSID's found for DLL named "${name}".`);
-  }
-  return matches[0];
+const readRegistry = async (keyName) => {
+  const {stdout} = await exec(`reg query "${keyName}"`);
+  return stdout.split('\r\n')
+    .filter((line) => /^\s+\S+\s+\w+\s+\S/.test(line))
+    .reduce((all, next) => {
+      const match = next.trim().match(/(\S+)\s+\w+\s+(.*)/);
+      if (match) {
+        all[match[1]] = match[2];
+      }
+      return all;
+    }, {});
 };
 
 const makeVoice = async ({name, id, clsId, attrs}) => {
-  await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /ve /d "${name}"`);
-  await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /v CLSID /d "${clsId}"`);
+  await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /f /ve /d "${name}"`);
+  await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /f /v CLSID /d "${clsId}"`);
 
   if ('Language' in attrs) {
-    await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /v ${attrs.Language} /d "${name}"`);
+    await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /f /v ${attrs.Language} /d "${name}"`);
   }
 
   for (const [key, value] of Object.entries(attrs)) {
-    await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id}\\Attributes /v ${key} /d "${value}"`);
+    await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id}\\Attributes /f /v ${key} /d "${value}"`);
   }
 };
 
 const main = async () => {
-  // TODO: Use `regsvr32` to register the DLL that is built for this project
-  // and included in the Node.js package.
-  const clsId = await fetchClsId('AutomationTtsEngine.SampleTTSEngine');
+  await registerDll(path.join(__dirname, 'Release', 'AutomationTtsEngine.dll'));
+  const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
   const name = 'W3C Automation Voice';
   const id = 'W3CAutomationVoice';
   const attrs = {
@@ -63,11 +71,8 @@ const main = async () => {
   // command-line option as a signal to determine whether privilege elevation
   // is necessary: if the option is absent, then this script should be run a
   // second time.
-  //
-  // The node-windows method `isAdmin` is not designed for this use case:
-  // https://github.com/coreybutler/node-windows/issues/91
-  if (!process.argv.contains(IS_ADMIN_FLAG)) {
-    await elevate(`"${process.execPath}" ${__filename} -- ${IS_ADMIN_FLAG}`);
+  if (!process.argv.includes(IS_ADMIN_FLAG)) {
+    await elevate(`"${process.execPath}" ${__filename} -- ${IS_ADMIN_FLAG}`, {name:'foo'});
   } else {
     await main();
   }

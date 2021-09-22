@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "node-windows": "^1.0.0-beta.6"
+    "sudo-prompt": "^9.2.1"
   }
 }
