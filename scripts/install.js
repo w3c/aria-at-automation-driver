@@ -98,10 +98,12 @@ const main = async () => {
     // write to the standard error stream, so interpret any data on that stream
     // as a signal that the process failed.
     if (stderr) {
-      console.error(stderr);
-      process.exitCode = 1;
+      throw stderr;
     }
   } else {
     await main();
   }
-})();
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
