@@ -6,7 +6,17 @@ const path = require('path');
 
 const sudo_prompt = require('sudo-prompt');
 
-const elevate = promisify(sudo_prompt.exec);
+const elevate = (command, options) => {
+  return new Promise((resolve, reject) => {
+    sudo_prompt.exec(command, options, (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve({stdout, stderr});
+      }
+    });
+  });
+};
 const exec = promisify(child_process.exec);
 
 // Source: Windows Language Code Identifiers (LCID)
@@ -81,7 +91,16 @@ const main = async () => {
 
 (async () => {
   if (!await isAdmin()) {
-    await elevate(`"${process.execPath}" ${__filename}`, {name:'foo'});
+    const {stderr} = await elevate(`"${process.execPath}" ${__filename}`, {name:'foo'});
+    // The sudo_prompt module does not recognize exit codes from the child
+    // process, so the returned Promise may be fulfilled even in the event of
+    // an error. During normal operation, the child process is not expected to
+    // write to the standard error stream, so interpret any data on that stream
+    // as a signal that the process failed.
+    if (stderr) {
+      console.error(stderr);
+      process.exitCode = 1;
+    }
   } else {
     await main();
   }
