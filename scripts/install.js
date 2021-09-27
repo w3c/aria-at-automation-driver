@@ -61,15 +61,21 @@ const isAdmin = async () => {
 };
 
 const makeVoice = async ({name, id, clsId, attrs}) => {
-  await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /f /ve /d "${name}"`);
-  await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /f /v CLSID /d "${clsId}"`);
+  const basePath = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
+  const add = (keyPath, name, value) => {
+    const valuePart = name ? `/v ${name}` : `/ve`;
+    return exec(`reg add ${basePath}\\${keyPath} /f ${valuePart} /d "${value}"`);
+  };
+
+  await add(id, null, name);
+  await add(id, 'CLSID', clsId);
 
   if ('Language' in attrs) {
-    await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id} /f /v ${attrs.Language} /d "${name}"`);
+    await add(id, attrs.Language, name);
   }
 
   for (const [key, value] of Object.entries(attrs)) {
-    await exec(`reg add HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens\\${id}\\Attributes /f /v ${key} /d "${value}"`);
+    await add(`${id}\\Attributes`, key, value);
   }
 };
 
