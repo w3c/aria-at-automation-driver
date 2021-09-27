@@ -60,7 +60,16 @@ const isAdmin = async () => {
   return true;
 };
 
-const makeVoice = async ({name, id, clsId, attrs, arch}) => {
+/**
+ * Add an SAPI voice to the Windows registry.
+ *
+ * @param {object} options
+ * @param {string} options.name - Human-readable name of voice; used by user interfaces to refer to the voice
+ * @param {string} options.id - unique identifier for the voice
+ * @param {object} options.attrs - zero or more SAPI voice attributes
+ * @param {'x32'|'x64'} options.arch - the CPU architecture for which to register the voice
+ */
+const registerVoice = async ({name, id, clsId, attrs, arch}) => {
   if (!['x32', 'x64'].includes(arch)) {
     throw new Error(`Unsupported architecture: "${arch}".`);
   }
@@ -96,10 +105,10 @@ const main = async () => {
     Vendor: 'W3C',
   };
 
-  await makeVoice({name, id, clsId, attrs, arch: 'x32'});
+  await registerVoice({name, id, clsId, attrs, arch: 'x32'});
 
   if (process.arch === 'x64') {
-    await makeVoice({name, id, clsId, attrs, arch: 'x64'});
+    await registerVoice({name, id, clsId, attrs, arch: 'x64'});
   }
 };
 
