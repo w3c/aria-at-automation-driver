@@ -60,11 +60,15 @@ const isAdmin = async () => {
   return true;
 };
 
-const makeVoice = async ({name, id, clsId, attrs}) => {
+const makeVoice = async ({name, id, clsId, attrs, arch}) => {
+  if (!['x32', 'x64'].includes(arch)) {
+    throw new Error(`Unsupported architecture: "${arch}".`);
+  }
+  const archFlag = arch === 'x32' ? '/reg:32' : '/reg:64';
   const basePath = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
   const add = (keyPath, name, value) => {
     const valuePart = name ? `/v ${name}` : `/ve`;
-    return exec(`reg add ${basePath}\\${keyPath} /f ${valuePart} /d "${value}"`);
+    return exec(`reg add ${basePath}\\${keyPath} /f ${archFlag} ${valuePart} /d "${value}"`);
   };
 
   await add(id, null, name);
@@ -92,7 +96,11 @@ const main = async () => {
     Vendor: 'W3C',
   };
 
-  await makeVoice({name, id, clsId, attrs});
+  await makeVoice({name, id, clsId, attrs, arch: 'x32'});
+
+  if (process.arch === 'x64') {
+    await makeVoice({name, id, clsId, attrs, arch: 'x64'});
+  }
 };
 
 (async () => {
