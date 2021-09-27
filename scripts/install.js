@@ -23,6 +23,16 @@ const exec = promisify(child_process.exec);
 // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f
 const ENGLISH_LCID = 409;
 const CLASS_NAME = 'AutomationTtsEngine.SampleTTSEngine';
+const VOICE = Object.freeze({
+  id: 'W3CAutomationVoice',
+  attrs: {
+    Age: 'Adult',
+    Gender: 'Male',
+    Language: ENGLISH_LCID,
+    Name: 'W3C Automation Voice',
+    Vendor: 'W3C'
+  }
+});
 
 // > # regsvr32
 // >
@@ -64,15 +74,20 @@ const isAdmin = async () => {
  * Add an SAPI voice to the Windows registry.
  *
  * @param {object} options
- * @param {string} options.name - Human-readable name of voice; used by user interfaces to refer to the voice
  * @param {string} options.id - unique identifier for the voice
- * @param {object} options.attrs - zero or more SAPI voice attributes
+ * @param {object} options.attrs - one or more SAPI voice attributes
+ * @param {string} options.attrs.Name - Human-readable name of voice; used by user interfaces to refer to the voice
  * @param {'x32'|'x64'} options.arch - the CPU architecture for which to register the voice
  */
-const registerVoice = async ({name, id, clsId, attrs, arch}) => {
+const registerVoice = async ({id, clsId, attrs, arch}) => {
   if (!['x32', 'x64'].includes(arch)) {
     throw new Error(`Unsupported architecture: "${arch}".`);
   }
+
+  if (!('Name' in attrs)) {
+    throw new Error('Voice name not specified.');
+  }
+
   const archFlag = arch === 'x32' ? '/reg:32' : '/reg:64';
   const basePath = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
   const add = (keyPath, name, value) => {
@@ -80,11 +95,11 @@ const registerVoice = async ({name, id, clsId, attrs, arch}) => {
     return exec(`reg add ${basePath}\\${keyPath} /f ${archFlag} ${valuePart} /d "${value}"`);
   };
 
-  await add(id, null, name);
+  await add(id, null, attrs.Name);
   await add(id, 'CLSID', clsId);
 
   if ('Language' in attrs) {
-    await add(id, attrs.Language, name);
+    await add(id, attrs.Language, attrs.Name);
   }
 
   for (const [key, value] of Object.entries(attrs)) {
@@ -95,20 +110,11 @@ const registerVoice = async ({name, id, clsId, attrs, arch}) => {
 const main = async () => {
   await registerDll(path.join(__dirname, '..', 'Release', 'AutomationTtsEngine.dll'));
   const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
-  const name = 'W3C Automation Voice';
-  const id = 'W3CAutomationVoice';
-  const attrs = {
-    Age: 'Adult',
-    Gender: 'Male',
-    Language: ENGLISH_LCID,
-    Name: name,
-    Vendor: 'W3C',
-  };
 
-  await registerVoice({name, id, clsId, attrs, arch: 'x32'});
+  await registerVoice({...VOICE, clsId, arch: 'x32'});
 
   if (process.arch === 'x64') {
-    await registerVoice({name, id, clsId, attrs, arch: 'x64'});
+    await registerVoice({...VOICE, clsId, arch: 'x64'});
   }
 };
 
