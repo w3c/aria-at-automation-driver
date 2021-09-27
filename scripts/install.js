@@ -33,6 +33,8 @@ const VOICE = Object.freeze({
     Vendor: 'W3C'
   }
 });
+const DLL_PATH = path.join(__dirname, '..', 'Release', 'AutomationTtsEngine.dll');
+const BASE_REGISTRY_PATH = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
 
 // > # regsvr32
 // >
@@ -40,6 +42,7 @@ const VOICE = Object.freeze({
 //
 // https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/regsvr32
 const registerDll = (dll) => exec(`regsvr32 /s ${dll}`);
+const deregisterDll = (dll) => exec(`regsvr32 /u /s ${dll}`);
 
 const readRegistry = async (keyName) => {
   const {stdout} = await exec(`reg query "${keyName}"`);
@@ -89,10 +92,9 @@ const registerVoice = async ({id, clsId, attrs, arch}) => {
   }
 
   const archFlag = arch === 'x32' ? '/reg:32' : '/reg:64';
-  const basePath = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
   const add = (keyPath, name, value) => {
     const valuePart = name ? `/v ${name}` : `/ve`;
-    return exec(`reg add ${basePath}\\${keyPath} /f ${archFlag} ${valuePart} /d "${value}"`);
+    return exec(`reg add ${BASE_REGISTRY_PATH}\\${keyPath} /f ${archFlag} ${valuePart} /d "${value}"`);
   };
 
   await add(id, null, attrs.Name);
@@ -107,23 +109,68 @@ const registerVoice = async ({id, clsId, attrs, arch}) => {
   }
 };
 
-const main = async () => {
-  await registerDll(path.join(__dirname, '..', 'Release', 'AutomationTtsEngine.dll'));
-  const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
+/**
+ * Remove an SAPI voice from the Windows registry.
+ *
+ * @param {object} options
+ * @param {string} options.id - unique identifier for the voice
+ * @param {'x32'|'x64'} options.arch - the CPU architecture for which to deregister the voice
+ */
+const deregisterVoice = async ({id, arch}) => {
+  if (!['x32', 'x64'].includes(arch)) {
+    throw new Error(`Unsupported architecture: "${arch}".`);
+  }
 
-  await registerVoice({...VOICE, clsId, arch: 'x32'});
+  const archFlag = arch === 'x32' ? '/reg:32' : '/reg:64';
 
-  if (process.arch === 'x64') {
-    await registerVoice({...VOICE, clsId, arch: 'x64'});
+  return exec(`reg delete ${BASE_REGISTRY_PATH}\\${id} /f ${archFlag}`);
+};
+
+const operations = {
+  async install() {
+    await registerDll(DLL_PATH);
+
+    const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
+
+    await registerVoice({...VOICE, clsId, arch: 'x32'});
+
+    if (process.arch === 'x64') {
+      await registerVoice({...VOICE, clsId, arch: 'x64'});
+    }
+  },
+  async uninstall() {
+    const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
+
+    await deregisterVoice({id: VOICE.id, arch: 'x32'});
+
+    if (process.arch === 'x64') {
+      await deregisterVoice({id: VOICE.id, arch: 'x64'});
+    }
+
+    await deregisterDll(DLL_PATH);
   }
 };
 
 (async () => {
+  const hasInstall = process.argv.includes('install');
+  const hasUninstall = process.argv.includes('uninstall');
+
+  if (hasInstall === hasUninstall) {
+    throw new Error(
+      'This script must be run with either "install" or "uninstall".'
+    );
+  }
+  const operation = hasInstall ? 'install' : 'uninstall';
+
   if (await isAdmin()) {
-    return main();
+    return operations[operation]();
   }
 
-  const {stderr} = await elevate(`"${process.execPath}" ${__filename}`, {name:'foo'});
+  const {stderr} = await elevate(
+    `"${process.execPath}" ${__filename} -- ${operation}`,
+    {name:'foo'}
+  );
+
   // The sudo_prompt module does not recognize exit codes from the child
   // process, so the returned Promise may be fulfilled even in the event of an
   // error. During normal operation, the child process is not expected to write

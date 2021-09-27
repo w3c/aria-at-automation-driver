@@ -4,7 +4,8 @@
   "description": "Sample Text-to-Speech Engine and MakeVoice",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node scripts/install.js",
+    "postinstall": "node scripts/install.js -- install",
+    "postuninstall": "node scripts/install.js -- uninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
