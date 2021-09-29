@@ -40,6 +40,8 @@ HRESULT CTTSEngObj::FinalConstruct()
     m_ulNumWords = 0;
 
     hr = m_cpVoice.CoCreateInstance(CLSID_SpVoice);
+    // The next line is the wrong direction:
+    //m_cpVoice->SetNotifyCallbackFunction(StaticNotifyCallback, 0, reinterpret_cast<LPARAM>(this));
 
     return hr;
 } /* CTTSEngObj::FinalConstruct */
@@ -186,17 +188,29 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
     }
     HRESULT hr = S_OK;
 
+    /**/
+    ULONGLONG event_mask =
+        SPFEI(SPEI_START_INPUT_STREAM) |
+        SPFEI(SPEI_TTS_BOOKMARK) |
+        SPFEI(SPEI_WORD_BOUNDARY) |
+        SPFEI(SPEI_SENTENCE_BOUNDARY) |
+        SPFEI(SPEI_END_INPUT_STREAM);
+    m_cpVoice->SetInterest(event_mask, event_mask);
+    //*/
+    m_cpVoice->SetPriority(SPVPRI_ALERT);
+
     for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext) {
         if (textFrag->State.eAction == SPVA_Bookmark) {
             continue;
         }
 
         const std::wstring& text = textFrag->pTextStart;
-        m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
         const HANDLE handle = m_cpVoice->SpeakCompleteEvent();
+        m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
         bool isWaiting = true;
+        int timeoutCount = 0;
         while (isWaiting) {
-            DWORD dwWaitId = ::MsgWaitForMultipleObjectsEx(1, &handle, 500, QS_ALLEVENTS, 0);
+            DWORD dwWaitId = ::MsgWaitForMultipleObjectsEx(1, &handle, 500, 0, 0);
             /**
              * This section should invoke `pOutputSite->GetActions()` to determine if any one
              * of the `SPVESACTIONS` has occurred and if so, carry out the action.
@@ -208,10 +222,13 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
                     break;
                 case WAIT_OBJECT_0 + 1:
                     emit(L"Done 2", 6);
-                    isWaiting = false;
+                    WaitMessage();
+                    //isWaiting = false;
                     break;
                 case WAIT_TIMEOUT:
                     emit(L"WAIT_TIMEOUT", 12);
+                    timeoutCount += 1;
+                    isWaiting = timeoutCount < 10;
                     break;
                 default:
                     emit(L"default", 7);
@@ -226,6 +243,13 @@ STDMETHODIMP CTTSEngObj::Speak( DWORD dwSpeakFlags,
     return S_OK;
 } /* CTTSEngObj::Speak */
 
+
+void CTTSEngObj::StaticNotifyCallback(WPARAM wParam, LPARAM lParam) {
+    CTTSEngObj* pThis = reinterpret_cast<CTTSEngObj*>(lParam);
+    SPVOICESTATUS* status;
+    pThis->m_cpVoice->GetStatus(status, NULL);
+    emit(L"Hello", 5);
+}
 
 
 /*****************************************************************************

@@ -115,6 +115,8 @@ class ATL_NO_VTABLE CTTSEngObj :
     ULONGLONG           m_ullAudioOff;
 
     CComPtr<ISpVoice> m_cpVoice;
+
+    static void CALLBACK StaticNotifyCallback(WPARAM wParam, LPARAM lParam);
 };
 
 #endif //--- This must be the last line in the file
