@@ -20,66 +20,6 @@
 #include <windows.h>
 
 //--- Local
-
-/*****************************************************************************
-* CTTSEngObj::FinalConstruct *
-*----------------------------*
-*   Description:
-*       Constructor
-*****************************************************************************/
-HRESULT CTTSEngObj::FinalConstruct()
-{
-    HRESULT hr = S_OK;
-
-    //--- Init vars
-    m_hVoiceData = NULL;
-    m_pVoiceData = NULL;
-    m_pWordList  = NULL;
-    m_ulNumWords = 0;
-
-    hr = m_cpVoice.CoCreateInstance(CLSID_SpVoice);
-
-    return hr;
-}
-
-/*****************************************************************************
-* CTTSEngObj::FinalRelease *
-*--------------------------*
-*   Description:
-*       destructor
-*****************************************************************************/
-void CTTSEngObj::FinalRelease()
-{
-    delete m_pWordList;
-
-    if (m_pVoiceData)
-    {
-        ::UnmapViewOfFile((void*)m_pVoiceData);
-    }
-
-    if (m_hVoiceData)
-    {
-        ::CloseHandle(m_hVoiceData);
-    }
-}
-
-//
-//=== ISpObjectWithToken Implementation ======================================
-//
-
-/*****************************************************************************
-* CTTSEngObj::SetObjectToken *
-*----------------------------*
-*   Description:
-*       This function performs the majority of the initialization of the voice.
-*   Once the object token has been provided, the filenames are read from the
-*   token key and the files are mapped.
-*****************************************************************************/
-STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
-{
-    return SpGenericSetObjectToken(pToken, m_cpToken);
-}
-
 std::string to_utf8(const std::wstring& s, ULONG length)
 {
     std::string utf8;
@@ -91,6 +31,7 @@ std::string to_utf8(const std::wstring& s, ULONG length)
     }
     return utf8;
 }
+
 
 int emit(LPCTSTR words, ULONG len) {
     HANDLE pipe = CreateFile(
@@ -130,6 +71,78 @@ int emit(LPCTSTR words, ULONG len) {
 
     return 0;
 }
+
+
+/*****************************************************************************
+* CTTSEngObj::FinalConstruct *
+*----------------------------*
+*   Description:
+*       Constructor
+*****************************************************************************/
+HRESULT CTTSEngObj::FinalConstruct()
+{
+    HRESULT hr = S_OK;
+
+    //--- Init vars
+    m_hVoiceData = NULL;
+    m_pVoiceData = NULL;
+    m_pWordList  = NULL;
+    m_ulNumWords = 0;
+
+    hr = m_cpVoice.CoCreateInstance(CLSID_SpVoice);
+
+    if (FAILED(hr))
+    {
+        emit(L"Voice initialization failed", 27);
+    }
+    else
+    {
+        emit(L"Voice initialization succeeded", 30);
+    }
+
+    return hr;
+}
+
+/*****************************************************************************
+* CTTSEngObj::FinalRelease *
+*--------------------------*
+*   Description:
+*       destructor
+*****************************************************************************/
+void CTTSEngObj::FinalRelease()
+{
+    delete m_pWordList;
+
+    if (m_pVoiceData)
+    {
+        ::UnmapViewOfFile((void*)m_pVoiceData);
+    }
+
+    if (m_hVoiceData)
+    {
+        ::CloseHandle(m_hVoiceData);
+    }
+
+    emit(L"Voice destroyed", 15);
+}
+
+//
+//=== ISpObjectWithToken Implementation ======================================
+//
+
+/*****************************************************************************
+* CTTSEngObj::SetObjectToken *
+*----------------------------*
+*   Description:
+*       This function performs the majority of the initialization of the voice.
+*   Once the object token has been provided, the filenames are read from the
+*   token key and the files are mapped.
+*****************************************************************************/
+STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
+{
+    return SpGenericSetObjectToken(pToken, m_cpToken);
+}
+
 
 //
 //=== ISpTTSEngine Implementation ============================================
@@ -192,7 +205,13 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
 
         const std::wstring& text = textFrag->pTextStart;
-        m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+        hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+
+        if (FAILED(hr))
+        {
+            emit(L"Speaking failed", 15);
+            break;
+        }
 
         if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0)
         {
@@ -200,7 +219,7 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
     }
 
-    return S_OK;
+    return hr;
 }
 
 /*****************************************************************************
