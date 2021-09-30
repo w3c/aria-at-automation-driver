@@ -24,13 +24,13 @@ const exec = promisify(child_process.exec);
 const ENGLISH_LCID = 409;
 const CLASS_NAME = 'AutomationTtsEngine.SampleTTSEngine';
 const VOICE = Object.freeze({
-  id: 'W3CAutomationVoice',
+  id: 'BocoupAutomationVoice',
   attrs: {
     Age: 'Adult',
     Gender: 'Male',
     Language: ENGLISH_LCID,
-    Name: 'W3C Automation Voice',
-    Vendor: 'W3C'
+    Name: 'Bocoup Automation Voice',
+    Vendor: 'Bocoup'
   }
 });
 const DLL_PATH = path.join(__dirname, '..', 'Release', 'AutomationTtsEngine.dll');
