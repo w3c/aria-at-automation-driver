@@ -162,6 +162,13 @@ const operations = {
   }
   const operation = hasInstall ? 'install' : 'uninstall';
 
+  if (process.platform !== 'win32') {
+    console.warn(
+      'This module is intended for Windows environments only and will not function elsewhere.'
+    );
+    return;
+  }
+
   if (await isAdmin()) {
     return operations[operation]();
   }
