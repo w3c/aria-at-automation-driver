@@ -1,0 +1,16 @@
+{
+  "name": "windows-sapi-tts-engine-for-automation",
+  "version": "0.0.1",
+  "description": "Sample Text-to-Speech Engine and MakeVoice",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node scripts/install.js -- install",
+    "postuninstall": "node scripts/install.js -- uninstall",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "sudo-prompt": "^9.2.1"
+  }
+}

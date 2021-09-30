@@ -20,6 +20,58 @@
 #include <windows.h>
 
 //--- Local
+std::string to_utf8(const std::wstring& s, ULONG length)
+{
+    std::string utf8;
+    int len = WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, NULL, 0, NULL, NULL);
+    if (len > 0)
+    {
+        utf8.resize(len);
+        WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, &utf8[0], len, NULL, NULL);
+    }
+    return utf8;
+}
+
+
+HRESULT emit(LPCTSTR words, ULONG len) {
+    HANDLE pipe = CreateFile(
+        L"\\\\.\\pipe\\my_pipe",
+        GENERIC_WRITE,
+        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        NULL,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        NULL
+    );
+
+    if (pipe == INVALID_HANDLE_VALUE)
+    {
+        fprintf(stderr, "Failed to connect to pipe.");
+        return E_HANDLE;
+    }
+
+    DWORD numBytesWritten = 0;
+    std::string stringBuffer = to_utf8(words, len);
+    BOOL result = WriteFile(
+        pipe, // handle to our outbound pipe
+        stringBuffer.c_str(), // data to send
+        stringBuffer.size(),
+        &numBytesWritten, // will store actual amount of data sent
+        NULL // not using overlapped IO
+    );
+
+    // Close the pipe (automatically disconnects client too)
+    CloseHandle(pipe);
+
+    if (!result)
+    {
+        fprintf(stderr, "Failed to send data.");
+        return E_FAIL;
+    }
+
+    return S_OK;
+}
+
 
 /*****************************************************************************
 * CTTSEngObj::FinalConstruct *
@@ -38,6 +90,15 @@ HRESULT CTTSEngObj::FinalConstruct()
     m_ulNumWords = 0;
 
     hr = m_cpVoice.CoCreateInstance(CLSID_SpVoice);
+
+    if (FAILED(hr))
+    {
+        emit(L"Voice initialization failed", 27);
+    }
+    else
+    {
+        emit(L"Voice initialization succeeded", 30);
+    }
 
     return hr;
 }
@@ -61,6 +122,8 @@ void CTTSEngObj::FinalRelease()
     {
         ::CloseHandle(m_hVoiceData);
     }
+
+    emit(L"Voice destroyed", 15);
 }
 
 //
@@ -80,56 +143,6 @@ STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
     return SpGenericSetObjectToken(pToken, m_cpToken);
 }
 
-std::string to_utf8(const std::wstring& s, ULONG length)
-{
-    std::string utf8;
-    int len = WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, NULL, 0, NULL, NULL);
-    if (len > 0)
-    {
-        utf8.resize(len);
-        WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, &utf8[0], len, NULL, NULL);
-    }
-    return utf8;
-}
-
-int emit(LPCTSTR words, ULONG len) {
-    HANDLE pipe = CreateFile(
-        L"\\\\.\\pipe\\my_pipe",
-        GENERIC_WRITE,
-        FILE_SHARE_READ | FILE_SHARE_WRITE,
-        NULL,
-        OPEN_EXISTING,
-        FILE_ATTRIBUTE_NORMAL,
-        NULL
-    );
-
-    if (pipe == INVALID_HANDLE_VALUE)
-    {
-        fprintf(stderr, "Failed to connect to pipe.");
-        return 0;
-    }
-
-    DWORD numBytesWritten = 0;
-    std::string stringBuffer = to_utf8(words, len);
-    BOOL result = WriteFile(
-        pipe, // handle to our outbound pipe
-        stringBuffer.c_str(), // data to send
-        stringBuffer.size(),
-        &numBytesWritten, // will store actual amount of data sent
-        NULL // not using overlapped IO
-    );
-
-    // Close the pipe (automatically disconnects client too)
-    CloseHandle(pipe);
-
-    if (!result)
-    {
-        fprintf(stderr, "Failed to send data.");
-        return 1;
-    }
-
-    return 0;
-}
 
 //
 //=== ISpTTSEngine Implementation ============================================
@@ -192,15 +205,22 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
 
         const std::wstring& text = textFrag->pTextStart;
-        m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+        hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
 
-        if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0)
+        if (FAILED(hr))
+        {
+            emit(L"Speaking failed", 15);
+            break;
+        }
+
+        hr = emit(textFrag->pTextStart, textFrag->ulTextLen);
+        if (FAILED(hr))
         {
             break;
         }
     }
 
-    return S_OK;
+    return hr;
 }
 
 /*****************************************************************************
