@@ -33,7 +33,7 @@ std::string to_utf8(const std::wstring& s, ULONG length)
 }
 
 
-int emit(LPCTSTR words, ULONG len) {
+HRESULT emit(LPCTSTR words, ULONG len) {
     HANDLE pipe = CreateFile(
         L"\\\\.\\pipe\\my_pipe",
         GENERIC_WRITE,
@@ -47,7 +47,7 @@ int emit(LPCTSTR words, ULONG len) {
     if (pipe == INVALID_HANDLE_VALUE)
     {
         fprintf(stderr, "Failed to connect to pipe.");
-        return 0;
+        return E_HANDLE;
     }
 
     DWORD numBytesWritten = 0;
@@ -66,10 +66,10 @@ int emit(LPCTSTR words, ULONG len) {
     if (!result)
     {
         fprintf(stderr, "Failed to send data.");
-        return 1;
+        return E_FAIL;
     }
 
-    return 0;
+    return S_OK;
 }
 
 
@@ -213,7 +213,8 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
             break;
         }
 
-        if (emit(textFrag->pTextStart, textFrag->ulTextLen) != 0)
+        hr = emit(textFrag->pTextStart, textFrag->ulTextLen);
+        if (FAILED(hr))
         {
             break;
         }
