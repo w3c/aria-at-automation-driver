@@ -1,6 +1,7 @@
 {
   "name": "windows-sapi-tts-engine-for-automation",
   "version": "0.0.1",
+  "private": true,
   "description": "Sample Text-to-Speech Engine and MakeVoice",
   "main": "index.js",
   "scripts": {
