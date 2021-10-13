@@ -4,6 +4,9 @@
   "private": true,
   "description": "Sample Text-to-Speech Engine and MakeVoice",
   "main": "index.js",
+  "bin": {
+    "at-driver": "./bin/at-driver"
+  },
   "scripts": {
     "postinstall": "node scripts/install.js -- install",
     "postuninstall": "node scripts/install.js -- uninstall",
@@ -16,6 +19,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "sudo-prompt": "^9.2.1"
+    "sudo-prompt": "^9.2.1",
+    "ws": "^8.2.3",
+    "yargs": "^17.2.1"
   }
 }
