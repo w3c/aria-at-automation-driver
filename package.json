@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "node scripts/install.js -- install",
     "postuninstall": "node scripts/install.js -- uninstall",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --ui tdd test"
   },
   "files": [
     "./lib/**/*",
@@ -18,6 +18,9 @@
   ],
   "author": "",
   "license": "MIT",
+  "devDependencies": {
+    "mocha": "^9.1.2"
+  },
   "dependencies": {
     "sudo-prompt": "^9.2.1",
     "ws": "^8.2.3",
