@@ -9,6 +9,10 @@
     "postuninstall": "node scripts/install.js -- uninstall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "./lib/**/*",
+    "./Release/AutomationTtsEngine.dll"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
