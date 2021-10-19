@@ -33,7 +33,7 @@ std::string to_utf8(const std::wstring& s, ULONG length)
 }
 
 
-HRESULT emit(LPCTSTR words, ULONG len) {
+HRESULT emit(std::string type, std::string data) {
     HANDLE pipe = CreateFile(
         L"\\\\.\\pipe\\my_pipe",
         GENERIC_WRITE,
@@ -50,12 +50,12 @@ HRESULT emit(LPCTSTR words, ULONG len) {
         return E_HANDLE;
     }
 
+    std::string message(type + ":" + data);
     DWORD numBytesWritten = 0;
-    std::string stringBuffer = to_utf8(words, len);
     BOOL result = WriteFile(
         pipe, // handle to our outbound pipe
-        stringBuffer.c_str(), // data to send
-        stringBuffer.size(),
+        message.c_str(), // data to send
+        message.size(),
         &numBytesWritten, // will store actual amount of data sent
         NULL // not using overlapped IO
     );
@@ -93,11 +93,11 @@ HRESULT CTTSEngObj::FinalConstruct()
 
     if (FAILED(hr))
     {
-        emit(L"Voice initialization failed", 27);
+        emit("event", "Voice initialization failed");
     }
     else
     {
-        emit(L"Voice initialization succeeded", 30);
+        emit("event", "Voice initialization succeeded");
     }
 
     return hr;
@@ -123,7 +123,7 @@ void CTTSEngObj::FinalRelease()
         ::CloseHandle(m_hVoiceData);
     }
 
-    emit(L"Voice destroyed", 15);
+    emit("event", "Voice destroyed");
 }
 
 //
@@ -209,11 +209,11 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
 
         if (FAILED(hr))
         {
-            emit(L"Speaking failed", 15);
+            emit("event", "Speaking failed");
             break;
         }
 
-        hr = emit(textFrag->pTextStart, textFrag->ulTextLen);
+        hr = emit("speech", to_utf8(textFrag->pTextStart, textFrag->ulTextLen));
         if (FAILED(hr))
         {
             break;
