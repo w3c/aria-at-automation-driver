@@ -1,16 +1,29 @@
 {
   "name": "windows-sapi-tts-engine-for-automation",
   "version": "0.0.1",
+  "private": true,
   "description": "Sample Text-to-Speech Engine and MakeVoice",
   "main": "index.js",
+  "bin": {
+    "at-driver": "./bin/at-driver"
+  },
   "scripts": {
     "postinstall": "node scripts/install.js -- install",
     "postuninstall": "node scripts/install.js -- uninstall",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --ui tdd test"
   },
+  "files": [
+    "./lib/**/*",
+    "./Release/AutomationTtsEngine.dll"
+  ],
   "author": "",
   "license": "MIT",
+  "devDependencies": {
+    "mocha": "^9.1.2"
+  },
   "dependencies": {
-    "sudo-prompt": "^9.2.1"
+    "sudo-prompt": "^9.2.1",
+    "ws": "^8.2.3",
+    "yargs": "^17.2.1"
   }
 }
