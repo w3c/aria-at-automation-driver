@@ -37,14 +37,12 @@ running locally on a Microsoft Windows system.
 - **message** - a [JSON](https://www.json.org)-formatted string that describes
   some occurrence of interest, emitted at the moment it occurred; the message
   should be a JSON object value with two string properties: `type` and `data`
-- **message type** - one of `"event"`, `"speech"`, or `"unknown"`
-  - `"event"` - signifies that the message data is an expected lifecycle of the
-    automation voice (e.g. initialization and destruction)
+- **message type** - one of `"lifecycle"`, `"speech"`, or `"error"`
+  - `"lifecycle"` - signifies that the message data is an expected lifecycle of
+    the automation voice (e.g. initialization and destruction)
   - `"speech"` - signifies that the message data is text which a screen reader
     has requested the operating system annunciate
-  - `"unknown"` - a fallback type used in exceptional circumstances where no
-    type could be inferred; the use of this value reflects an error in the
-    internals of this tool
+  - `"error"` - signifies that an exceptional circumstances has occurred
 - **message data** - information which refines the meaning of the message type
 
 ## Architecture

@@ -32,8 +32,13 @@ std::string to_utf8(const std::wstring& s, ULONG length)
     return utf8;
 }
 
+enum class MessageType {
+    LIFECYCLE,
+    SPEECH,
+    ERR
+};
 
-HRESULT emit(std::string type, std::string data) {
+HRESULT emit(MessageType type, std::string data) {
     HANDLE pipe = CreateFile(
         L"\\\\.\\pipe\\my_pipe",
         GENERIC_WRITE,
@@ -50,7 +55,20 @@ HRESULT emit(std::string type, std::string data) {
         return E_HANDLE;
     }
 
-    std::string message(type + ":" + data);
+    std::string typeString;
+    if (type == MessageType::LIFECYCLE)
+    {
+        typeString = "lifecycle";
+    }
+    else if (type == MessageType::SPEECH)
+    {
+        typeString = "speech";
+    }
+    else
+    {
+        typeString = "error";
+    }
+    std::string message(typeString + ":" + data);
     DWORD numBytesWritten = 0;
     BOOL result = WriteFile(
         pipe, // handle to our outbound pipe
@@ -93,11 +111,11 @@ HRESULT CTTSEngObj::FinalConstruct()
 
     if (FAILED(hr))
     {
-        emit("event", "Voice initialization failed");
+        emit(MessageType::ERR, "Voice initialization failed");
     }
     else
     {
-        emit("event", "Voice initialization succeeded");
+        emit(MessageType::LIFECYCLE, "Voice initialization succeeded");
     }
 
     return hr;
@@ -123,7 +141,7 @@ void CTTSEngObj::FinalRelease()
         ::CloseHandle(m_hVoiceData);
     }
 
-    emit("event", "Voice destroyed");
+    emit(MessageType::LIFECYCLE, "Voice destroyed");
 }
 
 //
@@ -209,11 +227,11 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
 
         if (FAILED(hr))
         {
-            emit("event", "Speaking failed");
+            emit(MessageType::ERR, "Speaking failed");
             break;
         }
 
-        hr = emit("speech", to_utf8(textFrag->pTextStart, textFrag->ulTextLen));
+        hr = emit(MessageType::SPEECH, to_utf8(textFrag->pTextStart, textFrag->ulTextLen));
         if (FAILED(hr))
         {
             break;
