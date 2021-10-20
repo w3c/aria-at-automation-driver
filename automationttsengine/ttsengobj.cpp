@@ -326,7 +326,40 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
 
         const std::wstring& text = textFrag->pTextStart;
+        const HANDLE handle = m_cpVoice->SpeakCompleteEvent();
         hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+
+        /**
+         * theory 5: the Microsoft Speech API creates a new thread for the `speak` call, allowing this function to proceed, but it joins on that thread once this function returns, blocking further speech
+         * verdict: inconclusive (blocking in the current thread appears to block the speech rendering, suggesting that the "asynchronous" call is actually only deferred)
+         */
+        bool isWaiting = true;
+        int timeoutCount = 0;
+        while (isWaiting) {
+            DWORD dwWaitId = ::MsgWaitForMultipleObjectsEx(1, &handle, 500, 0, 0);
+            /**
+             * This section should invoke `pOutputSite->GetActions()` to determine if any one
+             * of the `SPVESACTIONS` has occurred and if so, carry out the action.
+             */
+            switch (dwWaitId) {
+                case WAIT_OBJECT_0:
+                    emit(MessageType::LIFECYCLE, "Done waiting 1");
+                    isWaiting = false;
+                    break;
+                case WAIT_OBJECT_0 + 1:
+                    emit(MessageType::LIFECYCLE, "Done waiting 2");
+                    WaitMessage();
+                    //isWaiting = false;
+                    break;
+                case WAIT_TIMEOUT:
+                    emit(MessageType::LIFECYCLE, "WAIT_TIMEOUT");
+                    timeoutCount += 1;
+                    isWaiting = timeoutCount < 10;
+                    break;
+                default:
+                    emit(MessageType::LIFECYCLE, "default");
+            }
+        }
 
         if (FAILED(hr))
         {
