@@ -161,6 +161,75 @@ STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
     return SpGenericSetObjectToken(pToken, m_cpToken);
 }
 
+std::string speakFlagsToString(DWORD dwSpeakFlags)
+{
+    std::string flagsString = "";
+    if (dwSpeakFlags & SPF_DEFAULT) {
+        flagsString += "SPF_DEFAULT,";
+    }
+    if (dwSpeakFlags & SPF_ASYNC) {
+        flagsString += "SPF_ASYNC,";
+    }
+    if (dwSpeakFlags & SPF_PURGEBEFORESPEAK) {
+        flagsString += "SPF_PURGEBEFORESPEAK,";
+    }
+    if (dwSpeakFlags & SPF_IS_FILENAME) {
+        flagsString += "SPF_IS_FILENAME,";
+    }
+    if (dwSpeakFlags & SPF_IS_XML) {
+        flagsString += "SPF_IS_XML,";
+    }
+    if (dwSpeakFlags & SPF_IS_NOT_XML) {
+        flagsString += "SPF_IS_NOT_XML,";
+    }
+    if (dwSpeakFlags & SPF_PERSIST_XML) {
+        flagsString += "SPF_PERSIST_XML,";
+    }
+    if (dwSpeakFlags & SPF_NLP_SPEAK_PUNC) {
+        flagsString += "SPF_NLP_SPEAK_PUNC,";
+    }
+    if (dwSpeakFlags & SPF_NLP_MASK) {
+        flagsString += "SPF_NLP_MASK,";
+    }
+    if (dwSpeakFlags & SPF_VOICE_MASK) {
+        flagsString += "SPF_VOICE_MASK,";
+    }
+    if (dwSpeakFlags & SPF_UNUSED_FLAGS) {
+        flagsString += "SPF_UNUSED_FLAGS,";
+    }
+    return flagsString;
+}
+
+std::string priorityToString(SPVPRIORITY priority)
+{
+    switch (priority) {
+        case SPVPRI_NORMAL:
+            return "SPVPRI_NORMAL";
+        case SPVPRI_ALERT:
+            return "SPVPRI_ALERT";
+        case SPVPRI_OVER:
+            return "SPVPRI_OVER";
+    }
+    return "(unknown)";
+}
+
+std::string alertBoundaryToString(SPEVENTENUM alertBoundary) {
+    switch (alertBoundary) {
+        case SPEI_WORD_BOUNDARY:
+            return "SPEI_WORD_BOUNDARY";
+        case SPEI_SENTENCE_BOUNDARY:
+            return "SPEI_SENTENCE_BOUNDARY";
+        case SPEI_PHONEME:
+            return "SPEI_PHONEME";
+        case SPEI_VISEME:
+            return "SPEI_VISEME";
+        case SPEI_VOICE_CHANGE:
+            return "SPEI_VOICE_CHANGE";
+        case SPEI_TTS_BOOKMARK:
+            return "SPEI_TTS_BOOKMARK";
+    }
+    return "(unknown)";
+}
 
 //
 //=== ISpTTSEngine Implementation ============================================
@@ -208,12 +277,46 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
     const SPVTEXTFRAG* pTextFragList,
     ISpTTSEngineSite* pOutputSite)
 {
+    /**
+     * theory 1: the early exit is hiding relevant invocations of `ISpTTSEngine::Speak`
+     * verdict: nope
+     */
+    emit(MessageType::LIFECYCLE, "Speak invoked.");
     //--- Check args
     if (SP_IS_BAD_INTERFACE_PTR(pOutputSite) || SP_IS_BAD_READ_PTR(pTextFragList))
     {
         return E_INVALIDARG;
     }
     HRESULT hr = S_OK;
+
+    /**
+     * theory 2: the speak flags being passed in to `ISpTTSEngine::Speak` are interfering
+     * verdict: nope (the flags are unset initially)
+     */
+    //emit(MessageType::LIFECYCLE, "original: " + speakFlagsToString(dwSpeakFlags));
+    //emit(MessageType::LIFECYCLE, "modified: " + speakFlagsToString(dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK));
+
+    /**
+     * theory 3: the voice's priority is interfering
+     * verdict: nope (the priority is initially `SPVPRI_NORMAL`, and setting it to `SPVPRI_ALERT` does not have an effect)
+     */
+    //SPVPRIORITY priority;
+    //m_cpVoice->GetPriority(&priority);
+    //emit(MessageType::LIFECYCLE, "priority (original): " + priorityToString(priority));
+    //m_cpVoice->SetPriority(SPVPRI_ALERT);
+    //m_cpVoice->GetPriority(&priority);
+    //emit(MessageType::LIFECYCLE, "priority (modified): " + priorityToString(priority));
+
+    /**
+     * theory 4: the voice's alert boundary is interfering
+     * verdict: nope (the alert boundary is initially `SPEI_WORD_BOUNDARY` and setting it to `SPEI_PHONEME` does not have an effect)
+     */
+    //SPEVENTENUM alertBoundary;
+    //m_cpVoice->GetAlertBoundary(&alertBoundary);
+    //emit(MessageType::LIFECYCLE, "alert boundary (original): " + alertBoundaryToString(alertBoundary));
+    //m_cpVoice->SetAlertBoundary(SPEI_PHONEME);
+    //m_cpVoice->GetAlertBoundary(&alertBoundary);
+    //emit(MessageType::LIFECYCLE, "alert boundary (modified): " + alertBoundaryToString(alertBoundary));
 
     for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext)
     {
