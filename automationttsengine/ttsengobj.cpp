@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <windows.h>
+#include <thread>
 
 //--- Local
 std::string to_utf8(const std::wstring& s, ULONG length)
@@ -118,6 +119,17 @@ HRESULT CTTSEngObj::FinalConstruct()
         emit(MessageType::LIFECYCLE, "Voice initialization succeeded");
     }
 
+    hr = CoCreateInstance(CLSID_SpVoice, NULL, CLSCTX_ALL, IID_ISpVoice, (void**)&m_cpVoice2);
+
+    if (FAILED(hr))
+    {
+        emit(MessageType::ERR, "Second voice initialization failed");
+    }
+    else
+    {
+        emit(MessageType::LIFECYCLE, "Second voice initialization succeeded");
+    }
+
     return hr;
 }
 
@@ -139,6 +151,12 @@ void CTTSEngObj::FinalRelease()
     if (m_hVoiceData)
     {
         ::CloseHandle(m_hVoiceData);
+    }
+
+    if (m_cpVoice2)
+    {
+        m_cpVoice2->Release();
+        m_cpVoice2 = NULL;
     }
 
     emit(MessageType::LIFECYCLE, "Voice destroyed");
@@ -231,6 +249,67 @@ std::string alertBoundaryToString(SPEVENTENUM alertBoundary) {
     return "(unknown)";
 }
 
+void waitForSpeech(HANDLE handle)
+{
+    bool isWaiting = true;
+    int timeoutCount = 0;
+    while (isWaiting) {
+        DWORD dwWaitId = ::MsgWaitForMultipleObjectsEx(1, &handle, 500, 0, 0);
+        /**
+         * This section should invoke `pOutputSite->GetActions()` to determine if any one
+         * of the `SPVESACTIONS` has occurred and if so, carry out the action.
+         */
+        switch (dwWaitId) {
+        case WAIT_OBJECT_0:
+            emit(MessageType::LIFECYCLE, "Done waiting 1");
+            isWaiting = false;
+            break;
+        case WAIT_OBJECT_0 + 1:
+            emit(MessageType::LIFECYCLE, "Done waiting 2");
+            WaitMessage();
+            //isWaiting = false;
+            break;
+        case WAIT_TIMEOUT:
+            emit(MessageType::LIFECYCLE, "WAIT_TIMEOUT");
+            timeoutCount += 1;
+            isWaiting = timeoutCount < 10;
+            break;
+        default:
+            emit(MessageType::LIFECYCLE, "default");
+        }
+    }
+}
+
+void speak(CComPtr<ISpVoice> voice, DWORD dwSpeakFlags, const SPVTEXTFRAG* textFrag)
+{
+    const std::wstring& text = textFrag->pTextStart;
+    voice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_PURGEBEFORESPEAK, 0);
+}
+
+std::string actionsToString(DWORD actions) {
+    std::string actionsString = "";
+    if (actions & SPVES_CONTINUE)
+    {
+        actionsString += "SPVES_CONTINUE";
+    }
+    if (actions & SPVES_ABORT)
+    {
+        actionsString += "SPVES_ABORT";
+    }
+    if (actions & SPVES_SKIP)
+    {
+        actionsString += "SPVES_SKIP,";
+    }
+    if (actions & SPVES_RATE)
+    {
+        actionsString += "SPVES_RATE,";
+    }
+    if (actions & SPVES_VOLUME)
+    {
+        actionsString += "SPVES_VOLUME,";
+    }
+    return actionsString;
+}
 //
 //=== ISpTTSEngine Implementation ============================================
 //
@@ -318,6 +397,12 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
     //m_cpVoice->GetAlertBoundary(&alertBoundary);
     //emit(MessageType::LIFECYCLE, "alert boundary (modified): " + alertBoundaryToString(alertBoundary));
 
+    ISpVoice* pVoice = NULL;
+    hr = CoCreateInstance(CLSID_SpVoice, NULL, CLSCTX_ALL, IID_ISpVoice, (void**)&pVoice);
+    if (FAILED(hr)) {
+        emit(MessageType::LIFECYCLE, "No no no");
+        return hr;
+    }
     for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext)
     {
         if (textFrag->State.eAction == SPVA_Bookmark)
@@ -326,40 +411,42 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
 
         const std::wstring& text = textFrag->pTextStart;
-        const HANDLE handle = m_cpVoice->SpeakCompleteEvent();
-        hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
-
         /**
          * theory 5: the Microsoft Speech API creates a new thread for the `speak` call, allowing this function to proceed, but it joins on that thread once this function returns, blocking further speech
-         * verdict: inconclusive (blocking in the current thread appears to block the speech rendering, suggesting that the "asynchronous" call is actually only deferred)
+         * verdict: nope (blocking in the current thread appears to block the speech rendering, suggesting that the "asynchronous" call is actually only deferred)
          */
-        bool isWaiting = true;
-        int timeoutCount = 0;
-        while (isWaiting) {
-            DWORD dwWaitId = ::MsgWaitForMultipleObjectsEx(1, &handle, 500, 0, 0);
-            /**
-             * This section should invoke `pOutputSite->GetActions()` to determine if any one
-             * of the `SPVESACTIONS` has occurred and if so, carry out the action.
-             */
-            switch (dwWaitId) {
-                case WAIT_OBJECT_0:
-                    emit(MessageType::LIFECYCLE, "Done waiting 1");
-                    isWaiting = false;
-                    break;
-                case WAIT_OBJECT_0 + 1:
-                    emit(MessageType::LIFECYCLE, "Done waiting 2");
-                    WaitMessage();
-                    //isWaiting = false;
-                    break;
-                case WAIT_TIMEOUT:
-                    emit(MessageType::LIFECYCLE, "WAIT_TIMEOUT");
-                    timeoutCount += 1;
-                    isWaiting = timeoutCount < 10;
-                    break;
-                default:
-                    emit(MessageType::LIFECYCLE, "default");
-            }
-        }
+        //hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+        //waitForSpeech(m_cpVoice->SpeakCompleteEvent());
+
+        /**
+         * theory 6: the waiting should take place in parallel with the speaking
+         * verdict: nope (calling `Speak` without `SPF_ASYNC` fails, regardless of any other threads)
+         */
+        //std::thread speechThread(waitForSpeech, m_cpVoice->SpeakCompleteEvent());
+        //hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_PURGEBEFORESPEAK, 0);
+        //speechThread.join();
+
+        /**
+         * theory 7: the class member `m_cpVoice` is somehow shared
+         * verdict: nope (speaking synchronously fails with this instance, as well)
+         */
+        //hr = pVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_PURGEBEFORESPEAK, 0);
+
+        /**
+         * theory 8: speaking needs to take place synchronously on a dedicated thread
+         * verdict: nope
+         */
+        //std::thread speakThread(speak, m_cpVoice, dwSpeakFlags, textFrag);
+        //std::thread speechThread(waitForSpeech, m_cpVoice->SpeakCompleteEvent());
+        //speechThread.join();
+
+        /**
+         * theory 9: the class member's automatic reference counting is interfering
+         * verdict: nope (this approach produces the same undesirable behavior)
+         */
+        //hr = m_cpVoice2->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+
+        hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
 
         if (FAILED(hr))
         {
@@ -374,6 +461,16 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
     }
 
+    /**
+     * theory 10: relevant actions in the engine site are being ignored
+     * verdict: nope (only SPVES_RATE and SPVES_VOLUME are set at this time, and again, the voice doesn't begin to sound until after* `ISpTTSEngine::Speak` has returned)
+     */
+    for (int i = 0; i < 5; i += 1) {
+        emit(MessageType::LIFECYCLE, actionsToString(pOutputSite->GetActions()));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    pVoice->Release();
     return hr;
 }
 

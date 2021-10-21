@@ -116,6 +116,7 @@ class ATL_NO_VTABLE CTTSEngObj :
     ULONGLONG           m_ullAudioOff;
 
     CComPtr<ISpVoice> m_cpVoice;
+    ISpVoice* m_cpVoice2;
 };
 
 #endif // This must be the last line in the file
