@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MakeVoice", "MakeVoice\Make
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutomationTtsEngine", "AutomationTtsEngine\AutomationTtsEngine.vcxproj", "{214761EA-9911-4031-AC43-92CC12536E17}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vocalizer", "Vocalizer\Vocalizer.vcxproj", "{577A84E1-AFF0-481E-A69C-A9A23C643C1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -36,6 +38,14 @@ Global
 		{214761EA-9911-4031-AC43-92CC12536E17}.Release|Win32.Build.0 = Release|Win32
 		{214761EA-9911-4031-AC43-92CC12536E17}.Release|x64.ActiveCfg = Release|x64
 		{214761EA-9911-4031-AC43-92CC12536E17}.Release|x64.Build.0 = Release|x64
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Debug|Win32.Build.0 = Debug|Win32
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Debug|x64.ActiveCfg = Debug|x64
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Debug|x64.Build.0 = Debug|x64
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Release|Win32.ActiveCfg = Release|Win32
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Release|Win32.Build.0 = Release|Win32
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Release|x64.ActiveCfg = Release|x64
+		{577A84E1-AFF0-481E-A69C-A9A23C643C1B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

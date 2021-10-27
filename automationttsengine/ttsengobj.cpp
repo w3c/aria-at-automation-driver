@@ -90,6 +90,42 @@ HRESULT emit(MessageType type, std::string data) {
     return S_OK;
 }
 
+HRESULT vocalize(std::string text, HANDLE& handle)
+{
+    STARTUPINFO startup_info;
+    PROCESS_INFORMATION process_info;
+    ZeroMemory(&startup_info, sizeof(startup_info));
+    startup_info.cb = sizeof(startup_info);
+    ZeroMemory(&process_info, sizeof(process_info));
+    // TODO: escape double quotes in text
+    // TODO: use stable path to `Vocalizer.exe` as defined in `MakeVoice.cpp`
+    std::string com = "c:\\Users\\mike\\projects\\bocoup\\facebook-aria\\windows-sapi-tts-engine-for-automation\\Release\\Vocalizer.exe \"" + text + "\"";
+    TCHAR* command = new TCHAR[com.length()];
+    mbstowcs(command, com.c_str(), com.length());
+    bool result = CreateProcessW(
+        NULL,
+        command,
+        NULL,
+        NULL,
+        false,
+        CREATE_NO_WINDOW,
+        NULL,
+        NULL,
+        &startup_info,
+        &process_info
+    );
+    delete[] command;
+    command = NULL;
+
+    if (!result)
+    {
+        return E_FAIL;
+    }
+
+    handle = process_info.hProcess;
+    return S_OK;
+}
+
 
 /*****************************************************************************
 * CTTSEngObj::FinalConstruct *
@@ -214,6 +250,7 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         return E_INVALIDARG;
     }
     HRESULT hr = S_OK;
+    std::string speech = "";
 
     for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext)
     {
@@ -222,20 +259,28 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
             continue;
         }
 
-        const std::wstring& text = textFrag->pTextStart;
-        hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+        std::string part = to_utf8(textFrag->pTextStart, textFrag->ulTextLen);
+        hr = emit(MessageType::SPEECH, part);
+        speech += part;
 
         if (FAILED(hr))
         {
-            emit(MessageType::ERR, "Speaking failed");
+            emit(MessageType::ERR, "Emission failed");
             break;
         }
+    }
 
-        hr = emit(MessageType::SPEECH, to_utf8(textFrag->pTextStart, textFrag->ulTextLen));
-        if (FAILED(hr))
-        {
-            break;
-        }
+    // Interrupt previously-initiated vocalization, if any
+    if (m_vocalization)
+    {
+        TerminateProcess(m_vocalization, 0);
+        m_vocalization = NULL;
+    }
+    hr = vocalize(speech, m_vocalization);
+
+    if (FAILED(hr))
+    {
+        emit(MessageType::ERR, "Vocalization failed");
     }
 
     return hr;

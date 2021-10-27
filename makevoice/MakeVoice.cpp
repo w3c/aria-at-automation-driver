@@ -60,6 +60,8 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
         }
     }
 
+    // TODO: install `Vocalizer.exe` to stable path on system
+
     ::CoUninitialize();
 
     return FAILED( hr );
