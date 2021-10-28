@@ -90,6 +90,63 @@ HRESULT emit(MessageType type, std::string data) {
     return S_OK;
 }
 
+#define SPEECH_BUFFER_SIZE 4096
+
+/**
+ * Build an "environment block" as specified by ProcessCreate. This should
+ * describe a process variable environment which is nearly identical to that of
+ * the current process, with the sole difference of one additional variable
+ * named "WORDS" set to the value specified by the `text` parameter.
+ */
+HRESULT createEnv(std::string text, TCHAR* newEnv)
+{
+    LPTCH currentEnv = GetEnvironmentStrings();
+    LPTSTR currentEnvProgress, newEnvProgress;
+
+    if (currentEnv == NULL)
+    {
+        return E_FAIL;
+    }
+
+    currentEnvProgress = (LPTSTR)currentEnv;
+    newEnvProgress = (LPTSTR)newEnv;
+
+    while (*currentEnvProgress)
+    {
+        if (FAILED(StringCchCopy(newEnvProgress, SPEECH_BUFFER_SIZE, currentEnvProgress)))
+        {
+            FreeEnvironmentStrings(currentEnv);
+            return E_FAIL;
+        }
+        newEnvProgress += lstrlen(newEnvProgress) + 1;
+        currentEnvProgress += lstrlen(currentEnvProgress) + 1;
+    }
+
+    FreeEnvironmentStrings(currentEnv);
+
+    if (FAILED(StringCchCopy(newEnvProgress, SPEECH_BUFFER_SIZE, TEXT("WORDS="))))
+    {
+        return E_FAIL;
+    }
+
+    // Advance by the string length in order to overwrite the trailing NULL byte added
+    // by the previous invocation of `StringCchCopy` as the input value should be part of
+    // the same string.
+    newEnvProgress += lstrlen(newEnvProgress);
+
+    std::wstring wideText(text.begin(), text.end());
+    if (FAILED(StringCchCopy(newEnvProgress, SPEECH_BUFFER_SIZE, (STRSAFE_LPCWSTR)wideText.c_str())))
+    {
+        return E_FAIL;
+    }
+
+    // Terminate the block with a null byte
+    newEnvProgress += lstrlen(newEnvProgress) + 1;
+    *newEnvProgress = (TCHAR)0;
+
+    return S_OK;
+}
+
 HRESULT vocalize(std::string text, HANDLE& handle)
 {
     STARTUPINFO startup_info;
@@ -97,25 +154,31 @@ HRESULT vocalize(std::string text, HANDLE& handle)
     ZeroMemory(&startup_info, sizeof(startup_info));
     startup_info.cb = sizeof(startup_info);
     ZeroMemory(&process_info, sizeof(process_info));
-    // TODO: escape double quotes in text
     // TODO: use stable path to `Vocalizer.exe` as defined in `MakeVoice.cpp`
-    std::string com = "c:\\Users\\mike\\projects\\bocoup\\facebook-aria\\windows-sapi-tts-engine-for-automation\\Release\\Vocalizer.exe \"" + text + "\"";
-    TCHAR* command = new TCHAR[com.length()];
-    mbstowcs(command, com.c_str(), com.length());
+    TCHAR command[] = TEXT("c:\\Users\\mike\\projects\\bocoup\\facebook-aria\\windows-sapi-tts-engine-for-automation\\Release\\Vocalizer.exe");
+    DWORD dwFlags = CREATE_NO_WINDOW;
+    TCHAR newEnv[SPEECH_BUFFER_SIZE];
+
+#ifdef UNICODE
+    dwFlags |= CREATE_UNICODE_ENVIRONMENT;
+#endif
+
+    if (FAILED(createEnv(text, newEnv))) {
+        return E_FAIL;
+    }
+
     bool result = CreateProcessW(
         NULL,
         command,
         NULL,
         NULL,
         false,
-        CREATE_NO_WINDOW,
-        NULL,
+        dwFlags,
+        (LPVOID)newEnv,
         NULL,
         &startup_info,
         &process_info
     );
-    delete[] command;
-    command = NULL;
 
     if (!result)
     {
