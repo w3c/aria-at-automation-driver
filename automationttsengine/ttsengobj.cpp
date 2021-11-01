@@ -19,6 +19,10 @@
 #include <iostream>
 #include <windows.h>
 
+// Number of milliseconds to wait between queries for "actions" from the
+// ISpTTSEngineSite.
+static const int ABORT_SIGNAL_POLLING_PERIOD = 100;
+
 //--- Local
 std::string to_utf8(const std::wstring& s, ULONG length)
 {
@@ -147,7 +151,7 @@ HRESULT createEnv(std::string text, TCHAR* newEnv)
     return S_OK;
 }
 
-HRESULT vocalize(std::string text, HANDLE& handle)
+HRESULT vocalize(std::string text, ISpTTSEngineSite* pOutputSite)
 {
     STARTUPINFO startup_info;
     PROCESS_INFORMATION process_info;
@@ -185,7 +189,19 @@ HRESULT vocalize(std::string text, HANDLE& handle)
         return E_FAIL;
     }
 
-    handle = process_info.hProcess;
+    // Wait for speech to be rendered or for the ISpTTSEngineSite to signal
+    // that rendering should be aborted.
+    while (WaitForSingleObject(process_info.hProcess, ABORT_SIGNAL_POLLING_PERIOD) == WAIT_TIMEOUT)
+    {
+        if (pOutputSite->GetActions() & SPVES_ABORT)
+        {
+            TerminateProcess(process_info.hProcess, 0);
+        }
+    }
+
+    CloseHandle(process_info.hProcess);
+    CloseHandle(process_info.hThread);
+
     return S_OK;
 }
 
@@ -331,19 +347,13 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
             emit(MessageType::ERR, "Emission failed");
             break;
         }
-    }
 
-    // Interrupt previously-initiated vocalization, if any
-    if (m_vocalization)
-    {
-        TerminateProcess(m_vocalization, 0);
-        m_vocalization = NULL;
-    }
-    hr = vocalize(speech, m_vocalization);
+        hr = vocalize(speech, pOutputSite);
 
-    if (FAILED(hr))
-    {
-        emit(MessageType::ERR, "Vocalization failed");
+        if (FAILED(hr))
+        {
+            emit(MessageType::ERR, "Vocalization failed");
+        }
     }
 
     return hr;
