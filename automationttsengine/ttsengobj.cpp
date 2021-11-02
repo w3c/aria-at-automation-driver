@@ -329,7 +329,6 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         return E_INVALIDARG;
     }
     HRESULT hr = S_OK;
-    std::string speech = "";
 
     for (const SPVTEXTFRAG* textFrag = pTextFragList; textFrag != NULL; textFrag = textFrag->pNext)
     {
@@ -340,7 +339,6 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
 
         std::string part = to_utf8(textFrag->pTextStart, textFrag->ulTextLen);
         hr = emit(MessageType::SPEECH, part);
-        speech += part;
 
         if (FAILED(hr))
         {
@@ -348,7 +346,7 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
             break;
         }
 
-        hr = vocalize(speech, pOutputSite);
+        hr = vocalize(part, pOutputSite);
 
         if (FAILED(hr))
         {
