@@ -334,6 +334,28 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
     {
         if (textFrag->State.eAction == SPVA_Bookmark)
         {
+            ULONGLONG pullEventInterest;
+            hr = pOutputSite->GetEventInterest(&pullEventInterest);
+
+            if (FAILED(hr))
+            {
+                emit(MessageType::ERR, "Unable to query output site for event interest.");
+                continue;
+            }
+
+            if (pullEventInterest & SPEI_TTS_BOOKMARK)
+            {
+                std::string part = to_utf8(textFrag->pTextStart, textFrag->ulTextLen);
+                SPEVENT event;
+                event.eEventId = SPEI_TTS_BOOKMARK;
+                event.elParamType = SPET_LPARAM_IS_STRING;
+                event.wParam = atol(part.c_str());
+                char* p = (char*)calloc(textFrag->ulTextLen + 1, sizeof(textFrag->pTextStart));
+                strcpy(p, part.c_str());
+                event.lParam = (LPARAM)p;
+                pOutputSite->AddEvents(&event, 1);
+                free(p);
+            }
             continue;
         }
 
