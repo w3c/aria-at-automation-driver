@@ -9,6 +9,8 @@
 const child_process = require('child_process');
 const {promisify} = require('util');
 const path = require('path');
+const fs = require('fs/promises');
+const {createReadStream, createWriteStream} = require('fs');
 
 const sudo_prompt = require('sudo-prompt');
 
@@ -40,6 +42,8 @@ const VOICE = Object.freeze({
   }
 });
 const DLL_PATH = path.join(__dirname, '..', 'Release', 'AutomationTtsEngine.dll');
+const VOCALIZER_LOCAL_PATH = path.join(__dirname, '..', 'Release', 'Vocalizer.exe');
+const VOCALIZER_GLOBAL_DIRECTORY = 'C:\\Program Files\\Bocoup Automation Voice';
 const BASE_REGISTRY_PATH = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
 
 // > # regsvr32
@@ -49,6 +53,33 @@ const BASE_REGISTRY_PATH = 'HKLM\\SOFTWARE\\Microsoft\\Speech\\Voices\\Tokens';
 // https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/regsvr32
 const registerDll = (dll) => exec(`regsvr32 /s ${dll}`);
 const deregisterDll = (dll) => exec(`regsvr32 /u /s ${dll}`);
+
+/**
+ * Copy a file to a directory, creating the target directory if it does not
+ * already exist.
+ *
+ * @param {string} sourceFile
+ * @param {string} destinationDir
+ */
+const copyFile = async (sourceFile, destinationDir) => {
+  await fs.mkdir(destinationDir, {recursive: true});
+  const destinationFile = path.join(destinationDir, path.basename(sourceFile));
+  const readStream = createReadStream(sourceFile);
+  const writeStream = createWriteStream(destinationFile);
+  readStream.pipe(writeStream);
+  return new Promise((resolve, reject) => {
+    readStream.on('end', resolve);
+    readStream.on('error', reject);
+    writeStream.on('error', reject);
+  });
+};
+
+/**
+ * Remove a directory if it exists.
+ *
+ * @param {string} directory
+ */
+const removeDir = (directory) => fs.rm(directory, {force: true, recursive: true});
 
 const readRegistry = async (keyName) => {
   const {stdout} = await exec(`reg query "${keyName}"`);
@@ -134,6 +165,8 @@ const deregisterVoice = async ({id, arch}) => {
 
 const operations = {
   async install() {
+    await copyFile(VOCALIZER_LOCAL_PATH, VOCALIZER_GLOBAL_DIRECTORY);
+
     await registerDll(DLL_PATH);
 
     const {'(Default)': clsId} = await readRegistry(`HKCR\\${CLASS_NAME}\\CLSID`);
@@ -154,6 +187,8 @@ const operations = {
     }
 
     await deregisterDll(DLL_PATH);
+
+    await removeDir(VOCALIZER_GLOBAL_DIRECTORY);
   }
 };
 
