@@ -158,8 +158,7 @@ HRESULT vocalize(std::string text, ISpTTSEngineSite* pOutputSite)
     ZeroMemory(&startup_info, sizeof(startup_info));
     startup_info.cb = sizeof(startup_info);
     ZeroMemory(&process_info, sizeof(process_info));
-    // TODO: use stable path to `Vocalizer.exe` as defined in `MakeVoice.cpp`
-    TCHAR command[] = TEXT("c:\\Users\\mike\\projects\\bocoup\\facebook-aria\\windows-sapi-tts-engine-for-automation\\Release\\Vocalizer.exe");
+    TCHAR command[] = TEXT("C:\\Program Files\\Bocoup Automation Voice\\Vocalizer.exe");
     DWORD dwFlags = CREATE_NO_WINDOW;
     TCHAR newEnv[SPEECH_BUFFER_SIZE];
 
