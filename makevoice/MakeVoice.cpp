@@ -5,12 +5,12 @@
 //
 // Copyright © Microsoft Corporation. All rights reserved
 
-/******************************************************************************
-* MakeVoice.cpp *
-*-------------*
-*   This application assembles a simple voice font for the sample TTS engine.
-*
-******************************************************************************/
+/**
+ * This application assembles a TTS voice. It is maintained as a convenience
+ * for C++ development. Its logic is duplicated in JavaScript by the source
+ * code file `scripts/install.js` to facilitate installation from the Node.js
+ * platform.
+ */
 #include "stdafx.h"
 #include <AutomationTtsEngine_i.c>
 #include <direct.h>
@@ -28,11 +28,11 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
         CComPtr<ISpDataKey> cpDataKeyAttribs;
         hr = SpCreateNewTokenEx(
                 SPCAT_VOICES, 
-                L"AutomationVoice",
+                L"BocoupAutomationVoice",
                 &CLSID_SampleTTSEngine, 
-                L"Automation Voice", 
+                L"Bocoup Automation Voice",
                 0x409, 
-                L"Automation Voice", 
+                L"Bocoup Automation Voice",
                 &cpToken,
                 &cpDataKeyAttribs
         );
@@ -43,7 +43,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
             hr = cpDataKeyAttribs->SetStringValue(L"Gender", L"Male");
             if (SUCCEEDED(hr))
             {
-                hr = cpDataKeyAttribs->SetStringValue(L"Name", L"AutomationVoice");
+                hr = cpDataKeyAttribs->SetStringValue(L"Name", L"Bocoup Automation Voice");
             }
             if (SUCCEEDED(hr))
             {
@@ -55,7 +55,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
             }
             if (SUCCEEDED(hr))
             {
-                hr = cpDataKeyAttribs->SetStringValue(L"Vendor", L"Microsoft");
+                hr = cpDataKeyAttribs->SetStringValue(L"Vendor", L"Bocoup");
             }
         }
     }

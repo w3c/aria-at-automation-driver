@@ -1,3 +1,9 @@
+/**
+ * This script assembles a TTS voice. It is maintained to automate installation
+ * during typical Node.js workflows (e.g. `npm install`). Its logic is
+ * duplicated in C++ by the source code file `makevoice/MakeVoice.cpp` to
+ * facilitate installation during C++ development.
+ */
 'use strict';
 
 const child_process = require('child_process');
