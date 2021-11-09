@@ -14,6 +14,39 @@
 #include "stdafx.h"
 #include <AutomationTtsEngine_i.c>
 #include <direct.h>
+#include <fstream>
+
+HRESULT createDirectoryIfAbsent(LPCWSTR location)
+{
+    if (CreateDirectory(location, NULL))
+    {
+        return S_OK;
+    }
+    return GetLastError() == ERROR_ALREADY_EXISTS ? S_OK : E_FAIL;
+}
+
+void copyFile(const char* sourceLocation, const char* destinationLocation)
+{
+    std::ifstream source(sourceLocation, std::ios::binary);
+    std::ofstream destination(destinationLocation, std::ios::binary);
+
+    std::istreambuf_iterator<char> begin_source(source);
+    std::istreambuf_iterator<char> end_source;
+    std::ostreambuf_iterator<char> begin_destination(destination);
+
+    copy(begin_source, end_source, begin_destination);
+
+    source.close();
+    destination.close();
+}
+
+std::string getSiblingFilePath(const std::string& fileName)
+{
+    char buffer[MAX_PATH];
+    GetModuleFileNameA(nullptr, buffer, MAX_PATH);
+    std::string path(buffer);
+    return path.substr(0, 1 + path.find_last_of('\\')) + fileName;
+}
 
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 {
@@ -58,6 +91,21 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
                 hr = cpDataKeyAttribs->SetStringValue(L"Vendor", L"Bocoup");
             }
         }
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = createDirectoryIfAbsent(
+            L"C:\\Program Files\\Bocoup Automation Voice"
+        );
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        copyFile(
+            getSiblingFilePath("Vocalizer.exe").c_str(),
+            "C:\\Program Files\\Bocoup Automation Voice\\Vocalizer.exe"
+        );
     }
 
     ::CoUninitialize();

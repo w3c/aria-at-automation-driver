@@ -14,7 +14,8 @@
   },
   "files": [
     "./lib/**/*",
-    "./Release/AutomationTtsEngine.dll"
+    "./Release/AutomationTtsEngine.dll",
+    "./Release/Vocalizer.exe"
   ],
   "author": "",
   "license": "MIT",

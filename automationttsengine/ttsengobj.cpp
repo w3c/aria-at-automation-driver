@@ -19,6 +19,10 @@
 #include <iostream>
 #include <windows.h>
 
+// Number of milliseconds to wait between queries for "actions" from the
+// ISpTTSEngineSite.
+static const int ABORT_SIGNAL_POLLING_PERIOD = 100;
+
 //--- Local
 std::string to_utf8(const std::wstring& s, ULONG length)
 {
@@ -86,6 +90,116 @@ HRESULT emit(MessageType type, std::string data) {
         fprintf(stderr, "Failed to send data.");
         return E_FAIL;
     }
+
+    return S_OK;
+}
+
+#define SPEECH_BUFFER_SIZE 4096
+
+/**
+ * Build an "environment block" as specified by ProcessCreate. This should
+ * describe a process variable environment which is nearly identical to that of
+ * the current process, with the sole difference of one additional variable
+ * named "WORDS" set to the value specified by the `text` parameter.
+ */
+HRESULT createEnv(std::string text, TCHAR* newEnv)
+{
+    LPTCH currentEnv = GetEnvironmentStrings();
+    LPTSTR currentEnvProgress, newEnvProgress;
+
+    if (currentEnv == NULL)
+    {
+        return E_FAIL;
+    }
+
+    currentEnvProgress = (LPTSTR)currentEnv;
+    newEnvProgress = (LPTSTR)newEnv;
+
+    while (*currentEnvProgress)
+    {
+        if (FAILED(StringCchCopy(newEnvProgress, SPEECH_BUFFER_SIZE, currentEnvProgress)))
+        {
+            FreeEnvironmentStrings(currentEnv);
+            return E_FAIL;
+        }
+        newEnvProgress += lstrlen(newEnvProgress) + 1;
+        currentEnvProgress += lstrlen(currentEnvProgress) + 1;
+    }
+
+    FreeEnvironmentStrings(currentEnv);
+
+    if (FAILED(StringCchCopy(newEnvProgress, SPEECH_BUFFER_SIZE, TEXT("WORDS="))))
+    {
+        return E_FAIL;
+    }
+
+    // Advance by the string length in order to overwrite the trailing NULL byte added
+    // by the previous invocation of `StringCchCopy` as the input value should be part of
+    // the same string.
+    newEnvProgress += lstrlen(newEnvProgress);
+
+    std::wstring wideText(text.begin(), text.end());
+    if (FAILED(StringCchCopy(newEnvProgress, SPEECH_BUFFER_SIZE, (STRSAFE_LPCWSTR)wideText.c_str())))
+    {
+        return E_FAIL;
+    }
+
+    // Terminate the block with a null byte
+    newEnvProgress += lstrlen(newEnvProgress) + 1;
+    *newEnvProgress = (TCHAR)0;
+
+    return S_OK;
+}
+
+HRESULT vocalize(std::string text, ISpTTSEngineSite* pOutputSite)
+{
+    STARTUPINFO startup_info;
+    PROCESS_INFORMATION process_info;
+    ZeroMemory(&startup_info, sizeof(startup_info));
+    startup_info.cb = sizeof(startup_info);
+    ZeroMemory(&process_info, sizeof(process_info));
+    TCHAR command[] = TEXT("C:\\Program Files\\Bocoup Automation Voice\\Vocalizer.exe");
+    DWORD dwFlags = CREATE_NO_WINDOW;
+    TCHAR newEnv[SPEECH_BUFFER_SIZE];
+
+#ifdef UNICODE
+    dwFlags |= CREATE_UNICODE_ENVIRONMENT;
+#endif
+
+    if (FAILED(createEnv(text, newEnv))) {
+        return E_FAIL;
+    }
+
+    bool result = CreateProcessW(
+        NULL,
+        command,
+        NULL,
+        NULL,
+        false,
+        dwFlags,
+        (LPVOID)newEnv,
+        NULL,
+        &startup_info,
+        &process_info
+    );
+
+    if (!result)
+    {
+        return E_FAIL;
+    }
+
+    // Wait for speech to be rendered or for the ISpTTSEngineSite to signal
+    // that rendering should be aborted.
+    while (WaitForSingleObject(process_info.hProcess, ABORT_SIGNAL_POLLING_PERIOD) == WAIT_TIMEOUT)
+    {
+        if (pOutputSite->GetActions() & SPVES_ABORT)
+        {
+            TerminateProcess(process_info.hProcess, 0);
+        }
+    }
+
+    CloseHandle(process_info.hProcess);
+    CloseHandle(process_info.hThread);
 
     return S_OK;
 }
@@ -219,22 +333,45 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
     {
         if (textFrag->State.eAction == SPVA_Bookmark)
         {
+            ULONGLONG pullEventInterest;
+            hr = pOutputSite->GetEventInterest(&pullEventInterest);
+
+            if (FAILED(hr))
+            {
+                emit(MessageType::ERR, "Unable to query output site for event interest.");
+                continue;
+            }
+
+            if (pullEventInterest & SPEI_TTS_BOOKMARK)
+            {
+                std::string part = to_utf8(textFrag->pTextStart, textFrag->ulTextLen);
+                SPEVENT event;
+                event.eEventId = SPEI_TTS_BOOKMARK;
+                event.elParamType = SPET_LPARAM_IS_STRING;
+                event.wParam = atol(part.c_str());
+                char* p = (char*)calloc(textFrag->ulTextLen + 1, sizeof(textFrag->pTextStart));
+                strcpy(p, part.c_str());
+                event.lParam = (LPARAM)p;
+                pOutputSite->AddEvents(&event, 1);
+                free(p);
+            }
             continue;
         }
 
-        const std::wstring& text = textFrag->pTextStart;
-        hr = m_cpVoice->Speak(text.substr(0, textFrag->ulTextLen).c_str(), dwSpeakFlags | SPF_ASYNC | SPF_PURGEBEFORESPEAK, 0);
+        std::string part = to_utf8(textFrag->pTextStart, textFrag->ulTextLen);
+        hr = emit(MessageType::SPEECH, part);
 
         if (FAILED(hr))
         {
-            emit(MessageType::ERR, "Speaking failed");
+            emit(MessageType::ERR, "Emission failed");
             break;
         }
 
-        hr = emit(MessageType::SPEECH, to_utf8(textFrag->pTextStart, textFrag->ulTextLen));
+        hr = vocalize(part, pOutputSite);
+
         if (FAILED(hr))
         {
-            break;
+            emit(MessageType::ERR, "Vocalization failed");
         }
     }
 
