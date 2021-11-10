@@ -21,8 +21,9 @@ running locally on a Microsoft Windows system.
 
        at-driver
 
-   The `--help` flag will cause the command to output advanced usage
-   instructions (e.g. `at-driver --help`).
+   The process will write a message to the standard error stream when the
+   WebSocket server is listening for connections. The `--help` flag will cause
+   the command to output advanced usage instructions (e.g. `at-driver --help`).
 
 3. Configure any screen reader to use the text-to-speech voice named "Bocoup
    Automation Voice."
