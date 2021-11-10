@@ -5,6 +5,7 @@ const child_process = require('child_process');
 
 const WebSocket = require('ws');
 
+const SUB_PROTOCOL = 'v1.aria-at.bocoup.com';
 const executable = path.join(__dirname, '..', 'bin', 'at-driver');
 const invert = (promise) => promise.then(
   () => { throw new Error('expected promise to be rejected, but it was fulfilled'); },
@@ -25,8 +26,8 @@ suite('at-driver', () => {
       whenClosed.catch(reject);
     });
   };
-  const connect = (port) => {
-    const client = new WebSocket(`ws://localhost:${port}`);
+  const connect = (port, subProtocol) => {
+    const client = new WebSocket(`ws://localhost:${port}`, subProtocol);
 
     return new Promise((resolve, reject) => {
       client.on('error', reject);
@@ -40,12 +41,22 @@ suite('at-driver', () => {
 
   test('WebSocket server on default port', async () => {
     const {whenClosed} = await run([]);
-    return Promise.race([whenClosed, connect(4382)]);
+    return Promise.race([whenClosed, connect(4382, SUB_PROTOCOL)]);
   });
 
   test('WebSocket server on custom port', async () => {
     const {whenClosed} = await run(['--port', '6543']);
-    return Promise.race([whenClosed, connect(6543)]);
+    return Promise.race([whenClosed, connect(6543, SUB_PROTOCOL)]);
+  });
+
+  test('rejects unspecified protocol', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382))]);
+  });
+
+  test('rejects unsupported protocol', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, 'aria-at.bocoup.com'))]);
   });
 
   test('rejects invalid port values: unspecified', async () => {

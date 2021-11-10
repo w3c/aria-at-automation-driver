@@ -28,10 +28,13 @@ running locally on a Microsoft Windows system.
 3. Configure any screen reader to use the text-to-speech voice named "Bocoup
    Automation Voice."
 
-4. Use any WebSocket client to connect to the server and observe speech and
-   related events. (The server will print these messages to the standard error
-   stream for diagnostic purposes only. Neither the format nor the availability
-   of this output is guaranteed, making it inappropriate for external use.)
+4. Use any WebSocket client to connect to the server specifying
+   `v1.aria-at.bocoup.com` as [the
+   sub-protocol](https://datatracker.ietf.org/doc/html/rfc6455#section-1.9).
+   The protocol is described below. (The server will print protocol messages to
+   its standard error stream for diagnostic purposes only. Neither the format
+   nor the availability of this output is guaranteed, making it inappropriate
+   for external use.)
 
 ## Terminology
 
@@ -45,6 +48,32 @@ running locally on a Microsoft Windows system.
     has requested the operating system annunciate
   - `"error"` - signifies that an exceptional circumstances has occurred
 - **message data** - information which refines the meaning of the message type
+
+## Protocol
+
+This project uses an application-level protocol named `v1.aria-at.bocoup.com`
+to communicate with clients via a WebSocket connection. All messages are
+encoded as JSON text.
+
+```typescript
+interface SpeechEvent {
+  type: 'event';
+  name: 'speech';
+  data: string;
+}
+
+interface LifecycleEvent {
+  type: 'event';
+  name: 'lifecycle';
+  data: string;
+}
+
+interface InternalErrorEvent {
+  type: 'event';
+  name: 'internalError';
+  data: string;
+}
+```
 
 ## Architecture
 

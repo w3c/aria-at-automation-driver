@@ -70,7 +70,7 @@ HRESULT emit(MessageType type, std::string data) {
     }
     else
     {
-        typeString = "error";
+        typeString = "internalError";
     }
     std::string message(typeString + ":" + data);
     DWORD numBytesWritten = 0;
