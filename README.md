@@ -56,6 +56,38 @@ to communicate with clients via a WebSocket connection. All messages are
 encoded as JSON text.
 
 ```typescript
+// Clients may send Command messages to the server at any time. The server will
+// respond to every Command it receives with a corresponding Response whose
+// `id` value matches that of the Command which initiated it. The client may
+// use any numeric value to uniquely identify the Command and to correlate the
+// eventual Response.
+interface PressKeyCommand {
+  type: 'command';
+  id: number;
+  name: 'pressKey';
+  params: [string];
+}
+
+interface ReleaseKeyCommand {
+  type: 'command';
+  id: number;
+  name: 'releaseKey';
+  params: [string];
+}
+
+interface SuccessResponse {
+  type: 'response';
+  id: number;
+  result: any;
+}
+
+interface ErrorResponse {
+  type: 'response';
+  id: number;
+  error: string;
+  message: string;
+}
+
 interface SpeechEvent {
   type: 'event';
   name: 'speech';

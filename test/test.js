@@ -27,11 +27,11 @@ suite('at-driver', () => {
     });
   };
   const connect = (port, subProtocol) => {
-    const client = new WebSocket(`ws://localhost:${port}`, subProtocol);
+    const websocket = new WebSocket(`ws://localhost:${port}`, subProtocol);
 
     return new Promise((resolve, reject) => {
-      client.on('error', reject);
-      client.on('open', resolve);
+      websocket.on('error', reject);
+      websocket.on('open', () => resolve(websocket));
     });
   };
   teardown(() => {
@@ -82,5 +82,126 @@ suite('at-driver', () => {
   test('rejects invalid port values: non-decimal', async () => {
     const {whenClosed} = await run(['--port', '0x1000']);
     return invert(whenClosed);
+  });
+
+  suite('protocol', () => {
+    let websocket, whenClosed;
+    const nextMessage = (websocket) => {
+      return new Promise((resolve, reject) => {
+        websocket.once('message', (buffer) => {
+           try {
+            resolve(JSON.parse(buffer.toString()));
+           } catch (error) {
+            reject(error);
+           }
+        });
+        websocket.once('error', reject);
+      });
+    };
+
+    setup(async () => {
+      ({whenClosed} = await run([]));
+
+      websocket = await Promise.race([whenClosed, connect(4382, SUB_PROTOCOL)]);
+    });
+
+    test('rejects non-JSON messages', async () => {
+      websocket.send('not JSON');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: null,
+        error: 'Unable to parse message: "not JSON".'
+      });
+    });
+
+    test('rejects non-Object messages', async () => {
+      websocket.send('[]');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: null,
+        error: 'Malformed message: "[]".'
+      });
+    });
+
+    test('rejects non-Command messages', async () => {
+      websocket.send('{"id": 1, "type": "foobar"}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: null,
+        error: 'Unrecognized message type: "{"id": 1, "type": "foobar"}".'
+      });
+    });
+
+    test('rejects Command messages with omitted "id"', async () => {
+      websocket.send('{"type": "command", "name": "keyPress", "params": ["A"]}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: null,
+        error: 'Command missing required "id": "{"type": "command", "name": "keyPress", "params": ["A"]}".'
+      });
+    });
+
+    test('rejects unrecognized Command', async () => {
+      websocket.send('{"type": "command", "id": 7, "name": "press"}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: 7,
+        error: 'Unrecognized command name: "{"type": "command", "id": 7, "name": "press"}".'
+      });
+    });
+
+    test('accepts valid "pressKey" Command', async () => {
+      websocket.send('{"type": "command", "id": 83, "name": "pressKey", "params": [" "]}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: 83,
+        result: null
+      });
+    });
+
+    test('rejects invalid "pressKey" Command', async () => {
+      websocket.send('{"type": "command", "id": 902, "name": "pressKey", "params": ["df daf% ?"]}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: 902,
+        error: 'Invalid key code specified.'
+      });
+    });
+
+    test('accepts valid "releaseKey" Command', async () => {
+      websocket.send('{"type": "command", "id": 23221, "name": "releaseKey", "params": ["A"]}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: 23221,
+        result: null
+      });
+    });
+
+    test('rejects invalid "releaseKey" Command', async () => {
+      websocket.send('{"type": "command", "id": 11, "name": "pressKey", "params": ["invalid"]}');
+      const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+      assert.deepEqual(message, {
+        type: 'response',
+        id: 11,
+        error: 'Invalid key code specified.'
+      });
+    });
   });
 });
