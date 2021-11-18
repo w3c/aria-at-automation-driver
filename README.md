@@ -13,7 +13,7 @@ running locally on a Microsoft Windows system.
 
 1. Install the project by executing the following command:
 
-       npm install -g at-driver
+       npm install -g @bocoup/windows-sapi-tts-engine-for-automation
 
    If prompted for system administration permission, grant permission.
 
