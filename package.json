@@ -1,6 +1,6 @@
 {
   "name": "@bocoup/windows-sapi-tts-engine-for-automation",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sample Text-to-Speech Engine and MakeVoice",
   "main": "index.js",
   "bin": {
