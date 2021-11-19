@@ -12,10 +12,10 @@
     "test": "mocha --ui tdd test"
   },
   "files": [
-    "./lib/**/*",
-    "./Release/AutomationTtsEngine.dll",
-    "./Release/Vocalizer.exe",
-    "./scripts/*"
+    "lib",
+    "Release/AutomationTtsEngine.dll",
+    "Release/Vocalizer.exe",
+    "scripts"
   ],
   "author": "",
   "license": "MIT",
