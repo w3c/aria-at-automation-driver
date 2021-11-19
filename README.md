@@ -7,7 +7,13 @@ running locally on a Microsoft Windows system.
 ## Requirements
 
 - Microsoft Windows
-- [Node.js](https://nodejs.org)
+- [Node.js](https://nodejs.org), including "Tools for Native Modules" as
+  offered by the Node.js installer
+
+<!--
+  "Tools for Native Modules" is required to install the "robotjs" npm module,
+  which is a dependency of this project.
+-->
 
 ## Installation
 
@@ -25,8 +31,8 @@ running locally on a Microsoft Windows system.
    WebSocket server is listening for connections. The `--help` flag will cause
    the command to output advanced usage instructions (e.g. `at-driver --help`).
 
-3. Configure any screen reader to use the text-to-speech voice named "Bocoup
-   Automation Voice."
+3. Configure any screen reader to use the synthesizer named "Microsoft Speech
+   API version 5" and the text-to-speech voice named "Bocoup Automation Voice."
 
 4. Use any WebSocket client to connect to the server specifying
    `v1.aria-at.bocoup.com` as [the
