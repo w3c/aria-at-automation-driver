@@ -146,6 +146,11 @@ clients to observe events on a standard interface. It has been designed as an
 approximation of an interface that may be exposed directly by screen readers in
 the future.
 
+## Contribution Guidelines
+
+For details on contributing to this project, please refer to the file named
+`CONTRIBUTING.md`.
+
 ## License
 
 Licensed under the terms of the MIT Expat License; the complete text is
