@@ -151,6 +151,20 @@ HRESULT createEnv(std::string text, TCHAR* newEnv)
     return S_OK;
 }
 
+/**
+ * Vocalize a string of text.
+ *
+ * The Microsoft Speech API is capable of vocalizing text via ISpVoice, but
+ * ISpVoice cannot be used from an implementation of ISpTTSEngine because the
+ * Microsoft Speech API is not capable of being used recursively.
+ *
+ * Evidence: "Stack Overflow - Speaking with an ISpVoice from a ISpTTSEngine"
+ * https://stackoverflow.com/questions/69655189/speaking-with-an-ispvoice-from-a-ispttsengine
+ *
+ * This function performs the vocalization by creating a subprocess for the
+ * project's C++/CLI solution named "Vocalizer" and passing it the desired text
+ * via an environment variable.
+ */
 HRESULT vocalize(std::string text, ISpTTSEngineSite* pOutputSite)
 {
     STARTUPINFO startup_info;
