@@ -3,6 +3,20 @@
 
 using namespace System;
 using namespace System::Speech::Synthesis;
+using namespace System::Text::RegularExpressions;
+
+/**
+ * Determine whether a given voice name likely indicates that the voice is
+ * intended for automation purposes and therefore inappropriate for use by this
+ * utility.
+ *
+ * TODO: Use a more precise heuristic based on references to the values this
+ * project uses to install the Automation Voice.
+ */
+bool isAutomation(String^ name)
+{
+    return Regex::IsMatch(name, "automation", RegexOptions::IgnoreCase);
+}
 
 /**
  * A process which vocalizes text data supplied as input via the environment
@@ -26,6 +40,36 @@ int main(array<System::String^>^ args)
     SpeechSynthesizer speaker;
     speaker.Rate = 1;
     speaker.Volume = 100;
+
+    // The Vocalizer component is intended to sonically convey text to a human
+    // operator, and the Automation Voice is inappropriate for this purpose. In
+    // addition, the use of the Automation Voice in this context could trigger
+    // non-recoverable recursion.
+    //
+    // By default, the SpeechSynthesizer instance declared above will use the
+    // system's default voice. Explicitly set the instance's voice to any
+    // available value other than the Automation Voice in order to avoid
+    // problems in cases where the system has designated the Automation Voice
+    // as the "default" voice.
+    if (isAutomation(speaker.Voice->Name))
+    {
+        for each (InstalledVoice^ voice in speaker.GetInstalledVoices())
+        {
+            if (!isAutomation(voice->VoiceInfo->Name))
+            {
+                speaker.SelectVoice(voice->VoiceInfo->Name);
+                break;
+            }
+        }
+        if (isAutomation(speaker.Voice->Name))
+        {
+            Console::WriteLine(gcnew System::String(
+                "Unable to locate an authentic voice."
+            ));
+            return 1;
+        }
+    }
+
     speaker.Speak(gcnew System::String(words));
 
     return 0;
