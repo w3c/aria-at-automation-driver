@@ -210,6 +210,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ttsengobj.cpp" />
+    <ClCompile Include="ttsengutil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AutomationTtsEngine.def" />
@@ -228,6 +229,7 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ttsengutil.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ttsengobj.h" />

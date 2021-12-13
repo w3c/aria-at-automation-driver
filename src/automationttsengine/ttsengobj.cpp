@@ -15,9 +15,12 @@
 //--- Additional includes
 #include "stdafx.h"
 #include "TtsEngObj.h"
+#include "ttsengutil.h"
 #include <stdio.h>
 #include <iostream>
 #include <windows.h>
+
+Logger ttsEngLogger(L"ttseng.txt");
 
 // Number of milliseconds to wait between queries for "actions" from the
 // ISpTTSEngineSite.
@@ -34,64 +37,6 @@ std::string to_utf8(const std::wstring& s, ULONG length)
         WideCharToMultiByte(CP_UTF8, 0, s.c_str(), length, &utf8[0], len, NULL, NULL);
     }
     return utf8;
-}
-
-enum class MessageType {
-    LIFECYCLE,
-    SPEECH,
-    ERR
-};
-
-HRESULT emit(MessageType type, std::string data) {
-    HANDLE pipe = CreateFile(
-        L"\\\\.\\pipe\\my_pipe",
-        GENERIC_WRITE,
-        FILE_SHARE_READ | FILE_SHARE_WRITE,
-        NULL,
-        OPEN_EXISTING,
-        FILE_ATTRIBUTE_NORMAL,
-        NULL
-    );
-
-    if (pipe == INVALID_HANDLE_VALUE)
-    {
-        fprintf(stderr, "Failed to connect to pipe.");
-        return E_HANDLE;
-    }
-
-    std::string typeString;
-    if (type == MessageType::LIFECYCLE)
-    {
-        typeString = "lifecycle";
-    }
-    else if (type == MessageType::SPEECH)
-    {
-        typeString = "speech";
-    }
-    else
-    {
-        typeString = "internalError";
-    }
-    std::string message(typeString + ":" + data);
-    DWORD numBytesWritten = 0;
-    BOOL result = WriteFile(
-        pipe, // handle to our outbound pipe
-        message.c_str(), // data to send
-        message.size(),
-        &numBytesWritten, // will store actual amount of data sent
-        NULL // not using overlapped IO
-    );
-
-    // Close the pipe (automatically disconnects client too)
-    CloseHandle(pipe);
-
-    if (!result)
-    {
-        fprintf(stderr, "Failed to send data.");
-        return E_FAIL;
-    }
-
-    return S_OK;
 }
 
 #define SPEECH_BUFFER_SIZE 4096
@@ -227,6 +172,13 @@ HRESULT vocalize(std::string text, ISpTTSEngineSite* pOutputSite)
 *****************************************************************************/
 HRESULT CTTSEngObj::FinalConstruct()
 {
+    //voiceLog = Logger(L"CTTSEngObj.txt");
+
+    //Logger(L"FinalContructor.txt").log(L"FinalConstruct()\n");
+
+    ttsEngLogger.log(L"FinalConstruct()\n");
+    //voiceLog.log(L"FinalConstruct()\n");
+
     HRESULT hr = S_OK;
 
     //--- Init vars
@@ -240,10 +192,12 @@ HRESULT CTTSEngObj::FinalConstruct()
     if (FAILED(hr))
     {
         emit(MessageType::ERR, "Voice initialization failed");
+        ttsEngLogger.log(L"Voice initialization failed\n");
     }
     else
     {
         emit(MessageType::LIFECYCLE, "Voice initialization succeeded");
+        ttsEngLogger.log(L"Voice initialization succeeded\n");
     }
 
     return hr;
@@ -257,6 +211,9 @@ HRESULT CTTSEngObj::FinalConstruct()
 *****************************************************************************/
 void CTTSEngObj::FinalRelease()
 {
+    ttsEngLogger.log(L"FinalRelease()\n");
+    //voiceLog.log(L"FinalRelease()\n");
+
     delete m_pWordList;
 
     if (m_pVoiceData)
@@ -270,6 +227,7 @@ void CTTSEngObj::FinalRelease()
     }
 
     emit(MessageType::LIFECYCLE, "Voice destroyed");
+    ttsEngLogger.log(L"Voice destroyed\n");
 }
 
 //
@@ -286,6 +244,7 @@ void CTTSEngObj::FinalRelease()
 *****************************************************************************/
 STDMETHODIMP CTTSEngObj::SetObjectToken(ISpObjectToken * pToken)
 {
+    ttsEngLogger.log(L"SetObjectToken()\n");
     return SpGenericSetObjectToken(pToken, m_cpToken);
 }
 
@@ -336,9 +295,12 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
     const SPVTEXTFRAG* pTextFragList,
     ISpTTSEngineSite* pOutputSite)
 {
+    ttsEngLogger.log(L"Speak()\n");
+
     //--- Check args
     if (SP_IS_BAD_INTERFACE_PTR(pOutputSite) || SP_IS_BAD_READ_PTR(pTextFragList))
     {
+        ttsEngLogger.log(L"Speak(): Invalid Arg.\n");
         return E_INVALIDARG;
     }
     HRESULT hr = S_OK;
@@ -389,6 +351,9 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
         }
     }
 
+
+    ttsEngLogger.log(L"Speak(): Returns: %lx.\n", hr);
+
     return hr;
 }
 
@@ -403,5 +368,6 @@ STDMETHODIMP CTTSEngObj::Speak(DWORD dwSpeakFlags,
 STDMETHODIMP CTTSEngObj::GetOutputFormat(const GUID* pTargetFormatId, const WAVEFORMATEX* pTargetWaveFormatEx,
     GUID* pDesiredFormatId, WAVEFORMATEX** ppCoMemDesiredWaveFormatEx)
 {
+    ttsEngLogger.log(L"GetOutputFormat()\n");
     return SpConvertStreamFormatEnum(SPSF_11kHz16BitMono, pDesiredFormatId, ppCoMemDesiredWaveFormatEx);
 }

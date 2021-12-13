@@ -29,6 +29,8 @@
 
 #include "resource.h"
 
+#include "ttsengutil.h"
+
 //=== Constants ====================================================
 
 //=== Class, Enum, Struct and Union Declarations ===================
@@ -100,6 +102,9 @@ class ATL_NO_VTABLE CTTSEngObj :
 
   /*=== Member Data ===*/
   private:
+    //HANDLE m_logHandle;
+    //FILE* m_logFile;
+
     CComPtr<ISpObjectToken> m_cpToken;
     HANDLE                  m_hVoiceData;
     void*                   m_pVoiceData;
@@ -116,6 +121,8 @@ class ATL_NO_VTABLE CTTSEngObj :
     ULONGLONG           m_ullAudioOff;
 
     CComPtr<ISpVoice> m_cpVoice;
+
+    Logger voiceLog;
 };
 
 #endif // This must be the last line in the file

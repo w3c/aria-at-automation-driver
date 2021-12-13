@@ -24,6 +24,9 @@
     <ClCompile Include="ttsengobj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ttsengutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AutomationTtsEngine.def">
@@ -49,6 +52,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ttsengver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ttsengutil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

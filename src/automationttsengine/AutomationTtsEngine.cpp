@@ -13,10 +13,11 @@
 #include "AutomationTtsEngine.h"
 #include "AutomationTtsEngine_i.c"
 #include "TtsEngObj.h"
-
-
+#include "ttsengutil.h"
 
 CComModule _Module;
+
+Logger dllLogger(L"dll.txt");
 
 BEGIN_OBJECT_MAP(ObjectMap)
     OBJECT_ENTRY( CLSID_SampleTTSEngine   , CTTSEngObj    )
@@ -31,12 +32,16 @@ extern "C" BOOL WINAPI DllMain(HANDLE hInstance, ULONG dwReason, LPVOID)
 extern "C" BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID /*lpReserved*/)
 #endif
 {
+    dllLogger.log(L"DllMain()\n");
     if (dwReason == DLL_PROCESS_ATTACH)
     {
         _Module.Init(ObjectMap, (HINSTANCE)hInstance, &LIBID_SAMPLETTSENGLib);
+        dllLogger.log(L"Module.Init()\n");
     }
-    else if (dwReason == DLL_PROCESS_DETACH)
+    else if (dwReason == DLL_PROCESS_DETACH) {
         _Module.Term();
+        dllLogger.log(L"Module.Term()\n");
+    }
     return TRUE;    // ok
 }
 
@@ -45,6 +50,7 @@ extern "C" BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID /*lpR
 
 STDAPI DllCanUnloadNow(void)
 {
+    dllLogger.log(L"DllCanUnloadNow()\n");
     return (_Module.GetLockCount()==0) ? S_OK : S_FALSE;
 }
 
@@ -53,6 +59,7 @@ STDAPI DllCanUnloadNow(void)
 
 STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 {
+    dllLogger.log(L"Module.GetClassObject()\n");
     return _Module.GetClassObject(rclsid, riid, ppv);
 }
 
@@ -61,6 +68,7 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 
 STDAPI DllRegisterServer(void)
 {
+    dllLogger.log(L"Module.RegisterServer()\n");
     // registers object, typelib and all interfaces in typelib
     return _Module.RegisterServer(TRUE);
 }
@@ -70,6 +78,7 @@ STDAPI DllRegisterServer(void)
 
 STDAPI DllUnregisterServer(void)
 {
+    dllLogger.log(L"Module.UnregisterServer()\n");
     return _Module.UnregisterServer(TRUE);
 }
 
