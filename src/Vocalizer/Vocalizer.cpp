@@ -1,22 +1,10 @@
 #include "pch.h"
+#include "..\Shared\branding.h"
 #include <cstdlib>
 
 using namespace System;
 using namespace System::Speech::Synthesis;
 using namespace System::Text::RegularExpressions;
-
-/**
- * Determine whether a given voice name likely indicates that the voice is
- * intended for automation purposes and therefore inappropriate for use by this
- * utility.
- *
- * TODO: Use a more precise heuristic based on references to the values this
- * project uses to install the Automation Voice.
- */
-bool isAutomation(String^ name)
-{
-    return Regex::IsMatch(name, "automation", RegexOptions::IgnoreCase);
-}
 
 /**
  * A process which vocalizes text data supplied as input via the environment
@@ -51,17 +39,17 @@ int main(array<System::String^>^ args)
     // available value other than the Automation Voice in order to avoid
     // problems in cases where the system has designated the Automation Voice
     // as the "default" voice.
-    if (isAutomation(speaker.Voice->Name))
+    if (speaker.Voice->Name == AUTOMATION_VOICE_NAME)
     {
         for each (InstalledVoice^ voice in speaker.GetInstalledVoices())
         {
-            if (!isAutomation(voice->VoiceInfo->Name))
+            if (voice->VoiceInfo->Name != AUTOMATION_VOICE_NAME)
             {
                 speaker.SelectVoice(voice->VoiceInfo->Name);
                 break;
             }
         }
-        if (isAutomation(speaker.Voice->Name))
+        if (speaker.Voice->Name == AUTOMATION_VOICE_NAME)
         {
             Console::WriteLine(gcnew System::String(
                 "Unable to locate an authentic voice."
