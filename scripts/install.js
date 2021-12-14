@@ -183,7 +183,7 @@ const operations = {
 
     // A default text to speech voice is chosen when first used. Vocalize some
     // text to make the system choose and save a default from the currently
-    // installed voices. Additionally test that text to speech succeeds.
+    // installed voices. Additionally test that text to speech works locally.
     await vocalize('Installing automation voice');
 
     await registerDll(DLL_PATH);
