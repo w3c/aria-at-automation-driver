@@ -4,7 +4,6 @@
 
 using namespace System;
 using namespace System::Speech::Synthesis;
-using namespace System::Text::RegularExpressions;
 
 /**
  * A process which vocalizes text data supplied as input via the environment
