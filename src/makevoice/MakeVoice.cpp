@@ -12,6 +12,7 @@
  * platform.
  */
 #include "stdafx.h"
+#include "..\Shared\branding.h"
 #include <AutomationTtsEngine_i.c>
 #include <direct.h>
 #include <fstream>
@@ -61,11 +62,11 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
         CComPtr<ISpDataKey> cpDataKeyAttribs;
         hr = SpCreateNewTokenEx(
                 SPCAT_VOICES, 
-                L"BocoupAutomationVoice",
+                TEXT(AUTOMATION_VOICE_ID),
                 &CLSID_SampleTTSEngine, 
-                L"Bocoup Automation Voice",
+                TEXT(AUTOMATION_VOICE_NAME),
                 0x409, 
-                L"Bocoup Automation Voice",
+                TEXT(AUTOMATION_VOICE_NAME),
                 &cpToken,
                 &cpDataKeyAttribs
         );
@@ -76,7 +77,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
             hr = cpDataKeyAttribs->SetStringValue(L"Gender", L"Male");
             if (SUCCEEDED(hr))
             {
-                hr = cpDataKeyAttribs->SetStringValue(L"Name", L"Bocoup Automation Voice");
+                hr = cpDataKeyAttribs->SetStringValue(L"Name", TEXT(AUTOMATION_VOICE_NAME));
             }
             if (SUCCEEDED(hr))
             {
@@ -88,7 +89,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
             }
             if (SUCCEEDED(hr))
             {
-                hr = cpDataKeyAttribs->SetStringValue(L"Vendor", L"Bocoup");
+                hr = cpDataKeyAttribs->SetStringValue(L"Vendor", TEXT(AUTOMATION_VOICE_VENDOR));
             }
         }
     }
@@ -96,7 +97,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
     if (SUCCEEDED(hr))
     {
         hr = createDirectoryIfAbsent(
-            L"C:\\Program Files\\Bocoup Automation Voice"
+            TEXT(AUTOMATION_VOICE_HOME)
         );
     }
 
@@ -104,7 +105,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
     {
         copyFile(
             getSiblingFilePath("Vocalizer.exe").c_str(),
-            "C:\\Program Files\\Bocoup Automation Voice\\Vocalizer.exe"
+            AUTOMATION_VOICE_HOME "\\Vocalizer.exe"
         );
     }
 

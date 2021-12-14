@@ -14,7 +14,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AutomationTtsEngine", "src\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vocalizer", "src\Vocalizer\Vocalizer.vcxproj", "{577A84E1-AFF0-481E-A69C-A9A23C643C1B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shared", "src\Shared\Shared.vcxitems", "{12ACE3FB-B82C-4A53-B3B9-277DD6115880}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\Shared\Shared.vcxitems*{12ace3fb-b82c-4a53-b3b9-277dd6115880}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64

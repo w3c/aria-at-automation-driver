@@ -15,6 +15,7 @@
 //--- Additional includes
 #include "stdafx.h"
 #include "TtsEngObj.h"
+#include "..\Shared\branding.h"
 #include <stdio.h>
 #include <iostream>
 #include <windows.h>
@@ -172,7 +173,7 @@ HRESULT vocalize(std::string text, ISpTTSEngineSite* pOutputSite)
     ZeroMemory(&startup_info, sizeof(startup_info));
     startup_info.cb = sizeof(startup_info);
     ZeroMemory(&process_info, sizeof(process_info));
-    TCHAR command[] = TEXT("C:\\Program Files\\Bocoup Automation Voice\\Vocalizer.exe");
+    TCHAR command[] = TEXT(AUTOMATION_VOICE_HOME "\\Vocalizer.exe");
     DWORD dwFlags = CREATE_NO_WINDOW;
     TCHAR newEnv[SPEECH_BUFFER_SIZE];
 
