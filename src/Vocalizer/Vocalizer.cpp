@@ -31,9 +31,9 @@ int main(array<System::String^>^ args)
     char* words = getenv("WORDS");
     if (words == NULL)
     {
-        Console::WriteLine(gcnew System::String(
+        Console::WriteLine(
             "Expected the environment variable WORDS to be set, but it was not set."
-        ));
+        );
         return 1;
     }
     Console::WriteLine(gcnew System::String(words));
@@ -63,9 +63,7 @@ int main(array<System::String^>^ args)
         }
         if (isAutomation(speaker.Voice->Name))
         {
-            Console::WriteLine(gcnew System::String(
-                "Unable to locate an authentic voice."
-            ));
+            Console::WriteLine("Unable to locate an authentic voice.");
             return 1;
         }
     }
