@@ -81,7 +81,7 @@ const copyFile = async (sourceFile, destinationDir) => {
  * @param {string} text
  */
 const vocalize = async (text) => {
-  await exec(`${JSON.stringify(VOCALIZER_GLOBAL_PATH)}`, {
+  await exec(JSON.stringify(VOCALIZER_GLOBAL_PATH), {
     env: {
       WORDS: text,
     },
@@ -181,6 +181,9 @@ const operations = {
   async install() {
     await copyFile(VOCALIZER_LOCAL_PATH, VOCALIZER_GLOBAL_DIRECTORY);
 
+    // A default text to speech voice is chosen when first used. Vocalize some
+    // text to make the system choose and save a default from the currently
+    // installed voices. Additionally test that text to speech succeeds.
     await vocalize('Installing automation voice');
 
     await registerDll(DLL_PATH);
