@@ -49,7 +49,7 @@ std::string getSiblingFilePath(const std::string& fileName)
     return path.substr(0, 1 + path.find_last_of('\\')) + fileName;
 }
 
-HRESULT registerDll(const std::string& fileName)
+HRESULT updateDllRegistry(const std::string& fileName, bool insert)
 {
     USES_CONVERSION;
 
@@ -58,7 +58,9 @@ HRESULT registerDll(const std::string& fileName)
     ZeroMemory(&startup_info, sizeof(startup_info));
     startup_info.cb = sizeof(startup_info);
     ZeroMemory(&process_info, sizeof(process_info));
-    std::string command = std::string("regsvr32 /s /c \"") + getSiblingFilePath(fileName) + "\"";
+    std::string command = std::string("regsvr32 /s /c ")
+        + (insert ? "" : "/u ")
+        + "\"" + getSiblingFilePath(fileName) + "\"";
     DWORD dwFlags = CREATE_NO_WINDOW;
 
     bool result = CreateProcessW(
@@ -94,13 +96,92 @@ HRESULT registerDll(const std::string& fileName)
     return exitCode == 0 ? S_OK : E_FAIL;
 }
 
+int parseArgs(int argc, WCHAR* argv[])
+{
+    for (int i = 1; i < argc; i += 1)
+    {
+        if (_tcscmp(argv[i], L"/u") == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+typedef std::basic_string<TCHAR> tstring;
+
+int uninstall(HKEY root, tstring path)
+{
+    HKEY hKey;
+    long lReturn = RegOpenKeyEx(
+        root,
+        path.c_str(),
+        0L,
+        KEY_ALL_ACCESS,
+        &hKey
+    );
+    return 0;
+}
+
+struct RegistryPathParts
+{
+    HKEY root;
+    tstring rest;
+};
+
+HRESULT splitRegistryPath(TCHAR* path, RegistryPathParts* parts)
+{
+    tstring pathString(path);
+    std::size_t index = pathString.find(_T("\\"));
+
+    if (index == std::string::npos)
+    {
+        return E_FAIL;
+    }
+    tstring rootString = pathString.substr(0, index);
+    tstring rest = pathString.substr(index + 1);
+
+    if (rootString == _T("HKEY_CLASSES_ROOT"))
+    {
+        parts->root = HKEY_CLASSES_ROOT;
+    }
+    else if (rootString == _T("HKEY_CURRENT_USER"))
+    {
+        parts->root = HKEY_CURRENT_USER;
+    }
+    else if (rootString == _T("HKEY_LOCAL_MACHINE"))
+    {
+        parts->root = HKEY_LOCAL_MACHINE;
+    }
+    else if (rootString == _T("HKEY_USERS"))
+    {
+        parts->root = HKEY_USERS;
+    }
+    else if (rootString == _T("HKEY_CURRENT_CONFIG"))
+    {
+        parts->root = HKEY_CURRENT_CONFIG;
+    }
+    else
+    {
+        return E_FAIL;
+    }
+
+    parts->rest = rest;
+
+    return S_OK;
+}
+
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 {
-    HRESULT hr = ::CoInitialize( NULL );
+    RegistryPathParts pathParts;
+    splitRegistryPath(SPCAT_VOICES, &pathParts);
+    return 0;
+    bool install = parseArgs(argc, argv);
 
+    HRESULT hr = ::CoInitialize( NULL );
     if (SUCCEEDED(hr))
     {
-        hr = registerDll("AutomationTtsEngine.dll");
+        hr = updateDllRegistry("AutomationTtsEngine.dll", install);
     }
 
     // Programatically create a token for the new voice and set its attributes.
