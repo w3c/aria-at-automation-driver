@@ -198,9 +198,7 @@ bool uninstall()
         return false;
     }
 
-    // TODO: delete non-empty directory, AUTOMATION_VOICE_HOME
-
-    return true;
+    return system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"") == 0;
 }
 
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
