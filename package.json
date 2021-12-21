@@ -15,8 +15,7 @@
     "lib",
     "Release/AutomationTtsEngine.dll",
     "Release/MakeVoice.exe",
-    "Release/Vocalizer.exe",
-    "scripts"
+    "Release/Vocalizer.exe"
   ],
   "author": "",
   "license": "MIT",
