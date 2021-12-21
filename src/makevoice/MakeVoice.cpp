@@ -124,7 +124,7 @@ int parseArgs(int argc, WCHAR* argv[])
     return true;
 }
 
-bool install()
+HRESULT install()
 {
     HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), true);
 
@@ -192,16 +192,16 @@ bool install()
         hr = runSubprocess(tstring(_T(AUTOMATION_VOICE_HOME "\\Vocalizer.exe")));
     }
 
-    return SUCCEEDED(hr);
+    return hr;
 }
 
-bool uninstall()
+HRESULT uninstall()
 {
     HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), true);
 
     if (!SUCCEEDED(hr))
     {
-        return false;
+        return hr;
     }
 
     WindowsRegistry::RegistryPathParts pathParts;
@@ -210,7 +210,7 @@ bool uninstall()
 
     if (!SUCCEEDED(hr))
     {
-        return false;
+        return hr;
     }
 
     bool result = WindowsRegistry::deleteNode(
@@ -220,10 +220,10 @@ bool uninstall()
 
     if (!result)
     {
-        return false;
+        return E_FAIL;
     }
 
-    return system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"") == 0;
+    return system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"") == 0 ? S_OK : E_FAIL;
 }
 
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
@@ -234,9 +234,7 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 
     if (SUCCEEDED(hr))
     {
-        bool result = shouldInstall ? install() : uninstall();
-
-        hr = result ? S_OK : E_FAIL;
+        hr = shouldInstall ? install() : uninstall();
     }
 
     ::CoUninitialize();
