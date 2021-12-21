@@ -51,13 +51,6 @@ namespace WindowsRegistry
         return S_OK;
     }
 
-    namespace detail {
-        bool deleteNodeRecurse(HKEY hKeyRoot, tstring lpSubKey)
-        {
-           
-        }
-    }
-
     /**
      * Delete a registry key and all its subkeys / values.
      * 
