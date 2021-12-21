@@ -7,13 +7,14 @@
     "at-driver": "./bin/at-driver"
   },
   "scripts": {
-    "postinstall": "node scripts/install.js -- install",
-    "postuninstall": "node scripts/install.js -- uninstall",
+    "postinstall": "Release\\MakeVoice.exe",
+    "postuninstall": "Release\\MakeVoice.exe /u",
     "test": "mocha --ui tdd test"
   },
   "files": [
     "lib",
     "Release/AutomationTtsEngine.dll",
+    "Release/MakeVoice.exe",
     "Release/Vocalizer.exe",
     "scripts"
   ],

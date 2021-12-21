@@ -18,6 +18,17 @@
 #include <direct.h>
 #include <fstream>
 
+// A default text to speech voice is chosen when first used.Vocalize some
+// text to make the system chooseand save a default from the currently
+// installed voices.Additionally test that text to speech works locally.
+#define UTTERANCE_FOR_SETTING_DEFAULT_VOICE _T("Installing voice named " AUTOMATION_VOICE_NAME)
+
+#ifdef UNICODE
+#define tputenv_s _wputenv_s
+#else
+#define tputenv_s _putenv_s
+#endif
+
 HRESULT createDirectoryIfAbsent(LPCWSTR location)
 {
     if (CreateDirectory(location, NULL))
@@ -27,7 +38,7 @@ HRESULT createDirectoryIfAbsent(LPCWSTR location)
     return GetLastError() == ERROR_ALREADY_EXISTS ? S_OK : E_FAIL;
 }
 
-void copyFile(const char* sourceLocation, const char* destinationLocation)
+void copyFile(const TCHAR* sourceLocation, const TCHAR* destinationLocation)
 {
     std::ifstream source(sourceLocation, std::ios::binary);
     std::ofstream destination(destinationLocation, std::ios::binary);
@@ -42,31 +53,26 @@ void copyFile(const char* sourceLocation, const char* destinationLocation)
     destination.close();
 }
 
-std::string getSiblingFilePath(const std::string& fileName)
+tstring getSiblingFilePath(const tstring& fileName)
 {
-    char buffer[MAX_PATH];
-    GetModuleFileNameA(nullptr, buffer, MAX_PATH);
-    std::string path(buffer);
+    TCHAR buffer[MAX_PATH];
+    GetModuleFileName(nullptr, buffer, MAX_PATH);
+    tstring path(buffer);
     return path.substr(0, 1 + path.find_last_of('\\')) + fileName;
 }
 
-HRESULT updateDllRegistry(const std::string& fileName, bool insert)
+HRESULT runSubprocess(tstring& command)
 {
-    USES_CONVERSION;
-
     STARTUPINFO startup_info;
     PROCESS_INFORMATION process_info;
     ZeroMemory(&startup_info, sizeof(startup_info));
     startup_info.cb = sizeof(startup_info);
     ZeroMemory(&process_info, sizeof(process_info));
-    std::string command = std::string("regsvr32 /s /c ")
-        + (insert ? "" : "/u ")
-        + "\"" + getSiblingFilePath(fileName) + "\"";
     DWORD dwFlags = CREATE_NO_WINDOW;
 
-    bool result = CreateProcessW(
+    bool result = CreateProcess(
         NULL,
-        A2W(command.c_str()),
+        &command[0],
         NULL,
         NULL,
         false,
@@ -97,6 +103,15 @@ HRESULT updateDllRegistry(const std::string& fileName, bool insert)
     return exitCode == 0 ? S_OK : E_FAIL;
 }
 
+HRESULT updateDllRegistry(const tstring& fileName, bool insert)
+{
+    tstring command = tstring(_T("regsvr32 /s /c "))
+        + (insert ? _T("") : _T("/u "))
+        + _T("\"") + getSiblingFilePath(fileName) + _T("\"");
+
+    return runSubprocess(command);
+}
+
 int parseArgs(int argc, WCHAR* argv[])
 {
     for (int i = 1; i < argc; i += 1)
@@ -111,7 +126,7 @@ int parseArgs(int argc, WCHAR* argv[])
 
 bool install()
 {
-    HRESULT hr = updateDllRegistry("AutomationTtsEngine.dll", true);
+    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), true);
 
     // Programatically create a token for the new voice and set its attributes.
     if (SUCCEEDED(hr))
@@ -162,9 +177,19 @@ bool install()
     if (SUCCEEDED(hr))
     {
         copyFile(
-            getSiblingFilePath("Vocalizer.exe").c_str(),
-            AUTOMATION_VOICE_HOME "\\Vocalizer.exe"
+            getSiblingFilePath(_T("Vocalizer.exe")).c_str(),
+            _T(AUTOMATION_VOICE_HOME "\\Vocalizer.exe")
         );
+
+        if (tputenv_s(_T("WORDS"), UTTERANCE_FOR_SETTING_DEFAULT_VOICE) != 0)
+        {
+            hr = E_FAIL;
+        }
+    }
+
+    if (SUCCEEDED(hr))
+    {
+        hr = runSubprocess(tstring(_T(AUTOMATION_VOICE_HOME "\\Vocalizer.exe")));
     }
 
     return FAILED(hr);
@@ -172,7 +197,7 @@ bool install()
 
 bool uninstall()
 {
-    HRESULT hr = updateDllRegistry("AutomationTtsEngine.dll", true);
+    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), true);
 
     if (!SUCCEEDED(hr))
     {
