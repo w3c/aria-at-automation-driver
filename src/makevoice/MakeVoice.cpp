@@ -192,7 +192,7 @@ bool install()
         hr = runSubprocess(tstring(_T(AUTOMATION_VOICE_HOME "\\Vocalizer.exe")));
     }
 
-    return FAILED(hr);
+    return SUCCEEDED(hr);
 }
 
 bool uninstall()
@@ -234,14 +234,9 @@ int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 
     if (SUCCEEDED(hr))
     {
-        if (shouldInstall)
-        {
-            install();
-        }
-        else
-        {
-            uninstall();
-        }
+        bool result = shouldInstall ? install() : uninstall();
+
+        hr = result ? S_OK : E_FAIL;
     }
 
     ::CoUninitialize();
