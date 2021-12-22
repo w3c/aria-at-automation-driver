@@ -6,6 +6,7 @@
   Visual Studio Installer
   - "Workloads"
     - "Desktop development with C++"
+    - "Python development" - Python 3 64-bit (3.9.7)
   - "Individual components"
     - "C++/CLI support for v142 build tools (Latest)"
     - "MSVC v142 - VS 2019 C++ ARM64 build tools (Latest)"
