@@ -81,6 +81,13 @@ interface ReleaseKeyCommand {
   params: [string];
 }
 
+interface ConfigureCommand {
+  type: 'command';
+  id: number;
+  name: 'configure';
+  params: [object];
+}
+
 interface SuccessResponse {
   type: 'response';
   id: number;
