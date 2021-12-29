@@ -103,10 +103,12 @@ HRESULT runSubprocess(tstring& command)
     return exitCode == 0 ? S_OK : E_FAIL;
 }
 
-HRESULT updateDllRegistry(const tstring& fileName, bool insert)
+enum class DllAction { install, uninstall };
+
+HRESULT updateDllRegistry(const tstring& fileName, DllAction action)
 {
     tstring command = tstring(_T("regsvr32 /s /c "))
-        + (insert ? _T("") : _T("/u "))
+        + (action == DllAction::install ? _T("") : _T("/u "))
         + _T("\"") + getSiblingFilePath(fileName) + _T("\"");
 
     return runSubprocess(command);
@@ -126,7 +128,7 @@ int parseArgs(int argc, WCHAR* argv[])
 
 HRESULT install()
 {
-    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), true);
+    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), DllAction::install);
 
     // Programatically create a token for the new voice and set its attributes.
     if (SUCCEEDED(hr))
@@ -197,7 +199,7 @@ HRESULT install()
 
 HRESULT uninstall()
 {
-    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), true);
+    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), DllAction::uninstall);
 
     if (!SUCCEEDED(hr))
     {
