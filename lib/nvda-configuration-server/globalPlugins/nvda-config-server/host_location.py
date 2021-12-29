@@ -1,6 +1,8 @@
 import json
 import os
 
+HOST_NAME = 'localhost'
+
 try:
     HOST_PORT = int(os.environ['NVDA_CONFIGURATION_SERVER_PORT'])
 except KeyError:
