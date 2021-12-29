@@ -7,15 +7,16 @@
     "at-driver": "./bin/at-driver"
   },
   "scripts": {
-    "postinstall": "Release\\MakeVoice.exe",
-    "postuninstall": "Release\\MakeVoice.exe /u",
+    "postinstall": "scripts\\install.bat",
+    "postuninstall": "scripts\\uninstall.bat",
     "test": "mocha --ui tdd test"
   },
   "files": [
     "lib",
     "Release/AutomationTtsEngine.dll",
     "Release/MakeVoice.exe",
-    "Release/Vocalizer.exe"
+    "Release/Vocalizer.exe",
+    "scripts"
   ],
   "author": "",
   "license": "MIT",

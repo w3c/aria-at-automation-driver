@@ -194,38 +194,6 @@ HRESULT install()
         hr = runSubprocess(tstring(_T(AUTOMATION_VOICE_HOME "\\Vocalizer.exe")));
     }
 
-    if (SUCCEEDED(hr))
-    {
-        // Install the project's custom NVDA add-on.
-        //
-        // This operation is somewhat fragile (in that it may be broken by future releases
-        // of NVDA) because it assumes the location and format of the screen reader's "add
-        // on" directory. Although it would be preferable to first "package" the add-on and
-        // then install it using the same procedure as an end-user, that approach requires
-        // manual interaction with a modal dialog and is therefore inappropriate for the
-        // needs of this project.
-        std::wstring dest = _wgetenv(L"USERPROFILE");
-        wchar_t* subdirectories[] = {
-            L"\\AppData", L"\\Roaming", L"\\nvda", L"\\addons", L"\\nvda-configuration-server"
-        };
-        const int size = sizeof(subdirectories) / sizeof(subdirectories[0]);
-
-        for (int i = 0; i < size; i += 1)
-        {
-            dest += subdirectories[i];
-            hr = createDirectoryIfAbsent(dest.c_str());
-
-            if (FAILED(hr))
-            {
-                break;
-            }
-        }
-
-        std::wstring source = getSiblingFilePath(L"..\\lib\\nvda-configuration-server");
-        std::wstring command = L"xcopy /E /Y " + source + L" " + dest;
-        hr = runSubprocess(command);
-    }
-
     return hr;
 }
 
@@ -247,28 +215,17 @@ HRESULT uninstall()
         return hr;
     }
 
-    hr = WindowsRegistry::deleteNode(
+    bool result = WindowsRegistry::deleteNode(
         pathParts.root,
         pathParts.rest + _T("\\") + _T(AUTOMATION_VOICE_ID)
-    ) ? S_OK : E_FAIL;
+    );
 
-    if (!SUCCEEDED(hr))
+    if (!result)
     {
-        return hr;
+        return E_FAIL;
     }
 
-    hr = system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"") == 0 ? S_OK : E_FAIL;
-
-    if (!SUCCEEDED(hr))
-    {
-        return hr;
-    }
-
-    std::wstring command(L"rmdir /Q /S \"");
-    command += _wgetenv(L"USERPROFILE");
-    command += L"\\AppData\\Roaming\\nvda\\addons\\nvda-configuration-server\"";
-
-    return _wsystem(command.c_str()) == 0 ? S_OK : E_FAIL;
+    return system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"") == 0 ? S_OK : E_FAIL;
 }
 
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
