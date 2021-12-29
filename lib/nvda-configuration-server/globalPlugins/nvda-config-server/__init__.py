@@ -39,7 +39,6 @@ class ConfigHandler(BaseHTTPRequestHandler):
         try:
             content_length = int(self.headers['Content-Length'])
             body = json.loads(self.rfile.read(content_length))
-            before = config.conf.dict()['virtualBuffers']['passThroughAudioIndication']
             self.server.on_post(body)
         except:
             self.send_response(500)
@@ -49,8 +48,7 @@ class ConfigHandler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.end_headers()
-        after = config.conf.dict()['virtualBuffers']['passThroughAudioIndication']
-        self.wfile.write('ok {} {} '.format(before, after).encode('utf-8'))
+        self.wfile.write('ok')
 
 def update_dictlike(dictlike, values):
     for key, value in values.items():
