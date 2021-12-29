@@ -7,15 +7,14 @@ import addonHandler
 import config
 import globalPluginHandler
 
+from .host_port import HOST_PORT
+
 try:
     ADDON_NAME = addonHandler.getCodeAddon().name
 except addonHandler.AddonError:
     ADDON_NAME = 'scratch-nvda-config-server'
 
 HOST_NAME = 'localhost'
-# TODO: Load this value from a file that is shared with the project's
-# Node.js-based command-line interface.
-HOST_PORT = 7658
 
 class ConfigServer(HTTPServer):
     def __init__(self, on_get, on_post, *args, **kwargs):

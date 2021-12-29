@@ -24,3 +24,5 @@ mkdir %USERPROFILE%\AppData\Roaming\nvda\addons
 mkdir %destination% || exit /b
 
 xcopy /E /Y .\lib\nvda-configuration-server %destination% || exit /b
+
+xcopy /E /Y .\lib\shared %destination%\shared\ || exit /b
