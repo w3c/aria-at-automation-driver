@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../lib/cli')(process);
+require('../lib/at-driver/cli')(process);
