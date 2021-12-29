@@ -10,10 +10,13 @@ running locally on a Microsoft Windows system.
 - [Node.js](https://nodejs.org), including "Tools for Native Modules" as
   offered by the Node.js installer
 
-<!--
-  "Tools for Native Modules" is required to install the "robotjs" npm module,
-  which is a dependency of this project.
--->
+<details>
+  <summary>note for project maintainers</summary>
+
+"Tools for Native Modules" is required to install the "robotjs" npm module,
+which is a dependency of this project.
+
+</details>
 
 ## Installation
 
