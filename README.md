@@ -1,8 +1,8 @@
-# AT Driver
+# ARIA-AT Automation Driver
 
 A [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
-server which exposes the speech being vocalized by various screen readers
-running locally on a Microsoft Windows system.
+server which allows clients to observe the text enunciated by a screen reader
+and to simulate user input
 
 ## Requirements
 
