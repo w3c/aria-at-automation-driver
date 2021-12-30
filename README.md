@@ -4,6 +4,8 @@ A [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 server which allows clients to observe the text enunciated by a screen reader
 and to simulate user input
 
+**[aria-at-automation](https://github.com/bocoup/aria-at-automation)** &middot; [aria-at-automation-harness](https://github.com/bocoup/aria-at-automation-harness) &middot; aria-at-automation-driver &middot; [aria-at-automation-results-viewer](https://github.com/bocoup/aria-at-automation-results-viewer)
+
 ## Requirements
 
 - Microsoft Windows
