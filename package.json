@@ -7,13 +7,14 @@
     "at-driver": "./bin/at-driver"
   },
   "scripts": {
-    "postinstall": "node scripts/install.js -- install",
-    "postuninstall": "node scripts/install.js -- uninstall",
+    "postinstall": "scripts\\install.bat",
+    "postuninstall": "scripts\\uninstall.bat",
     "test": "mocha --ui tdd test"
   },
   "files": [
     "lib",
     "Release/AutomationTtsEngine.dll",
+    "Release/MakeVoice.exe",
     "Release/Vocalizer.exe",
     "scripts"
   ],
@@ -24,7 +25,6 @@
   },
   "dependencies": {
     "robotjs": "^0.6.0",
-    "sudo-prompt": "^9.2.1",
     "ws": "^8.2.3",
     "yargs": "^17.2.1"
   }
