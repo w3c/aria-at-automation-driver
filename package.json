@@ -7,15 +7,15 @@
     "at-driver": "./bin/at-driver"
   },
   "scripts": {
-    "postinstall": "node scripts/install.js -- install",
-    "postuninstall": "node scripts/install.js -- uninstall",
+    "postinstall": "Release\\MakeVoice.exe",
+    "postuninstall": "Release\\MakeVoice.exe /u",
     "test": "mocha --ui tdd test"
   },
   "files": [
     "lib",
     "Release/AutomationTtsEngine.dll",
-    "Release/Vocalizer.exe",
-    "scripts"
+    "Release/MakeVoice.exe",
+    "Release/Vocalizer.exe"
   ],
   "author": "",
   "license": "MIT",
@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "robotjs": "^0.6.0",
-    "sudo-prompt": "^9.2.1",
     "ws": "^8.2.3",
     "yargs": "^17.2.1"
   }
