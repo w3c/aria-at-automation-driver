@@ -10,6 +10,17 @@ and to simulate user input
 
 - Microsoft Windows
 - [Node.js](https://nodejs.org)
+- [the Microsoft Visual C++
+  runtime](https://aka.ms/vs/16/release/vc_redist.x86.exe)
+
+<details>
+  <summary>note for project maintainers</summary>
+
+[The Visual C++ runtime includes
+`VCRUNTIME140.dll`](https://answers.microsoft.com/en-us/windows/forum/all/vcruntime140dll/fc4c0470-4db0-4e7b-9537-58ea62f8ac05),
+which is required by the automation voice.
+
+</details>
 
 ## Installation
 
