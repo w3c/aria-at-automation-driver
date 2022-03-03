@@ -3,7 +3,7 @@ const assert = require('assert');
 const path = require('path');
 
 const debug = require('debug')('aria-at-demo:commands:common');
-const robot = require('robotjs');
+const robot = require('../../../vendor/robotjs.node');
 
 const TIMEOUT = 50 * 1000;
 

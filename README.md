@@ -9,16 +9,7 @@ and to simulate user input
 ## Requirements
 
 - Microsoft Windows
-- [Node.js](https://nodejs.org), including "Tools for Native Modules" as
-  offered by the Node.js installer
-
-<details>
-  <summary>note for project maintainers</summary>
-
-"Tools for Native Modules" is required to install the "robotjs" npm module,
-which is a dependency of this project.
-
-</details>
+- [Node.js](https://nodejs.org)
 
 ## Installation
 
