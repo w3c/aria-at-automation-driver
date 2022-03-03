@@ -11,12 +11,18 @@ and to simulate user input
 - Microsoft Windows
 - [Node.js](https://nodejs.org), including "Tools for Native Modules" as
   offered by the Node.js installer
+- [the Microsoft Visual C++
+  runtime](https://aka.ms/vs/16/release/vc_redist.x86.exe)
 
 <details>
   <summary>note for project maintainers</summary>
 
 "Tools for Native Modules" is required to install the "robotjs" npm module,
 which is a dependency of this project.
+
+[The Visual C++ runtime includes
+`VCRUNTIME140.dll`](https://answers.microsoft.com/en-us/windows/forum/all/vcruntime140dll/fc4c0470-4db0-4e7b-9537-58ea62f8ac05),
+which is required by the automation voice.
 
 </details>
 
