@@ -91,6 +91,11 @@ HRESULT registerDll(const std::string& fileName)
     CloseHandle(process_info.hProcess);
     CloseHandle(process_info.hThread);
 
+    if (exitCode != 0)
+    {
+        fprintf(stderr, "Error: regsvr32 exited with a non-zero exit code: %lu", exitCode);
+    }
+
     return exitCode == 0 ? S_OK : E_FAIL;
 }
 
