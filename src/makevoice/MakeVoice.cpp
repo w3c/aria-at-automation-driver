@@ -49,11 +49,64 @@ std::string getSiblingFilePath(const std::string& fileName)
     return path.substr(0, 1 + path.find_last_of('\\')) + fileName;
 }
 
+HRESULT registerDll(const std::string& fileName)
+{
+    USES_CONVERSION;
+
+    STARTUPINFO startup_info;
+    PROCESS_INFORMATION process_info;
+    ZeroMemory(&startup_info, sizeof(startup_info));
+    startup_info.cb = sizeof(startup_info);
+    ZeroMemory(&process_info, sizeof(process_info));
+    std::string command = std::string("regsvr32 /s /c \"") + getSiblingFilePath(fileName) + "\"";
+    DWORD dwFlags = CREATE_NO_WINDOW;
+
+    bool result = CreateProcessW(
+        NULL,
+        A2W(command.c_str()),
+        NULL,
+        NULL,
+        false,
+        dwFlags,
+        NULL,
+        NULL,
+        &startup_info,
+        &process_info
+    );
+
+    if (!result)
+    {
+        return E_FAIL;
+    }
+
+    WaitForSingleObject(process_info.hProcess, INFINITE);
+
+    DWORD exitCode;
+
+    if (!GetExitCodeProcess(process_info.hProcess, &exitCode))
+    {
+        return E_FAIL;
+    }
+
+    CloseHandle(process_info.hProcess);
+    CloseHandle(process_info.hThread);
+
+    if (exitCode != 0)
+    {
+        fprintf(stderr, "Error: regsvr32 exited with a non-zero exit code: %lu", exitCode);
+    }
+
+    return exitCode == 0 ? S_OK : E_FAIL;
+}
+
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 {
-    HRESULT hr = S_OK;
+    HRESULT hr = ::CoInitialize( NULL );
 
-    ::CoInitialize( NULL );
+    if (SUCCEEDED(hr))
+    {
+        hr = registerDll("AutomationTtsEngine.dll");
+    }
 
     // Programatically create a token for the new voice and set its attributes.
     if (SUCCEEDED(hr))
