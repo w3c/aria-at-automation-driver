@@ -9,7 +9,7 @@
 const child_process = require('child_process');
 const {promisify} = require('util');
 const path = require('path');
-const fs = require('fs/promises');
+const {promises: fs} = require('fs');
 const {createReadStream, createWriteStream} = require('fs');
 
 const sudo_prompt = require('sudo-prompt');
