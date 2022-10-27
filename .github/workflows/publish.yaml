@@ -1,4 +1,4 @@
-name: Try Cpp Build
+name: Publish to Npm
 on:
   release:
     types: [created]
