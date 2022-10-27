@@ -1,6 +1,6 @@
 {
-  "name": "@bocoup/windows-sapi-tts-engine-for-automation",
-  "version": "0.0.3",
+  "name": "sadikassistivlabs/windows-sapi-tts-engine-for-automation",
+  "version": "0.0.4",
   "description": "A WebSocket server which allows clients to observe the text enunciated by a screen reader and to simulate user input ",
   "main": "index.js",
   "bin": {
