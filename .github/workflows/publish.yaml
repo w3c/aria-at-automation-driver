@@ -23,6 +23,10 @@ jobs:
           cd Release/
           ls
 
+      - uses: actions/setup-node@v3 # Appears to be needed solely to avoid auth issues with npm publish
+        with:
+          node-version: 18
+
       - name: Publish to Npm
         run: npm publish
         env:
