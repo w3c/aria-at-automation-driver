@@ -1,0 +1,29 @@
+name: Try Cpp Build
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: windows-2019 # the build errored out on windows-2022 (currently windows-latest)
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build the C++ solution
+        run: |
+          msbuild ./AutomationTtsEngine.sln -v:diag -property:Configuration=Release
+
+      - name: Inspect build outputs
+        run: |
+          ls 
+          cd Release/
+          ls
+
+      - name: Publish to Npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
