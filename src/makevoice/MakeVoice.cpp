@@ -21,7 +21,8 @@
 // A default text to speech voice is chosen when first used.Vocalize some
 // text to make the system chooseand save a default from the currently
 // installed voices.Additionally test that text to speech works locally.
-#define UTTERANCE_FOR_SETTING_DEFAULT_VOICE _T("Installing voice named " AUTOMATION_VOICE_NAME)
+#define UTTERANCE_FOR_SETTING_DEFAULT_VOICE \
+    _T("Installing voice named " AUTOMATION_VOICE_NAME)
 
 #ifdef UNICODE
 #define tputenv_s _wputenv_s
@@ -103,13 +104,17 @@ HRESULT runSubprocess(tstring& command)
     return exitCode == 0 ? S_OK : E_FAIL;
 }
 
-enum class DllAction { install, uninstall };
+enum class DllAction
+{
+    install,
+    uninstall
+};
 
 HRESULT updateDllRegistry(const tstring& fileName, DllAction action)
 {
     tstring command = tstring(_T("regsvr32 /s /c "))
-        + (action == DllAction::install ? _T("") : _T("/u "))
-        + _T("\"") + getSiblingFilePath(fileName) + _T("\"");
+        + (action == DllAction::install ? _T("") : _T("/u ")) + _T("\"")
+        + getSiblingFilePath(fileName) + _T("\"");
 
     return runSubprocess(command);
 }
@@ -133,13 +138,15 @@ DllAction parseArgs(int argc, WCHAR* argv[])
 
 HRESULT install()
 {
-    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), DllAction::install);
+    CComPtr<ISpObjectToken> cpToken;
+    CComPtr<ISpDataKey> cpDataKeyAttribs;
+
+    HRESULT hr =
+        updateDllRegistry(_T("AutomationTtsEngine.dll"), DllAction::install);
 
     // Programatically create a token for the new voice and set its attributes.
     if (SUCCEEDED(hr))
     {
-        CComPtr<ISpObjectToken> cpToken;
-        CComPtr<ISpDataKey> cpDataKeyAttribs;
         hr = SpCreateNewTokenEx(
             SPCAT_VOICES,
             L"" AUTOMATION_VOICE_ID,
@@ -150,35 +157,37 @@ HRESULT install()
             &cpToken,
             &cpDataKeyAttribs
         );
+    }
 
-        //--- Set additional attributes for searching.
-        if (SUCCEEDED(hr))
-        {
-            hr = cpDataKeyAttribs->SetStringValue(L"Gender", L"Male");
-            if (SUCCEEDED(hr))
-            {
-                hr = cpDataKeyAttribs->SetStringValue(L"Name", TEXT(AUTOMATION_VOICE_NAME));
-            }
-            if (SUCCEEDED(hr))
-            {
-                hr = cpDataKeyAttribs->SetStringValue(L"Language", L"409");
-            }
-            if (SUCCEEDED(hr))
-            {
-                hr = cpDataKeyAttribs->SetStringValue(L"Age", L"Adult");
-            }
-            if (SUCCEEDED(hr))
-            {
-                hr = cpDataKeyAttribs->SetStringValue(L"Vendor", TEXT(AUTOMATION_VOICE_VENDOR));
-            }
-        }
+    //--- Set additional attributes for searching.
+    if (SUCCEEDED(hr))
+    {
+        hr = cpDataKeyAttribs->SetStringValue(L"Gender", L"Male");
+    }
+    if (SUCCEEDED(hr))
+    {
+        hr = cpDataKeyAttribs->SetStringValue(
+            L"Name", _T(AUTOMATION_VOICE_NAME)
+        );
+    }
+    if (SUCCEEDED(hr))
+    {
+        hr = cpDataKeyAttribs->SetStringValue(L"Language", L"409");
+    }
+    if (SUCCEEDED(hr))
+    {
+        hr = cpDataKeyAttribs->SetStringValue(L"Age", L"Adult");
+    }
+    if (SUCCEEDED(hr))
+    {
+        hr = cpDataKeyAttribs->SetStringValue(
+            L"Vendor", _T(AUTOMATION_VOICE_VENDOR)
+        );
     }
 
     if (SUCCEEDED(hr))
     {
-        hr = createDirectoryIfAbsent(
-            TEXT(AUTOMATION_VOICE_HOME)
-        );
+        hr = createDirectoryIfAbsent(_T(AUTOMATION_VOICE_HOME));
     }
 
     if (SUCCEEDED(hr))
