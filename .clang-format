@@ -1,0 +1,17 @@
+// https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+---
+Language: Cpp
+ColumnLimit: 80
+IndentWidth: 4
+AlignOperands: DontAlign
+BreakBeforeBinaryOperators: NonAssignment
+BinPackArguments: false
+BinPackParameters: false
+PointerAlignment: Left
+AlignAfterOpenBracket: BlockIndent
+AlignEscapedNewlines: DontAlign
+NamespaceIndentation: All
+BreakBeforeBraces: Allman
+SortIncludes: Never
+FixNamespaceComments: false
+...
