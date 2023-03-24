@@ -10,5 +10,14 @@ namespace WindowsRegistry
     };
 
     HRESULT splitRegistryPath(TCHAR* path, RegistryPathParts* parts);
-    bool deleteNode(HKEY hKeyRoot, tstring lpSubKey);
+
+    /**
+     * Delete a registry key and all its subkeys / values.
+     *
+     * @param {HKEY} hKeyRoot - root key
+     * @param {tstring} subKey - subKey to delete
+     *
+     * @returns {bool} true if successful, false if an error occurs
+     */
+    bool deleteNode(HKEY hKeyRoot, tstring subKey);
 }

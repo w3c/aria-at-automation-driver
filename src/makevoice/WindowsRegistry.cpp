@@ -9,10 +9,12 @@
 
 namespace WindowsRegistry
 {
+    TCHAR* KEY_SEPARATOR = _T("\\");
+
     HRESULT splitRegistryPath(TCHAR* path, RegistryPathParts* parts)
     {
         tstring pathString(path);
-        std::size_t index = pathString.find(_T("\\"));
+        std::size_t index = pathString.find(KEY_SEPARATOR);
 
         if (index == std::string::npos)
         {
@@ -51,34 +53,25 @@ namespace WindowsRegistry
         return S_OK;
     }
 
-    /**
-     * Delete a registry key and all its subkeys / values.
-     * 
-     * Based on https://docs.microsoft.com/en-us/windows/win32/sysinfo/deleting-a-key-with-subkeys
-     *
-     * @param {HKEY} hKeyRoot - root key
-     * @param {tstring} subKey - subKey to delete
-     *
-     * @returns {bool} true if successful, false if an error occurs
-     */
+    // Based on https://docs.microsoft.com/en-us/windows/win32/sysinfo/deleting-a-key-with-subkeys
     bool deleteNode(HKEY hKeyRoot, tstring subKey)
     {
-        LPTSTR lpEnd;
         LONG lResult;
         DWORD dwSize;
         TCHAR szName[MAX_PATH];
         HKEY hKey;
         FILETIME ftWrite;
 
-        // Determine whether the key can be deleted without having
-        // to recurse.
+        // Delete the key immediately, if possible.
         lResult = RegDeleteKey(hKeyRoot, subKey.c_str());
 
         if (lResult == ERROR_SUCCESS)
         {
+            // The key was deleted.
             return TRUE;
         }
 
+        // Open the key to walk its subkeys.
         lResult = RegOpenKeyEx(hKeyRoot, subKey.c_str(), 0, KEY_READ, &hKey);
 
         if (lResult != ERROR_SUCCESS)
@@ -86,46 +79,12 @@ namespace WindowsRegistry
             return lResult == ERROR_FILE_NOT_FOUND;
         }
 
-        if (subKey.at(subKey.length() - 1) != TEXT('\\'))
+        // Delete each member of hKey.
+        do
         {
-            subKey += TEXT('\\');
-        }
-
-        // Enumerate the keys
-
-        dwSize = MAX_PATH;
-        lResult = RegEnumKeyEx(
-            hKey,
-            0,
-            szName,
-            &dwSize,
-            NULL,
-            NULL,
-            NULL,
-            &ftWrite
-        );
-
-        while (lResult == ERROR_SUCCESS) {
-            if (!deleteNode(hKeyRoot, subKey + szName))
-            {
-                break;
-            }
-
             dwSize = MAX_PATH;
-
-            lResult = RegEnumKeyEx(
-                hKey,
-                0,
-                szName,
-                &dwSize,
-                NULL,
-                NULL,
-                NULL,
-                &ftWrite
-            );
-        }
-
-        subKey.pop_back();
+            lResult = RegEnumKeyEx(hKey, 0, szName, &dwSize, NULL, NULL, NULL, &ftWrite);
+        } while (lResult == ERROR_SUCCESS && deleteNode(hKeyRoot, subKey + KEY_SEPARATOR + szName));
 
         RegCloseKey(hKey);
 
