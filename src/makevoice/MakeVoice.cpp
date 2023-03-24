@@ -114,16 +114,21 @@ HRESULT updateDllRegistry(const tstring& fileName, DllAction action)
     return runSubprocess(command);
 }
 
-int parseArgs(int argc, WCHAR* argv[])
+/**
+ * @param {int} argc - number of arguments
+ * @param {WCHAR**} argv - arguments
+ * @returns {DllAction} action to perform based on argv
+ */
+DllAction parseArgs(int argc, WCHAR* argv[])
 {
     for (int i = 1; i < argc; i += 1)
     {
-        if (_tcscmp(argv[i], L"/u") == 0)
+        if (wcscmp(argv[i], L"/u") == 0)
         {
-            return false;
+            return DllAction::uninstall;
         }
     }
-    return true;
+    return DllAction::install;
 }
 
 HRESULT install()
@@ -137,11 +142,11 @@ HRESULT install()
         CComPtr<ISpDataKey> cpDataKeyAttribs;
         hr = SpCreateNewTokenEx(
             SPCAT_VOICES,
-            TEXT(AUTOMATION_VOICE_ID),
+            L"" AUTOMATION_VOICE_ID,
             &CLSID_SampleTTSEngine,
-            TEXT(AUTOMATION_VOICE_NAME),
+            L"" AUTOMATION_VOICE_NAME,
             0x409,
-            TEXT(AUTOMATION_VOICE_NAME),
+            L"" AUTOMATION_VOICE_NAME,
             &cpToken,
             &cpDataKeyAttribs
         );
@@ -199,47 +204,53 @@ HRESULT install()
 
 HRESULT uninstall()
 {
-    HRESULT hr = updateDllRegistry(_T("AutomationTtsEngine.dll"), DllAction::uninstall);
-
-    if (!SUCCEEDED(hr))
-    {
-        return hr;
-    }
-
     WindowsRegistry::RegistryPathParts pathParts;
+    bool bresult;
 
-    hr = WindowsRegistry::splitRegistryPath(SPCAT_VOICES, &pathParts);
+    HRESULT hr =
+        updateDllRegistry(_T("AutomationTtsEngine.dll"), DllAction::uninstall);
 
-    if (!SUCCEEDED(hr))
+    if (SUCCEEDED(hr))
     {
-        return hr;
+        hr = WindowsRegistry::splitRegistryPath(SPCAT_VOICES, &pathParts);
     }
 
-    bool result = WindowsRegistry::deleteNode(
-        pathParts.root,
-        pathParts.rest + _T("\\") + _T(AUTOMATION_VOICE_ID)
-    );
-
-    if (!result)
+    if (SUCCEEDED(hr))
     {
-        return E_FAIL;
+        bresult = WindowsRegistry::deleteNode(
+            pathParts.root, pathParts.rest + _T("\\") + _T(AUTOMATION_VOICE_ID)
+        );
+        hr = bresult ? S_OK : E_FAIL;
     }
 
-    return system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"") == 0 ? S_OK : E_FAIL;
+    if (SUCCEEDED(hr))
+    {
+        bresult = system("rmdir /Q /S \"" AUTOMATION_VOICE_HOME "\"");
+        hr = bresult ? S_OK : E_FAIL;
+    }
+
+    return hr;
 }
 
 int wmain(int argc, __in_ecount(argc) WCHAR* argv[])
 {
-    bool shouldInstall = parseArgs(argc, argv);
+    DllAction action = parseArgs(argc, argv);
 
-    HRESULT hr = ::CoInitialize( NULL );
+    HRESULT hr = ::CoInitialize(NULL);
 
     if (SUCCEEDED(hr))
     {
-        hr = shouldInstall ? install() : uninstall();
+        if (action == DllAction::install)
+        {
+            hr = install();
+        }
+        else
+        {
+            hr = uninstall();
+        }
     }
 
     ::CoUninitialize();
 
-    return FAILED( hr );
+    return FAILED(hr);
 }
