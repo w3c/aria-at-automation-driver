@@ -3,7 +3,7 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 //
-// Copyright © Microsoft Corporation. All rights reserved
+// Copyright ï¿½ Microsoft Corporation. All rights reserved
 
 /**
  * This application assembles a TTS voice. It is maintained as a convenience
@@ -99,6 +99,13 @@ HRESULT runSubprocess(tstring& command)
 
     CloseHandle(process_info.hProcess);
     CloseHandle(process_info.hThread);
+
+    if (exitCode != 0)
+    {
+        size_t commandNameEnd = command.find(_T(" "));
+        tstring commandName = command.substr(0, commandNameEnd == std::string::npos ? command.length() : commandNameEnd);
+        _ftprintf(stderr, _T("Error: %s exited with a non-zero exit code: %lu"), commandName.c_str(), exitCode);
+    }
 
     return exitCode == 0 ? S_OK : E_FAIL;
 }

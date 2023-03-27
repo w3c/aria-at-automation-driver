@@ -1,7 +1,7 @@
 {
   "name": "@bocoup/windows-sapi-tts-engine-for-automation",
-  "version": "0.0.3",
-  "description": "Sample Text-to-Speech Engine and MakeVoice",
+  "version": "0.0.4",
+  "description": "A WebSocket server which allows clients to observe the text enunciated by a screen reader and to simulate user input ",
   "main": "index.js",
   "bin": {
     "at-driver": "./bin/at-driver"
