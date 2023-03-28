@@ -23,6 +23,9 @@
 // installed voices.Additionally test that text to speech works locally.
 #define UTTERANCE_FOR_SETTING_DEFAULT_VOICE _T("Installing voice named " AUTOMATION_VOICE_NAME)
 
+// Registry path storing voice tokens.
+#define SPCAT_VOICE_TOKENS SPCAT_VOICES _T("\\Tokens")
+
 #ifdef UNICODE
 #define tputenv_s _wputenv_s
 #else
@@ -219,7 +222,7 @@ HRESULT uninstall()
 
     if (SUCCEEDED(hr))
     {
-        hr = WindowsRegistry::splitRegistryPath(SPCAT_VOICES, &pathParts);
+        hr = WindowsRegistry::splitRegistryPath(SPCAT_VOICE_TOKENS, &pathParts);
     }
 
     if (SUCCEEDED(hr))
