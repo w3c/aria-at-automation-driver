@@ -1,0 +1,915 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD924CB129DB857F00C517C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CB029DB857F00C517C7 /* ContentView.swift */; };
+		AD924CB529DB857F00C517C7 /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CB429DB857F00C517C7 /* ViewControllerRepresentable.swift */; };
+		AD924CB829DB857F00C517C7 /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = AD924CB729DB857F00C517C7 /* Synth.aif */; };
+		AD924CBA29DB857F00C517C7 /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CB929DB857F00C517C7 /* SimplePlayEngine.swift */; };
+		AD924CBD29DB857F00C517C7 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CBC29DB857F00C517C7 /* MIDIManager.swift */; };
+		AD924CBF29DB857F00C517C7 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CBE29DB857F00C517C7 /* TypeAliases.swift */; };
+		AD924CC229DB857F00C517C7 /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC129DB857F00C517C7 /* StringHelpers.swift */; };
+		AD924CC529DB857F00C517C7 /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC429DB857F00C517C7 /* AudioUnitHostModel.swift */; };
+		AD924CC729DB857F00C517C7 /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC629DB857F00C517C7 /* AudioUnitViewModel.swift */; };
+		AD924CC929DB857F00C517C7 /* ATDriverVoiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC829DB857F00C517C7 /* ATDriverVoiceApp.swift */; };
+		AD924CCC29DB857F00C517C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD924CCB29DB857F00C517C7 /* Preview Assets.xcassets */; };
+		AD924CCE29DB858000C517C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD924CCD29DB858000C517C7 /* Assets.xcassets */; };
+		AD924CD929DB858000C517C7 /* ATDriverVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CD829DB858000C517C7 /* ATDriverVoiceTests.swift */; };
+		AD924CE329DB858000C517C7 /* ATDriverVoiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CE229DB858000C517C7 /* ATDriverVoiceUITests.swift */; };
+		AD924CE529DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CE429DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift */; };
+		AD924CEB29DB858000C517C7 /* ATDriverVoiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AD924CF029DB858000C517C7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD924CEF29DB858000C517C7 /* README.md */; };
+		AD924CF529DB858000C517C7 /* ParameterSpecBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CF429DB858000C517C7 /* ParameterSpecBase.swift */; };
+		AD924CF829DB858000C517C7 /* CrossPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CF729DB858000C517C7 /* CrossPlatform.swift */; };
+		AD924CFA29DB858000C517C7 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CF929DB858000C517C7 /* String+Utils.swift */; };
+		AD924CFD29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CFC29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift */; };
+		AD924D0029DB858000C517C7 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CFF29DB858000C517C7 /* Parameters.swift */; };
+		AD924D0329DB858000C517C7 /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924D0229DB858000C517C7 /* AudioUnitFactory.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD924CD529DB858000C517C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD924CA529DB857F00C517C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD924CAC29DB857F00C517C7;
+			remoteInfo = ATDriverVoice;
+		};
+		AD924CDF29DB858000C517C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD924CA529DB857F00C517C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD924CAC29DB857F00C517C7;
+			remoteInfo = ATDriverVoice;
+		};
+		AD924CEC29DB858000C517C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD924CA529DB857F00C517C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD924CE929DB858000C517C7;
+			remoteInfo = ATDriverVoiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AD924D0A29DB858000C517C7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AD924CEB29DB858000C517C7 /* ATDriverVoiceExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AD924CAD29DB857F00C517C7 /* ATDriverVoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATDriverVoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD924CB029DB857F00C517C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AD924CB429DB857F00C517C7 /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		AD924CB729DB857F00C517C7 /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
+		AD924CB929DB857F00C517C7 /* SimplePlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		AD924CBC29DB857F00C517C7 /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		AD924CBE29DB857F00C517C7 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		AD924CC129DB857F00C517C7 /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
+		AD924CC429DB857F00C517C7 /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
+		AD924CC629DB857F00C517C7 /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
+		AD924CC829DB857F00C517C7 /* ATDriverVoiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceApp.swift; sourceTree = "<group>"; };
+		AD924CCB29DB857F00C517C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AD924CCD29DB858000C517C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AD924CCF29DB858000C517C7 /* ATDriverVoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverVoice.entitlements; sourceTree = "<group>"; };
+		AD924CD429DB858000C517C7 /* ATDriverVoiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATDriverVoiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD924CD829DB858000C517C7 /* ATDriverVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceTests.swift; sourceTree = "<group>"; };
+		AD924CDE29DB858000C517C7 /* ATDriverVoiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATDriverVoiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD924CE229DB858000C517C7 /* ATDriverVoiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceUITests.swift; sourceTree = "<group>"; };
+		AD924CE429DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ATDriverVoiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD924CEF29DB858000C517C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AD924CF229DB858000C517C7 /* ATDriverVoiceExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATDriverVoiceExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD924CF429DB858000C517C7 /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
+		AD924CF729DB858000C517C7 /* CrossPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatform.swift; sourceTree = "<group>"; };
+		AD924CF929DB858000C517C7 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		AD924CFC29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceExtensionAudioUnit.swift; sourceTree = "<group>"; };
+		AD924CFF29DB858000C517C7 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		AD924D0229DB858000C517C7 /* AudioUnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitFactory.swift; sourceTree = "<group>"; };
+		AD924D0429DB858000C517C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD924CAA29DB857F00C517C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CD129DB858000C517C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CDB29DB858000C517C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CE729DB858000C517C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AD924CA429DB857F00C517C7 = {
+			isa = PBXGroup;
+			children = (
+				AD924CAF29DB857F00C517C7 /* ATDriverVoice */,
+				AD924CD729DB858000C517C7 /* ATDriverVoiceTests */,
+				AD924CE129DB858000C517C7 /* ATDriverVoiceUITests */,
+				AD924CEE29DB858000C517C7 /* ATDriverVoiceExtension */,
+				AD924CAE29DB857F00C517C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AD924CAE29DB857F00C517C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CAD29DB857F00C517C7 /* ATDriverVoice.app */,
+				AD924CD429DB858000C517C7 /* ATDriverVoiceTests.xctest */,
+				AD924CDE29DB858000C517C7 /* ATDriverVoiceUITests.xctest */,
+				AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AD924CAF29DB857F00C517C7 /* ATDriverVoice */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CB029DB857F00C517C7 /* ContentView.swift */,
+				AD924CC829DB857F00C517C7 /* ATDriverVoiceApp.swift */,
+				AD924CCD29DB858000C517C7 /* Assets.xcassets */,
+				AD924CCF29DB858000C517C7 /* ATDriverVoice.entitlements */,
+				AD924CB229DB857F00C517C7 /* Common */,
+				AD924CC329DB857F00C517C7 /* Model */,
+				AD924CCA29DB857F00C517C7 /* Preview Content */,
+			);
+			path = ATDriverVoice;
+			sourceTree = "<group>";
+		};
+		AD924CB229DB857F00C517C7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CBE29DB857F00C517C7 /* TypeAliases.swift */,
+				AD924CB329DB857F00C517C7 /* UI */,
+				AD924CB629DB857F00C517C7 /* Audio */,
+				AD924CBB29DB857F00C517C7 /* MIDI */,
+				AD924CC029DB857F00C517C7 /* String */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AD924CB329DB857F00C517C7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CB429DB857F00C517C7 /* ViewControllerRepresentable.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		AD924CB629DB857F00C517C7 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CB729DB857F00C517C7 /* Synth.aif */,
+				AD924CB929DB857F00C517C7 /* SimplePlayEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		AD924CBB29DB857F00C517C7 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CBC29DB857F00C517C7 /* MIDIManager.swift */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		AD924CC029DB857F00C517C7 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CC129DB857F00C517C7 /* StringHelpers.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		AD924CC329DB857F00C517C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CC429DB857F00C517C7 /* AudioUnitHostModel.swift */,
+				AD924CC629DB857F00C517C7 /* AudioUnitViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD924CCA29DB857F00C517C7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CCB29DB857F00C517C7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AD924CD729DB858000C517C7 /* ATDriverVoiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CD829DB858000C517C7 /* ATDriverVoiceTests.swift */,
+			);
+			path = ATDriverVoiceTests;
+			sourceTree = "<group>";
+		};
+		AD924CE129DB858000C517C7 /* ATDriverVoiceUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CE229DB858000C517C7 /* ATDriverVoiceUITests.swift */,
+				AD924CE429DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift */,
+			);
+			path = ATDriverVoiceUITests;
+			sourceTree = "<group>";
+		};
+		AD924CEE29DB858000C517C7 /* ATDriverVoiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CEF29DB858000C517C7 /* README.md */,
+				AD924D0429DB858000C517C7 /* Info.plist */,
+				AD924CF129DB858000C517C7 /* Common */,
+				AD924CFE29DB858000C517C7 /* Parameters */,
+			);
+			path = ATDriverVoiceExtension;
+			sourceTree = "<group>";
+		};
+		AD924CF129DB858000C517C7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CF229DB858000C517C7 /* ATDriverVoiceExtension-Bridging-Header.h */,
+				AD924CF329DB858000C517C7 /* Parameters */,
+				AD924CF629DB858000C517C7 /* Utility */,
+				AD924CFB29DB858000C517C7 /* Audio Unit */,
+				AD924D0129DB858000C517C7 /* AudioUnitFactory */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AD924CF329DB858000C517C7 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CF429DB858000C517C7 /* ParameterSpecBase.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		AD924CF629DB858000C517C7 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CF729DB858000C517C7 /* CrossPlatform.swift */,
+				AD924CF929DB858000C517C7 /* String+Utils.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		AD924CFB29DB858000C517C7 /* Audio Unit */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CFC29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift */,
+			);
+			path = "Audio Unit";
+			sourceTree = "<group>";
+		};
+		AD924CFE29DB858000C517C7 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				AD924CFF29DB858000C517C7 /* Parameters.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		AD924D0129DB858000C517C7 /* AudioUnitFactory */ = {
+			isa = PBXGroup;
+			children = (
+				AD924D0229DB858000C517C7 /* AudioUnitFactory.swift */,
+			);
+			path = AudioUnitFactory;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AD924CAC29DB857F00C517C7 /* ATDriverVoice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD924D0B29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoice" */;
+			buildPhases = (
+				AD924CA929DB857F00C517C7 /* Sources */,
+				AD924CAA29DB857F00C517C7 /* Frameworks */,
+				AD924CAB29DB857F00C517C7 /* Resources */,
+				AD924D0A29DB858000C517C7 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD924CED29DB858000C517C7 /* PBXTargetDependency */,
+			);
+			name = ATDriverVoice;
+			productName = ATDriverVoice;
+			productReference = AD924CAD29DB857F00C517C7 /* ATDriverVoice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AD924CD329DB858000C517C7 /* ATDriverVoiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD924D0E29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceTests" */;
+			buildPhases = (
+				AD924CD029DB858000C517C7 /* Sources */,
+				AD924CD129DB858000C517C7 /* Frameworks */,
+				AD924CD229DB858000C517C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD924CD629DB858000C517C7 /* PBXTargetDependency */,
+			);
+			name = ATDriverVoiceTests;
+			productName = ATDriverVoiceTests;
+			productReference = AD924CD429DB858000C517C7 /* ATDriverVoiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AD924CDD29DB858000C517C7 /* ATDriverVoiceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD924D1129DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceUITests" */;
+			buildPhases = (
+				AD924CDA29DB858000C517C7 /* Sources */,
+				AD924CDB29DB858000C517C7 /* Frameworks */,
+				AD924CDC29DB858000C517C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD924CE029DB858000C517C7 /* PBXTargetDependency */,
+			);
+			name = ATDriverVoiceUITests;
+			productName = ATDriverVoiceUITests;
+			productReference = AD924CDE29DB858000C517C7 /* ATDriverVoiceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		AD924CE929DB858000C517C7 /* ATDriverVoiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD924D0729DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceExtension" */;
+			buildPhases = (
+				AD924CE629DB858000C517C7 /* Sources */,
+				AD924CE729DB858000C517C7 /* Frameworks */,
+				AD924CE829DB858000C517C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ATDriverVoiceExtension;
+			productName = ATDriverVoiceExtension;
+			productReference = AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AD924CA529DB857F00C517C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					AD924CAC29DB857F00C517C7 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					AD924CD329DB858000C517C7 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = AD924CAC29DB857F00C517C7;
+					};
+					AD924CDD29DB858000C517C7 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = AD924CAC29DB857F00C517C7;
+					};
+					AD924CE929DB858000C517C7 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = AD924CA829DB857F00C517C7 /* Build configuration list for PBXProject "ATDriverVoice" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AD924CA429DB857F00C517C7;
+			productRefGroup = AD924CAE29DB857F00C517C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD924CAC29DB857F00C517C7 /* ATDriverVoice */,
+				AD924CD329DB858000C517C7 /* ATDriverVoiceTests */,
+				AD924CDD29DB858000C517C7 /* ATDriverVoiceUITests */,
+				AD924CE929DB858000C517C7 /* ATDriverVoiceExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AD924CAB29DB857F00C517C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD924CCC29DB857F00C517C7 /* Preview Assets.xcassets in Resources */,
+				AD924CCE29DB858000C517C7 /* Assets.xcassets in Resources */,
+				AD924CB829DB857F00C517C7 /* Synth.aif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CD229DB858000C517C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CDC29DB858000C517C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CE829DB858000C517C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD924CF029DB858000C517C7 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD924CA929DB857F00C517C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD924CC529DB857F00C517C7 /* AudioUnitHostModel.swift in Sources */,
+				AD924CC729DB857F00C517C7 /* AudioUnitViewModel.swift in Sources */,
+				AD924CB129DB857F00C517C7 /* ContentView.swift in Sources */,
+				AD924CB529DB857F00C517C7 /* ViewControllerRepresentable.swift in Sources */,
+				AD924CC229DB857F00C517C7 /* StringHelpers.swift in Sources */,
+				AD924CBD29DB857F00C517C7 /* MIDIManager.swift in Sources */,
+				AD924CBF29DB857F00C517C7 /* TypeAliases.swift in Sources */,
+				AD924CBA29DB857F00C517C7 /* SimplePlayEngine.swift in Sources */,
+				AD924CC929DB857F00C517C7 /* ATDriverVoiceApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CD029DB858000C517C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD924CD929DB858000C517C7 /* ATDriverVoiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CDA29DB858000C517C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD924CE529DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift in Sources */,
+				AD924CE329DB858000C517C7 /* ATDriverVoiceUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD924CE629DB858000C517C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD924D0029DB858000C517C7 /* Parameters.swift in Sources */,
+				AD924CF529DB858000C517C7 /* ParameterSpecBase.swift in Sources */,
+				AD924CF829DB858000C517C7 /* CrossPlatform.swift in Sources */,
+				AD924D0329DB858000C517C7 /* AudioUnitFactory.swift in Sources */,
+				AD924CFD29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift in Sources */,
+				AD924CFA29DB858000C517C7 /* String+Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD924CD629DB858000C517C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD924CAC29DB857F00C517C7 /* ATDriverVoice */;
+			targetProxy = AD924CD529DB858000C517C7 /* PBXContainerItemProxy */;
+		};
+		AD924CE029DB858000C517C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD924CAC29DB857F00C517C7 /* ATDriverVoice */;
+			targetProxy = AD924CDF29DB858000C517C7 /* PBXContainerItemProxy */;
+		};
+		AD924CED29DB858000C517C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD924CE929DB858000C517C7 /* ATDriverVoiceExtension */;
+			targetProxy = AD924CEC29DB858000C517C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AD924D0529DB858000C517C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AD924D0629DB858000C517C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AD924D0829DB858000C517C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATDriverVoiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATDriverVoiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoice.ATDriverVoiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATDriverVoiceExtension/Common/ATDriverVoiceExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD924D0929DB858000C517C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATDriverVoiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATDriverVoiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoice.ATDriverVoiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATDriverVoiceExtension/Common/ATDriverVoiceExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AD924D0C29DB858000C517C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ATDriverVoice/ATDriverVoice.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ATDriverVoice/Preview Content\"";
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = ATDriverVoice;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoice;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD924D0D29DB858000C517C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ATDriverVoice/ATDriverVoice.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ATDriverVoice/Preview Content\"";
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = ATDriverVoice;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoice;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AD924D0F29DB858000C517C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATDriverVoice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ATDriverVoice";
+			};
+			name = Debug;
+		};
+		AD924D1029DB858000C517C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATDriverVoice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ATDriverVoice";
+			};
+			name = Release;
+		};
+		AD924D1229DB858000C517C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoiceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ATDriverVoice;
+			};
+			name = Debug;
+		};
+		AD924D1329DB858000C517C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverVoiceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ATDriverVoice;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD924CA829DB857F00C517C7 /* Build configuration list for PBXProject "ATDriverVoice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD924D0529DB858000C517C7 /* Debug */,
+				AD924D0629DB858000C517C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD924D0729DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD924D0829DB858000C517C7 /* Debug */,
+				AD924D0929DB858000C517C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD924D0B29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD924D0C29DB858000C517C7 /* Debug */,
+				AD924D0D29DB858000C517C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD924D0E29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD924D0F29DB858000C517C7 /* Debug */,
+				AD924D1029DB858000C517C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD924D1129DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD924D1229DB858000C517C7 /* Debug */,
+				AD924D1329DB858000C517C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AD924CA529DB857F00C517C7 /* Project object */;
+}
