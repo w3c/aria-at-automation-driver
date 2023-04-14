@@ -5,19 +5,19 @@
 //  Created by Z Goddard on 4/12/23.
 //
 
-import CoreMIDI
 import AudioToolbox
+import CoreMIDI
 
 #if os(iOS)
-import UIKit
-public typealias KitColor = UIColor
+  import UIKit
+  public typealias KitColor = UIColor
 
-public typealias KitView = UIView
-public typealias ViewController = UIViewController
+  public typealias KitView = UIView
+  public typealias ViewController = UIViewController
 #elseif os(macOS)
-import AppKit
-public typealias KitColor = NSColor
+  import AppKit
+  public typealias KitColor = NSColor
 
-public typealias KitView = NSView
-public typealias ViewController = NSViewController
+  public typealias KitView = NSView
+  public typealias ViewController = NSViewController
 #endif
