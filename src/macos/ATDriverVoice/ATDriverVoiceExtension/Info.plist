@@ -14,11 +14,11 @@
 					<key>manufacturer</key>
 					<string>BOCU</string>
 					<key>name</key>
-					<string>Bocoup: ATDriverVoiceExtension</string>
+					<string>Michael Goddard: ATDriverVoiceExtension</string>
 					<key>sandboxSafe</key>
 					<true/>
 					<key>subtype</key>
-					<string>atdv</string>
+					<string>atvs</string>
 					<key>tags</key>
 					<array>
 						<string>Speech Synthesizer</string>

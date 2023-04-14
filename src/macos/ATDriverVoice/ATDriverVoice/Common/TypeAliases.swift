@@ -2,22 +2,22 @@
 //  TypeAliases.swift
 //  ATDriverVoice
 //
-//  Created by Z Goddard on 4/3/23.
+//  Created by Z Goddard on 4/12/23.
 //
 
-import AudioToolbox
 import CoreMIDI
+import AudioToolbox
 
 #if os(iOS)
-  import UIKit
-  public typealias KitColor = UIColor
+import UIKit
+public typealias KitColor = UIColor
 
-  public typealias KitView = UIView
-  public typealias ViewController = UIViewController
+public typealias KitView = UIView
+public typealias ViewController = UIViewController
 #elseif os(macOS)
-  import AppKit
-  public typealias KitColor = NSColor
+import AppKit
+public typealias KitColor = NSColor
 
-  public typealias KitView = NSView
-  public typealias ViewController = NSViewController
+public typealias KitView = NSView
+public typealias ViewController = NSViewController
 #endif

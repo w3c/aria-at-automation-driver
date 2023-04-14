@@ -2,21 +2,21 @@
 //  StringHelpers.swift
 //  ATDriverVoice
 //
-//  Created by Z Goddard on 4/3/23.
+//  Created by Z Goddard on 4/12/23.
 //
 
 import Foundation
 
 extension String {
-  var fourCharCode: FourCharCode? {
-    guard self.count == 4 && self.utf8.count == 4 else {
-      return nil
-    }
+    var fourCharCode: FourCharCode? {
+		guard self.count == 4 && self.utf8.count == 4 else {
+			return nil
+		}
 
-    var code: FourCharCode = 0
-    for character in self.utf8 {
-      code = code << 8 + FourCharCode(character)
+		var code: FourCharCode = 0
+		for character in self.utf8 {
+			code = code << 8 + FourCharCode(character)
+		}
+		return code
     }
-    return code
-  }
 }

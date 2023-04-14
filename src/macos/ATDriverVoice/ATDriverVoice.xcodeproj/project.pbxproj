@@ -7,63 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD924CB129DB857F00C517C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CB029DB857F00C517C7 /* ContentView.swift */; };
-		AD924CB529DB857F00C517C7 /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CB429DB857F00C517C7 /* ViewControllerRepresentable.swift */; };
-		AD924CB829DB857F00C517C7 /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = AD924CB729DB857F00C517C7 /* Synth.aif */; };
-		AD924CBA29DB857F00C517C7 /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CB929DB857F00C517C7 /* SimplePlayEngine.swift */; };
-		AD924CBD29DB857F00C517C7 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CBC29DB857F00C517C7 /* MIDIManager.swift */; };
-		AD924CBF29DB857F00C517C7 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CBE29DB857F00C517C7 /* TypeAliases.swift */; };
-		AD924CC229DB857F00C517C7 /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC129DB857F00C517C7 /* StringHelpers.swift */; };
-		AD924CC529DB857F00C517C7 /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC429DB857F00C517C7 /* AudioUnitHostModel.swift */; };
-		AD924CC729DB857F00C517C7 /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC629DB857F00C517C7 /* AudioUnitViewModel.swift */; };
-		AD924CC929DB857F00C517C7 /* ATDriverVoiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CC829DB857F00C517C7 /* ATDriverVoiceApp.swift */; };
-		AD924CCC29DB857F00C517C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD924CCB29DB857F00C517C7 /* Preview Assets.xcassets */; };
-		AD924CCE29DB858000C517C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD924CCD29DB858000C517C7 /* Assets.xcassets */; };
-		AD924CD929DB858000C517C7 /* ATDriverVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CD829DB858000C517C7 /* ATDriverVoiceTests.swift */; };
-		AD924CE329DB858000C517C7 /* ATDriverVoiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CE229DB858000C517C7 /* ATDriverVoiceUITests.swift */; };
-		AD924CE529DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CE429DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift */; };
-		AD924CEB29DB858000C517C7 /* ATDriverVoiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AD924CF029DB858000C517C7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD924CEF29DB858000C517C7 /* README.md */; };
-		AD924CF529DB858000C517C7 /* ParameterSpecBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CF429DB858000C517C7 /* ParameterSpecBase.swift */; };
-		AD924CF829DB858000C517C7 /* CrossPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CF729DB858000C517C7 /* CrossPlatform.swift */; };
-		AD924CFA29DB858000C517C7 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CF929DB858000C517C7 /* String+Utils.swift */; };
-		AD924CFD29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CFC29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift */; };
-		AD924D0029DB858000C517C7 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924CFF29DB858000C517C7 /* Parameters.swift */; };
-		AD924D0329DB858000C517C7 /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD924D0229DB858000C517C7 /* AudioUnitFactory.swift */; };
+		ADAEB3D329E76351003EF3FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3D229E76351003EF3FD /* ContentView.swift */; };
+		ADAEB3D729E76351003EF3FD /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3D629E76351003EF3FD /* ViewControllerRepresentable.swift */; };
+		ADAEB3DA29E76351003EF3FD /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = ADAEB3D929E76351003EF3FD /* Synth.aif */; };
+		ADAEB3DC29E76351003EF3FD /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3DB29E76351003EF3FD /* SimplePlayEngine.swift */; };
+		ADAEB3DF29E76351003EF3FD /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3DE29E76351003EF3FD /* MIDIManager.swift */; };
+		ADAEB3E129E76351003EF3FD /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3E029E76351003EF3FD /* TypeAliases.swift */; };
+		ADAEB3E429E76351003EF3FD /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3E329E76351003EF3FD /* StringHelpers.swift */; };
+		ADAEB3E729E76351003EF3FD /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3E629E76351003EF3FD /* AudioUnitHostModel.swift */; };
+		ADAEB3E929E76351003EF3FD /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3E829E76351003EF3FD /* AudioUnitViewModel.swift */; };
+		ADAEB3EB29E76351003EF3FD /* ATDriverVoiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3EA29E76351003EF3FD /* ATDriverVoiceApp.swift */; };
+		ADAEB3EE29E76351003EF3FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAEB3ED29E76351003EF3FD /* Preview Assets.xcassets */; };
+		ADAEB3F029E76352003EF3FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAEB3EF29E76352003EF3FD /* Assets.xcassets */; };
+		ADAEB3FB29E76352003EF3FD /* ATDriverVoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB3FA29E76352003EF3FD /* ATDriverVoiceTests.swift */; };
+		ADAEB40529E76352003EF3FD /* ATDriverVoiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB40429E76352003EF3FD /* ATDriverVoiceUITests.swift */; };
+		ADAEB40729E76352003EF3FD /* ATDriverVoiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB40629E76352003EF3FD /* ATDriverVoiceUITestsLaunchTests.swift */; };
+		ADAEB40D29E76352003EF3FD /* ATDriverVoiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ADAEB40C29E76352003EF3FD /* ATDriverVoiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ADAEB41229E76352003EF3FD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ADAEB41129E76352003EF3FD /* README.md */; };
+		ADAEB41729E76352003EF3FD /* ParameterSpecBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB41629E76352003EF3FD /* ParameterSpecBase.swift */; };
+		ADAEB41A29E76352003EF3FD /* CrossPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB41929E76352003EF3FD /* CrossPlatform.swift */; };
+		ADAEB41C29E76352003EF3FD /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB41B29E76352003EF3FD /* String+Utils.swift */; };
+		ADAEB41F29E76352003EF3FD /* ATDriverVoiceExtensionAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB41E29E76352003EF3FD /* ATDriverVoiceExtensionAudioUnit.swift */; };
+		ADAEB42229E76352003EF3FD /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB42129E76352003EF3FD /* Parameters.swift */; };
+		ADAEB42529E76352003EF3FD /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAEB42429E76352003EF3FD /* AudioUnitFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD924CD529DB858000C517C7 /* PBXContainerItemProxy */ = {
+		ADAEB3F729E76352003EF3FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AD924CA529DB857F00C517C7 /* Project object */;
+			containerPortal = ADAEB3C729E76351003EF3FD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AD924CAC29DB857F00C517C7;
+			remoteGlobalIDString = ADAEB3CE29E76351003EF3FD;
 			remoteInfo = ATDriverVoice;
 		};
-		AD924CDF29DB858000C517C7 /* PBXContainerItemProxy */ = {
+		ADAEB40129E76352003EF3FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AD924CA529DB857F00C517C7 /* Project object */;
+			containerPortal = ADAEB3C729E76351003EF3FD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AD924CAC29DB857F00C517C7;
+			remoteGlobalIDString = ADAEB3CE29E76351003EF3FD;
 			remoteInfo = ATDriverVoice;
 		};
-		AD924CEC29DB858000C517C7 /* PBXContainerItemProxy */ = {
+		ADAEB40E29E76352003EF3FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AD924CA529DB857F00C517C7 /* Project object */;
+			containerPortal = ADAEB3C729E76351003EF3FD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AD924CE929DB858000C517C7;
+			remoteGlobalIDString = ADAEB40B29E76352003EF3FD;
 			remoteInfo = ATDriverVoiceExtension;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AD924D0A29DB858000C517C7 /* Embed Foundation Extensions */ = {
+		ADAEB42C29E76352003EF3FD /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				AD924CEB29DB858000C517C7 /* ATDriverVoiceExtension.appex in Embed Foundation Extensions */,
+				ADAEB40D29E76352003EF3FD /* ATDriverVoiceExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,60 +71,60 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AD924CAD29DB857F00C517C7 /* ATDriverVoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATDriverVoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD924CB029DB857F00C517C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AD924CB429DB857F00C517C7 /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
-		AD924CB729DB857F00C517C7 /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
-		AD924CB929DB857F00C517C7 /* SimplePlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
-		AD924CBC29DB857F00C517C7 /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
-		AD924CBE29DB857F00C517C7 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
-		AD924CC129DB857F00C517C7 /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
-		AD924CC429DB857F00C517C7 /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
-		AD924CC629DB857F00C517C7 /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
-		AD924CC829DB857F00C517C7 /* ATDriverVoiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceApp.swift; sourceTree = "<group>"; };
-		AD924CCB29DB857F00C517C7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		AD924CCD29DB858000C517C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AD924CCF29DB858000C517C7 /* ATDriverVoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverVoice.entitlements; sourceTree = "<group>"; };
-		AD924CD429DB858000C517C7 /* ATDriverVoiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATDriverVoiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD924CD829DB858000C517C7 /* ATDriverVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceTests.swift; sourceTree = "<group>"; };
-		AD924CDE29DB858000C517C7 /* ATDriverVoiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATDriverVoiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD924CE229DB858000C517C7 /* ATDriverVoiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceUITests.swift; sourceTree = "<group>"; };
-		AD924CE429DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ATDriverVoiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD924CEF29DB858000C517C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		AD924CF229DB858000C517C7 /* ATDriverVoiceExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATDriverVoiceExtension-Bridging-Header.h"; sourceTree = "<group>"; };
-		AD924CF429DB858000C517C7 /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
-		AD924CF729DB858000C517C7 /* CrossPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatform.swift; sourceTree = "<group>"; };
-		AD924CF929DB858000C517C7 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
-		AD924CFC29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceExtensionAudioUnit.swift; sourceTree = "<group>"; };
-		AD924CFF29DB858000C517C7 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
-		AD924D0229DB858000C517C7 /* AudioUnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitFactory.swift; sourceTree = "<group>"; };
-		AD924D0429DB858000C517C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADAEB3CF29E76351003EF3FD /* ATDriverVoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATDriverVoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADAEB3D229E76351003EF3FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ADAEB3D629E76351003EF3FD /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		ADAEB3D929E76351003EF3FD /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
+		ADAEB3DB29E76351003EF3FD /* SimplePlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		ADAEB3DE29E76351003EF3FD /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		ADAEB3E029E76351003EF3FD /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		ADAEB3E329E76351003EF3FD /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
+		ADAEB3E629E76351003EF3FD /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
+		ADAEB3E829E76351003EF3FD /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
+		ADAEB3EA29E76351003EF3FD /* ATDriverVoiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceApp.swift; sourceTree = "<group>"; };
+		ADAEB3ED29E76351003EF3FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ADAEB3EF29E76352003EF3FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADAEB3F129E76352003EF3FD /* ATDriverVoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverVoice.entitlements; sourceTree = "<group>"; };
+		ADAEB3F629E76352003EF3FD /* ATDriverVoiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATDriverVoiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADAEB3FA29E76352003EF3FD /* ATDriverVoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceTests.swift; sourceTree = "<group>"; };
+		ADAEB40029E76352003EF3FD /* ATDriverVoiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATDriverVoiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADAEB40429E76352003EF3FD /* ATDriverVoiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceUITests.swift; sourceTree = "<group>"; };
+		ADAEB40629E76352003EF3FD /* ATDriverVoiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ADAEB40C29E76352003EF3FD /* ATDriverVoiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ATDriverVoiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADAEB41129E76352003EF3FD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ADAEB41429E76352003EF3FD /* ATDriverVoiceExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATDriverVoiceExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		ADAEB41629E76352003EF3FD /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
+		ADAEB41929E76352003EF3FD /* CrossPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatform.swift; sourceTree = "<group>"; };
+		ADAEB41B29E76352003EF3FD /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		ADAEB41E29E76352003EF3FD /* ATDriverVoiceExtensionAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverVoiceExtensionAudioUnit.swift; sourceTree = "<group>"; };
+		ADAEB42129E76352003EF3FD /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		ADAEB42429E76352003EF3FD /* AudioUnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitFactory.swift; sourceTree = "<group>"; };
+		ADAEB42629E76352003EF3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AD924CAA29DB857F00C517C7 /* Frameworks */ = {
+		ADAEB3CC29E76351003EF3FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CD129DB858000C517C7 /* Frameworks */ = {
+		ADAEB3F329E76352003EF3FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CDB29DB858000C517C7 /* Frameworks */ = {
+		ADAEB3FD29E76352003EF3FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CE729DB858000C517C7 /* Frameworks */ = {
+		ADAEB40929E76352003EF3FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -134,181 +134,181 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD924CA429DB857F00C517C7 = {
+		ADAEB3C629E76351003EF3FD = {
 			isa = PBXGroup;
 			children = (
-				AD924CAF29DB857F00C517C7 /* ATDriverVoice */,
-				AD924CD729DB858000C517C7 /* ATDriverVoiceTests */,
-				AD924CE129DB858000C517C7 /* ATDriverVoiceUITests */,
-				AD924CEE29DB858000C517C7 /* ATDriverVoiceExtension */,
-				AD924CAE29DB857F00C517C7 /* Products */,
+				ADAEB3D129E76351003EF3FD /* ATDriverVoice */,
+				ADAEB3F929E76352003EF3FD /* ATDriverVoiceTests */,
+				ADAEB40329E76352003EF3FD /* ATDriverVoiceUITests */,
+				ADAEB41029E76352003EF3FD /* ATDriverVoiceExtension */,
+				ADAEB3D029E76351003EF3FD /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AD924CAE29DB857F00C517C7 /* Products */ = {
+		ADAEB3D029E76351003EF3FD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CAD29DB857F00C517C7 /* ATDriverVoice.app */,
-				AD924CD429DB858000C517C7 /* ATDriverVoiceTests.xctest */,
-				AD924CDE29DB858000C517C7 /* ATDriverVoiceUITests.xctest */,
-				AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */,
+				ADAEB3CF29E76351003EF3FD /* ATDriverVoice.app */,
+				ADAEB3F629E76352003EF3FD /* ATDriverVoiceTests.xctest */,
+				ADAEB40029E76352003EF3FD /* ATDriverVoiceUITests.xctest */,
+				ADAEB40C29E76352003EF3FD /* ATDriverVoiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AD924CAF29DB857F00C517C7 /* ATDriverVoice */ = {
+		ADAEB3D129E76351003EF3FD /* ATDriverVoice */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CB029DB857F00C517C7 /* ContentView.swift */,
-				AD924CC829DB857F00C517C7 /* ATDriverVoiceApp.swift */,
-				AD924CCD29DB858000C517C7 /* Assets.xcassets */,
-				AD924CCF29DB858000C517C7 /* ATDriverVoice.entitlements */,
-				AD924CB229DB857F00C517C7 /* Common */,
-				AD924CC329DB857F00C517C7 /* Model */,
-				AD924CCA29DB857F00C517C7 /* Preview Content */,
+				ADAEB3D229E76351003EF3FD /* ContentView.swift */,
+				ADAEB3EA29E76351003EF3FD /* ATDriverVoiceApp.swift */,
+				ADAEB3EF29E76352003EF3FD /* Assets.xcassets */,
+				ADAEB3F129E76352003EF3FD /* ATDriverVoice.entitlements */,
+				ADAEB3D429E76351003EF3FD /* Common */,
+				ADAEB3E529E76351003EF3FD /* Model */,
+				ADAEB3EC29E76351003EF3FD /* Preview Content */,
 			);
 			path = ATDriverVoice;
 			sourceTree = "<group>";
 		};
-		AD924CB229DB857F00C517C7 /* Common */ = {
+		ADAEB3D429E76351003EF3FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CBE29DB857F00C517C7 /* TypeAliases.swift */,
-				AD924CB329DB857F00C517C7 /* UI */,
-				AD924CB629DB857F00C517C7 /* Audio */,
-				AD924CBB29DB857F00C517C7 /* MIDI */,
-				AD924CC029DB857F00C517C7 /* String */,
+				ADAEB3E029E76351003EF3FD /* TypeAliases.swift */,
+				ADAEB3D529E76351003EF3FD /* UI */,
+				ADAEB3D829E76351003EF3FD /* Audio */,
+				ADAEB3DD29E76351003EF3FD /* MIDI */,
+				ADAEB3E229E76351003EF3FD /* String */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		AD924CB329DB857F00C517C7 /* UI */ = {
+		ADAEB3D529E76351003EF3FD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CB429DB857F00C517C7 /* ViewControllerRepresentable.swift */,
+				ADAEB3D629E76351003EF3FD /* ViewControllerRepresentable.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		AD924CB629DB857F00C517C7 /* Audio */ = {
+		ADAEB3D829E76351003EF3FD /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CB729DB857F00C517C7 /* Synth.aif */,
-				AD924CB929DB857F00C517C7 /* SimplePlayEngine.swift */,
+				ADAEB3D929E76351003EF3FD /* Synth.aif */,
+				ADAEB3DB29E76351003EF3FD /* SimplePlayEngine.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
 		};
-		AD924CBB29DB857F00C517C7 /* MIDI */ = {
+		ADAEB3DD29E76351003EF3FD /* MIDI */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CBC29DB857F00C517C7 /* MIDIManager.swift */,
+				ADAEB3DE29E76351003EF3FD /* MIDIManager.swift */,
 			);
 			path = MIDI;
 			sourceTree = "<group>";
 		};
-		AD924CC029DB857F00C517C7 /* String */ = {
+		ADAEB3E229E76351003EF3FD /* String */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CC129DB857F00C517C7 /* StringHelpers.swift */,
+				ADAEB3E329E76351003EF3FD /* StringHelpers.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
 		};
-		AD924CC329DB857F00C517C7 /* Model */ = {
+		ADAEB3E529E76351003EF3FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CC429DB857F00C517C7 /* AudioUnitHostModel.swift */,
-				AD924CC629DB857F00C517C7 /* AudioUnitViewModel.swift */,
+				ADAEB3E629E76351003EF3FD /* AudioUnitHostModel.swift */,
+				ADAEB3E829E76351003EF3FD /* AudioUnitViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		AD924CCA29DB857F00C517C7 /* Preview Content */ = {
+		ADAEB3EC29E76351003EF3FD /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CCB29DB857F00C517C7 /* Preview Assets.xcassets */,
+				ADAEB3ED29E76351003EF3FD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		AD924CD729DB858000C517C7 /* ATDriverVoiceTests */ = {
+		ADAEB3F929E76352003EF3FD /* ATDriverVoiceTests */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CD829DB858000C517C7 /* ATDriverVoiceTests.swift */,
+				ADAEB3FA29E76352003EF3FD /* ATDriverVoiceTests.swift */,
 			);
 			path = ATDriverVoiceTests;
 			sourceTree = "<group>";
 		};
-		AD924CE129DB858000C517C7 /* ATDriverVoiceUITests */ = {
+		ADAEB40329E76352003EF3FD /* ATDriverVoiceUITests */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CE229DB858000C517C7 /* ATDriverVoiceUITests.swift */,
-				AD924CE429DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift */,
+				ADAEB40429E76352003EF3FD /* ATDriverVoiceUITests.swift */,
+				ADAEB40629E76352003EF3FD /* ATDriverVoiceUITestsLaunchTests.swift */,
 			);
 			path = ATDriverVoiceUITests;
 			sourceTree = "<group>";
 		};
-		AD924CEE29DB858000C517C7 /* ATDriverVoiceExtension */ = {
+		ADAEB41029E76352003EF3FD /* ATDriverVoiceExtension */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CEF29DB858000C517C7 /* README.md */,
-				AD924D0429DB858000C517C7 /* Info.plist */,
-				AD924CF129DB858000C517C7 /* Common */,
-				AD924CFE29DB858000C517C7 /* Parameters */,
+				ADAEB41129E76352003EF3FD /* README.md */,
+				ADAEB42629E76352003EF3FD /* Info.plist */,
+				ADAEB41329E76352003EF3FD /* Common */,
+				ADAEB42029E76352003EF3FD /* Parameters */,
 			);
 			path = ATDriverVoiceExtension;
 			sourceTree = "<group>";
 		};
-		AD924CF129DB858000C517C7 /* Common */ = {
+		ADAEB41329E76352003EF3FD /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CF229DB858000C517C7 /* ATDriverVoiceExtension-Bridging-Header.h */,
-				AD924CF329DB858000C517C7 /* Parameters */,
-				AD924CF629DB858000C517C7 /* Utility */,
-				AD924CFB29DB858000C517C7 /* Audio Unit */,
-				AD924D0129DB858000C517C7 /* AudioUnitFactory */,
+				ADAEB41429E76352003EF3FD /* ATDriverVoiceExtension-Bridging-Header.h */,
+				ADAEB41529E76352003EF3FD /* Parameters */,
+				ADAEB41829E76352003EF3FD /* Utility */,
+				ADAEB41D29E76352003EF3FD /* Audio Unit */,
+				ADAEB42329E76352003EF3FD /* AudioUnitFactory */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		AD924CF329DB858000C517C7 /* Parameters */ = {
+		ADAEB41529E76352003EF3FD /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CF429DB858000C517C7 /* ParameterSpecBase.swift */,
+				ADAEB41629E76352003EF3FD /* ParameterSpecBase.swift */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
 		};
-		AD924CF629DB858000C517C7 /* Utility */ = {
+		ADAEB41829E76352003EF3FD /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CF729DB858000C517C7 /* CrossPlatform.swift */,
-				AD924CF929DB858000C517C7 /* String+Utils.swift */,
+				ADAEB41929E76352003EF3FD /* CrossPlatform.swift */,
+				ADAEB41B29E76352003EF3FD /* String+Utils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		AD924CFB29DB858000C517C7 /* Audio Unit */ = {
+		ADAEB41D29E76352003EF3FD /* Audio Unit */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CFC29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift */,
+				ADAEB41E29E76352003EF3FD /* ATDriverVoiceExtensionAudioUnit.swift */,
 			);
 			path = "Audio Unit";
 			sourceTree = "<group>";
 		};
-		AD924CFE29DB858000C517C7 /* Parameters */ = {
+		ADAEB42029E76352003EF3FD /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
-				AD924CFF29DB858000C517C7 /* Parameters.swift */,
+				ADAEB42129E76352003EF3FD /* Parameters.swift */,
 			);
 			path = Parameters;
 			sourceTree = "<group>";
 		};
-		AD924D0129DB858000C517C7 /* AudioUnitFactory */ = {
+		ADAEB42329E76352003EF3FD /* AudioUnitFactory */ = {
 			isa = PBXGroup;
 			children = (
-				AD924D0229DB858000C517C7 /* AudioUnitFactory.swift */,
+				ADAEB42429E76352003EF3FD /* AudioUnitFactory.swift */,
 			);
 			path = AudioUnitFactory;
 			sourceTree = "<group>";
@@ -316,68 +316,68 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD924CAC29DB857F00C517C7 /* ATDriverVoice */ = {
+		ADAEB3CE29E76351003EF3FD /* ATDriverVoice */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD924D0B29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoice" */;
+			buildConfigurationList = ADAEB42D29E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoice" */;
 			buildPhases = (
-				AD924CA929DB857F00C517C7 /* Sources */,
-				AD924CAA29DB857F00C517C7 /* Frameworks */,
-				AD924CAB29DB857F00C517C7 /* Resources */,
-				AD924D0A29DB858000C517C7 /* Embed Foundation Extensions */,
+				ADAEB3CB29E76351003EF3FD /* Sources */,
+				ADAEB3CC29E76351003EF3FD /* Frameworks */,
+				ADAEB3CD29E76351003EF3FD /* Resources */,
+				ADAEB42C29E76352003EF3FD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AD924CED29DB858000C517C7 /* PBXTargetDependency */,
+				ADAEB40F29E76352003EF3FD /* PBXTargetDependency */,
 			);
 			name = ATDriverVoice;
 			productName = ATDriverVoice;
-			productReference = AD924CAD29DB857F00C517C7 /* ATDriverVoice.app */;
+			productReference = ADAEB3CF29E76351003EF3FD /* ATDriverVoice.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AD924CD329DB858000C517C7 /* ATDriverVoiceTests */ = {
+		ADAEB3F529E76352003EF3FD /* ATDriverVoiceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD924D0E29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceTests" */;
+			buildConfigurationList = ADAEB43029E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoiceTests" */;
 			buildPhases = (
-				AD924CD029DB858000C517C7 /* Sources */,
-				AD924CD129DB858000C517C7 /* Frameworks */,
-				AD924CD229DB858000C517C7 /* Resources */,
+				ADAEB3F229E76352003EF3FD /* Sources */,
+				ADAEB3F329E76352003EF3FD /* Frameworks */,
+				ADAEB3F429E76352003EF3FD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AD924CD629DB858000C517C7 /* PBXTargetDependency */,
+				ADAEB3F829E76352003EF3FD /* PBXTargetDependency */,
 			);
 			name = ATDriverVoiceTests;
 			productName = ATDriverVoiceTests;
-			productReference = AD924CD429DB858000C517C7 /* ATDriverVoiceTests.xctest */;
+			productReference = ADAEB3F629E76352003EF3FD /* ATDriverVoiceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AD924CDD29DB858000C517C7 /* ATDriverVoiceUITests */ = {
+		ADAEB3FF29E76352003EF3FD /* ATDriverVoiceUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD924D1129DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceUITests" */;
+			buildConfigurationList = ADAEB43329E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoiceUITests" */;
 			buildPhases = (
-				AD924CDA29DB858000C517C7 /* Sources */,
-				AD924CDB29DB858000C517C7 /* Frameworks */,
-				AD924CDC29DB858000C517C7 /* Resources */,
+				ADAEB3FC29E76352003EF3FD /* Sources */,
+				ADAEB3FD29E76352003EF3FD /* Frameworks */,
+				ADAEB3FE29E76352003EF3FD /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				AD924CE029DB858000C517C7 /* PBXTargetDependency */,
+				ADAEB40229E76352003EF3FD /* PBXTargetDependency */,
 			);
 			name = ATDriverVoiceUITests;
 			productName = ATDriverVoiceUITests;
-			productReference = AD924CDE29DB858000C517C7 /* ATDriverVoiceUITests.xctest */;
+			productReference = ADAEB40029E76352003EF3FD /* ATDriverVoiceUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		AD924CE929DB858000C517C7 /* ATDriverVoiceExtension */ = {
+		ADAEB40B29E76352003EF3FD /* ATDriverVoiceExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD924D0729DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceExtension" */;
+			buildConfigurationList = ADAEB42929E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoiceExtension" */;
 			buildPhases = (
-				AD924CE629DB858000C517C7 /* Sources */,
-				AD924CE729DB858000C517C7 /* Frameworks */,
-				AD924CE829DB858000C517C7 /* Resources */,
+				ADAEB40829E76352003EF3FD /* Sources */,
+				ADAEB40929E76352003EF3FD /* Frameworks */,
+				ADAEB40A29E76352003EF3FD /* Resources */,
 			);
 			buildRules = (
 			);
@@ -385,36 +385,36 @@
 			);
 			name = ATDriverVoiceExtension;
 			productName = ATDriverVoiceExtension;
-			productReference = AD924CEA29DB858000C517C7 /* ATDriverVoiceExtension.appex */;
+			productReference = ADAEB40C29E76352003EF3FD /* ATDriverVoiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AD924CA529DB857F00C517C7 /* Project object */ = {
+		ADAEB3C729E76351003EF3FD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					AD924CAC29DB857F00C517C7 = {
+					ADAEB3CE29E76351003EF3FD = {
 						CreatedOnToolsVersion = 14.3;
 					};
-					AD924CD329DB858000C517C7 = {
+					ADAEB3F529E76352003EF3FD = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = AD924CAC29DB857F00C517C7;
+						TestTargetID = ADAEB3CE29E76351003EF3FD;
 					};
-					AD924CDD29DB858000C517C7 = {
+					ADAEB3FF29E76352003EF3FD = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = AD924CAC29DB857F00C517C7;
+						TestTargetID = ADAEB3CE29E76351003EF3FD;
 					};
-					AD924CE929DB858000C517C7 = {
+					ADAEB40B29E76352003EF3FD = {
 						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
-			buildConfigurationList = AD924CA829DB857F00C517C7 /* Build configuration list for PBXProject "ATDriverVoice" */;
+			buildConfigurationList = ADAEB3CA29E76351003EF3FD /* Build configuration list for PBXProject "ATDriverVoice" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -422,123 +422,123 @@
 				en,
 				Base,
 			);
-			mainGroup = AD924CA429DB857F00C517C7;
-			productRefGroup = AD924CAE29DB857F00C517C7 /* Products */;
+			mainGroup = ADAEB3C629E76351003EF3FD;
+			productRefGroup = ADAEB3D029E76351003EF3FD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD924CAC29DB857F00C517C7 /* ATDriverVoice */,
-				AD924CD329DB858000C517C7 /* ATDriverVoiceTests */,
-				AD924CDD29DB858000C517C7 /* ATDriverVoiceUITests */,
-				AD924CE929DB858000C517C7 /* ATDriverVoiceExtension */,
+				ADAEB3CE29E76351003EF3FD /* ATDriverVoice */,
+				ADAEB3F529E76352003EF3FD /* ATDriverVoiceTests */,
+				ADAEB3FF29E76352003EF3FD /* ATDriverVoiceUITests */,
+				ADAEB40B29E76352003EF3FD /* ATDriverVoiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AD924CAB29DB857F00C517C7 /* Resources */ = {
+		ADAEB3CD29E76351003EF3FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD924CCC29DB857F00C517C7 /* Preview Assets.xcassets in Resources */,
-				AD924CCE29DB858000C517C7 /* Assets.xcassets in Resources */,
-				AD924CB829DB857F00C517C7 /* Synth.aif in Resources */,
+				ADAEB3EE29E76351003EF3FD /* Preview Assets.xcassets in Resources */,
+				ADAEB3F029E76352003EF3FD /* Assets.xcassets in Resources */,
+				ADAEB3DA29E76351003EF3FD /* Synth.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CD229DB858000C517C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AD924CDC29DB858000C517C7 /* Resources */ = {
+		ADAEB3F429E76352003EF3FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CE829DB858000C517C7 /* Resources */ = {
+		ADAEB3FE29E76352003EF3FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD924CF029DB858000C517C7 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADAEB40A29E76352003EF3FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADAEB41229E76352003EF3FD /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AD924CA929DB857F00C517C7 /* Sources */ = {
+		ADAEB3CB29E76351003EF3FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD924CC529DB857F00C517C7 /* AudioUnitHostModel.swift in Sources */,
-				AD924CC729DB857F00C517C7 /* AudioUnitViewModel.swift in Sources */,
-				AD924CB129DB857F00C517C7 /* ContentView.swift in Sources */,
-				AD924CB529DB857F00C517C7 /* ViewControllerRepresentable.swift in Sources */,
-				AD924CC229DB857F00C517C7 /* StringHelpers.swift in Sources */,
-				AD924CBD29DB857F00C517C7 /* MIDIManager.swift in Sources */,
-				AD924CBF29DB857F00C517C7 /* TypeAliases.swift in Sources */,
-				AD924CBA29DB857F00C517C7 /* SimplePlayEngine.swift in Sources */,
-				AD924CC929DB857F00C517C7 /* ATDriverVoiceApp.swift in Sources */,
+				ADAEB3E729E76351003EF3FD /* AudioUnitHostModel.swift in Sources */,
+				ADAEB3E929E76351003EF3FD /* AudioUnitViewModel.swift in Sources */,
+				ADAEB3D329E76351003EF3FD /* ContentView.swift in Sources */,
+				ADAEB3D729E76351003EF3FD /* ViewControllerRepresentable.swift in Sources */,
+				ADAEB3E429E76351003EF3FD /* StringHelpers.swift in Sources */,
+				ADAEB3DF29E76351003EF3FD /* MIDIManager.swift in Sources */,
+				ADAEB3E129E76351003EF3FD /* TypeAliases.swift in Sources */,
+				ADAEB3DC29E76351003EF3FD /* SimplePlayEngine.swift in Sources */,
+				ADAEB3EB29E76351003EF3FD /* ATDriverVoiceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CD029DB858000C517C7 /* Sources */ = {
+		ADAEB3F229E76352003EF3FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD924CD929DB858000C517C7 /* ATDriverVoiceTests.swift in Sources */,
+				ADAEB3FB29E76352003EF3FD /* ATDriverVoiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CDA29DB858000C517C7 /* Sources */ = {
+		ADAEB3FC29E76352003EF3FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD924CE529DB858000C517C7 /* ATDriverVoiceUITestsLaunchTests.swift in Sources */,
-				AD924CE329DB858000C517C7 /* ATDriverVoiceUITests.swift in Sources */,
+				ADAEB40729E76352003EF3FD /* ATDriverVoiceUITestsLaunchTests.swift in Sources */,
+				ADAEB40529E76352003EF3FD /* ATDriverVoiceUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD924CE629DB858000C517C7 /* Sources */ = {
+		ADAEB40829E76352003EF3FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD924D0029DB858000C517C7 /* Parameters.swift in Sources */,
-				AD924CF529DB858000C517C7 /* ParameterSpecBase.swift in Sources */,
-				AD924CF829DB858000C517C7 /* CrossPlatform.swift in Sources */,
-				AD924D0329DB858000C517C7 /* AudioUnitFactory.swift in Sources */,
-				AD924CFD29DB858000C517C7 /* ATDriverVoiceExtensionAudioUnit.swift in Sources */,
-				AD924CFA29DB858000C517C7 /* String+Utils.swift in Sources */,
+				ADAEB42229E76352003EF3FD /* Parameters.swift in Sources */,
+				ADAEB41729E76352003EF3FD /* ParameterSpecBase.swift in Sources */,
+				ADAEB41A29E76352003EF3FD /* CrossPlatform.swift in Sources */,
+				ADAEB42529E76352003EF3FD /* AudioUnitFactory.swift in Sources */,
+				ADAEB41F29E76352003EF3FD /* ATDriverVoiceExtensionAudioUnit.swift in Sources */,
+				ADAEB41C29E76352003EF3FD /* String+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AD924CD629DB858000C517C7 /* PBXTargetDependency */ = {
+		ADAEB3F829E76352003EF3FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AD924CAC29DB857F00C517C7 /* ATDriverVoice */;
-			targetProxy = AD924CD529DB858000C517C7 /* PBXContainerItemProxy */;
+			target = ADAEB3CE29E76351003EF3FD /* ATDriverVoice */;
+			targetProxy = ADAEB3F729E76352003EF3FD /* PBXContainerItemProxy */;
 		};
-		AD924CE029DB858000C517C7 /* PBXTargetDependency */ = {
+		ADAEB40229E76352003EF3FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AD924CAC29DB857F00C517C7 /* ATDriverVoice */;
-			targetProxy = AD924CDF29DB858000C517C7 /* PBXContainerItemProxy */;
+			target = ADAEB3CE29E76351003EF3FD /* ATDriverVoice */;
+			targetProxy = ADAEB40129E76352003EF3FD /* PBXContainerItemProxy */;
 		};
-		AD924CED29DB858000C517C7 /* PBXTargetDependency */ = {
+		ADAEB40F29E76352003EF3FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AD924CE929DB858000C517C7 /* ATDriverVoiceExtension */;
-			targetProxy = AD924CEC29DB858000C517C7 /* PBXContainerItemProxy */;
+			target = ADAEB40B29E76352003EF3FD /* ATDriverVoiceExtension */;
+			targetProxy = ADAEB40E29E76352003EF3FD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		AD924D0529DB858000C517C7 /* Debug */ = {
+		ADAEB42729E76352003EF3FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -598,7 +598,7 @@
 			};
 			name = Debug;
 		};
-		AD924D0629DB858000C517C7 /* Release */ = {
+		ADAEB42829E76352003EF3FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -651,7 +651,7 @@
 			};
 			name = Release;
 		};
-		AD924D0829DB858000C517C7 /* Debug */ = {
+		ADAEB42A29E76352003EF3FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -682,7 +682,7 @@
 			};
 			name = Debug;
 		};
-		AD924D0929DB858000C517C7 /* Release */ = {
+		ADAEB42B29E76352003EF3FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -713,7 +713,7 @@
 			};
 			name = Release;
 		};
-		AD924D0C29DB858000C517C7 /* Debug */ = {
+		ADAEB42E29E76352003EF3FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -751,7 +751,7 @@
 			};
 			name = Debug;
 		};
-		AD924D0D29DB858000C517C7 /* Release */ = {
+		ADAEB42F29E76352003EF3FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -789,7 +789,7 @@
 			};
 			name = Release;
 		};
-		AD924D0F29DB858000C517C7 /* Debug */ = {
+		ADAEB43129E76352003EF3FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -808,7 +808,7 @@
 			};
 			name = Debug;
 		};
-		AD924D1029DB858000C517C7 /* Release */ = {
+		ADAEB43229E76352003EF3FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -827,7 +827,7 @@
 			};
 			name = Release;
 		};
-		AD924D1229DB858000C517C7 /* Debug */ = {
+		ADAEB43429E76352003EF3FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -844,7 +844,7 @@
 			};
 			name = Debug;
 		};
-		AD924D1329DB858000C517C7 /* Release */ = {
+		ADAEB43529E76352003EF3FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -864,52 +864,52 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD924CA829DB857F00C517C7 /* Build configuration list for PBXProject "ATDriverVoice" */ = {
+		ADAEB3CA29E76351003EF3FD /* Build configuration list for PBXProject "ATDriverVoice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD924D0529DB858000C517C7 /* Debug */,
-				AD924D0629DB858000C517C7 /* Release */,
+				ADAEB42729E76352003EF3FD /* Debug */,
+				ADAEB42829E76352003EF3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD924D0729DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceExtension" */ = {
+		ADAEB42929E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoiceExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD924D0829DB858000C517C7 /* Debug */,
-				AD924D0929DB858000C517C7 /* Release */,
+				ADAEB42A29E76352003EF3FD /* Debug */,
+				ADAEB42B29E76352003EF3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD924D0B29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoice" */ = {
+		ADAEB42D29E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD924D0C29DB858000C517C7 /* Debug */,
-				AD924D0D29DB858000C517C7 /* Release */,
+				ADAEB42E29E76352003EF3FD /* Debug */,
+				ADAEB42F29E76352003EF3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD924D0E29DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceTests" */ = {
+		ADAEB43029E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoiceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD924D0F29DB858000C517C7 /* Debug */,
-				AD924D1029DB858000C517C7 /* Release */,
+				ADAEB43129E76352003EF3FD /* Debug */,
+				ADAEB43229E76352003EF3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD924D1129DB858000C517C7 /* Build configuration list for PBXNativeTarget "ATDriverVoiceUITests" */ = {
+		ADAEB43329E76352003EF3FD /* Build configuration list for PBXNativeTarget "ATDriverVoiceUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD924D1229DB858000C517C7 /* Debug */,
-				AD924D1329DB858000C517C7 /* Release */,
+				ADAEB43429E76352003EF3FD /* Debug */,
+				ADAEB43529E76352003EF3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AD924CA529DB857F00C517C7 /* Project object */;
+	rootObject = ADAEB3C729E76351003EF3FD /* Project object */;
 }

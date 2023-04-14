@@ -2,7 +2,7 @@
 //  ATDriverVoiceApp.swift
 //  ATDriverVoice
 //
-//  Created by Z Goddard on 4/3/23.
+//  Created by Z Goddard on 4/12/23.
 //
 
 import CoreMIDI
@@ -10,13 +10,13 @@ import SwiftUI
 
 @main
 class ATDriverVoiceApp: App {
-  @ObservedObject private var hostModel = AudioUnitHostModel()
+    @ObservedObject private var hostModel = AudioUnitHostModel()
 
-  required init() {}
+    required init() {}
 
-  var body: some Scene {
-    WindowGroup {
-      ContentView(hostModel: hostModel)
+    var body: some Scene {
+        WindowGroup {
+            ContentView(hostModel: hostModel)
+        }
     }
-  }
 }
