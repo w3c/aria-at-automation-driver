@@ -24,7 +24,7 @@
 #define UTTERANCE_FOR_SETTING_DEFAULT_VOICE _T("Installing voice named " AUTOMATION_VOICE_NAME)
 
 // Registry path storing voice tokens.
-#define SPCAT_VOICE_TOKENS SPCAT_VOICES _T("\\Tokens")
+#define SPCAT_VOICE_TOKENS _T(SPCAT_VOICES "\\Tokens")
 
 #ifdef UNICODE
 #define tputenv_s _wputenv_s
