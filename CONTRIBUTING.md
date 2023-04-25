@@ -20,6 +20,13 @@ application.
 
 </details>
 
+Some screen readers may not recognize text-to-speech voices built for 32-bit
+architectures, while others may not recognize those build for 64-bit
+architectures. [In the maintainers'
+experience](https://github.com/w3c/aria-at-automation-driver/issues/22), NVDA
+version 2023.1 recognizes only text-to-speech voices built for 32-bit
+architectures.
+
 ## Code of Conduct
 
 We also ask that you read our [Code of Conduct](CODE_OF_CONDUCT.md) before
