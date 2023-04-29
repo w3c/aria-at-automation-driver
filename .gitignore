@@ -200,3 +200,5 @@ FakesAssemblies/
 # Custom ignores
 gallery.xml
 project.lock.json
+
+*.pyc

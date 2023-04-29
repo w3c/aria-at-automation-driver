@@ -45,8 +45,9 @@ which is required by the automation voice.
 3. Configure any screen reader to use the synthesizer named "Microsoft Speech
    API version 5" and the text-to-speech voice named "Bocoup Automation Voice."
 
-4. Use any WebSocket client to connect to the server specifying
-   `v1.aria-at.bocoup.com` as [the
+4. Use any WebSocket client to connect to the server. Specify the screen reader
+   you'd like to test using the `at` query string parameter (e.g. `at=nvda`).
+   Specify `v1.aria-at.bocoup.com` as [the WebSocket
    sub-protocol](https://datatracker.ietf.org/doc/html/rfc6455#section-1.9).
    The protocol is described below. (The server will print protocol messages to
    its standard error stream for diagnostic purposes only. Neither the format
@@ -90,6 +91,13 @@ interface ReleaseKeyCommand {
   id: number;
   name: 'releaseKey';
   params: [string];
+}
+
+interface ConfigureCommand {
+  type: 'command';
+  id: number;
+  name: 'configure';
+  params: [object];
 }
 
 interface SuccessResponse {

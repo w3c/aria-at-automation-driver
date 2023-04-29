@@ -26,8 +26,8 @@ suite('at-driver', () => {
       whenClosed.catch(reject);
     });
   };
-  const connect = (port, subProtocol) => {
-    const websocket = new WebSocket(`ws://localhost:${port}`, subProtocol);
+  const connect = (port, query, subProtocol) => {
+    const websocket = new WebSocket(`ws://localhost:${port}?${query}`, subProtocol);
 
     return new Promise((resolve, reject) => {
       websocket.on('error', reject);
@@ -41,47 +41,77 @@ suite('at-driver', () => {
 
   test('WebSocket server on default port', async () => {
     const {whenClosed} = await run([]);
-    return Promise.race([whenClosed, connect(4382, SUB_PROTOCOL)]);
+    return Promise.race([whenClosed, connect(4382, 'at=nvda', SUB_PROTOCOL)]);
   });
 
   test('WebSocket server on custom port', async () => {
     const {whenClosed} = await run(['--port', '6543']);
-    return Promise.race([whenClosed, connect(6543, SUB_PROTOCOL)]);
+    return Promise.race([whenClosed, connect(6543, 'at=nvda', SUB_PROTOCOL)]);
   });
 
-  test('rejects unspecified protocol', async () => {
+  test('WebSocket server on default port using alternate assistive technology port', async () => {
     const {whenClosed} = await run([]);
-    return Promise.race([whenClosed, invert(connect(4382))]);
+    return Promise.race([whenClosed, connect(4382, 'at=nvda&port=8084', SUB_PROTOCOL)]);
   });
 
-  test('rejects unsupported protocol', async () => {
+  test('server rejects unspecified protocol', async () => {
     const {whenClosed} = await run([]);
-    return Promise.race([whenClosed, invert(connect(4382, 'aria-at.bocoup.com'))]);
+    return Promise.race([whenClosed, invert(connect(4382, 'at=nvda'))]);
   });
 
-  test('rejects invalid port values: unspecified', async () => {
+  test('server rejects unsupported protocol', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, 'at=nvda', 'aria-at.bocoup.com'))]);
+  });
+
+  test('CLI rejects invalid port values: unspecified', async () => {
     const {whenClosed} = await run(['--port']);
     return invert(whenClosed);
   });
 
-  test('rejects invalid port values: non-numeric', async () => {
+  test('CLI rejects invalid port values: non-numeric', async () => {
     const {whenClosed} = await run(['--port', 'seven']);
     return invert(whenClosed);
   });
 
-  test('rejects invalid port values: negative', async () => {
+  test('CLI rejects invalid port values: negative', async () => {
     const {whenClosed} = await run(['--port', '-8000']);
     return invert(whenClosed);
   });
 
-  test('rejects invalid port values: non-integer', async () => {
+  test('CLI rejects invalid port values: non-integer', async () => {
     const {whenClosed} = await run(['--port', '2004.3']);
     return invert(whenClosed);
   });
 
-  test('rejects invalid port values: non-decimal', async () => {
+  test('CLI rejects invalid port values: non-decimal', async () => {
     const {whenClosed} = await run(['--port', '0x1000']);
     return invert(whenClosed);
+  });
+
+  test('server rejects unspecified assistive technology', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, '', SUB_PROTOCOL))]);
+  });
+
+  test('server rejects empty assistive technology', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, 'at=', SUB_PROTOCOL))]);
+  });
+
+  test('server rejects unrecognized assistive technology', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, 'at=foo', SUB_PROTOCOL))]);
+  });
+
+  test('server rejects empty assistive technology port', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, 'at=nvda&port=', SUB_PROTOCOL))]);
+  });
+
+  test('server rejects empty assistive technology port', async () => {
+    const {whenClosed} = await run([]);
+    return Promise.race([whenClosed, invert(connect(4382, 'at=nvda&port=a', SUB_PROTOCOL))]);
   });
 
   suite('protocol', () => {
@@ -102,7 +132,7 @@ suite('at-driver', () => {
     setup(async () => {
       ({whenClosed} = await run([]));
 
-      websocket = await Promise.race([whenClosed, connect(4382, SUB_PROTOCOL)]);
+      websocket = await Promise.race([whenClosed, connect(4382, 'at=nvda', SUB_PROTOCOL)]);
     });
 
     test('rejects non-JSON messages', async () => {
