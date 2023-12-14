@@ -1,0 +1,915 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD736BB729E67DE100C4F305 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BB629E67DE100C4F305 /* ContentView.swift */; };
+		AD736BBB29E67DE100C4F305 /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BBA29E67DE100C4F305 /* ViewControllerRepresentable.swift */; };
+		AD736BBE29E67DE100C4F305 /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = AD736BBD29E67DE100C4F305 /* Synth.aif */; };
+		AD736BC029E67DE100C4F305 /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BBF29E67DE100C4F305 /* SimplePlayEngine.swift */; };
+		AD736BC329E67DE100C4F305 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BC229E67DE100C4F305 /* MIDIManager.swift */; };
+		AD736BC529E67DE100C4F305 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BC429E67DE100C4F305 /* TypeAliases.swift */; };
+		AD736BC829E67DE100C4F305 /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BC729E67DE100C4F305 /* StringHelpers.swift */; };
+		AD736BCB29E67DE100C4F305 /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BCA29E67DE100C4F305 /* AudioUnitHostModel.swift */; };
+		AD736BCD29E67DE100C4F305 /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BCC29E67DE100C4F305 /* AudioUnitViewModel.swift */; };
+		AD736BCF29E67DE100C4F305 /* ATVSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BCE29E67DE100C4F305 /* ATVSApp.swift */; };
+		AD736BD229E67DE100C4F305 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD736BD129E67DE100C4F305 /* Preview Assets.xcassets */; };
+		AD736BD429E67DE200C4F305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD736BD329E67DE200C4F305 /* Assets.xcassets */; };
+		AD736BDF29E67DE200C4F305 /* ATVSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BDE29E67DE200C4F305 /* ATVSTests.swift */; };
+		AD736BE929E67DE200C4F305 /* ATVSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BE829E67DE200C4F305 /* ATVSUITests.swift */; };
+		AD736BEB29E67DE200C4F305 /* ATVSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BEA29E67DE200C4F305 /* ATVSUITestsLaunchTests.swift */; };
+		AD736BF129E67DE200C4F305 /* ATVSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AD736BF029E67DE200C4F305 /* ATVSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AD736BF629E67DE200C4F305 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD736BF529E67DE200C4F305 /* README.md */; };
+		AD736BFB29E67DE200C4F305 /* ParameterSpecBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BFA29E67DE200C4F305 /* ParameterSpecBase.swift */; };
+		AD736BFE29E67DE200C4F305 /* CrossPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BFD29E67DE200C4F305 /* CrossPlatform.swift */; };
+		AD736C0029E67DE200C4F305 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736BFF29E67DE200C4F305 /* String+Utils.swift */; };
+		AD736C0329E67DE200C4F305 /* ATVSExtensionAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736C0229E67DE200C4F305 /* ATVSExtensionAudioUnit.swift */; };
+		AD736C0629E67DE200C4F305 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736C0529E67DE200C4F305 /* Parameters.swift */; };
+		AD736C0929E67DE200C4F305 /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD736C0829E67DE200C4F305 /* AudioUnitFactory.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD736BDB29E67DE200C4F305 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD736BAB29E67DE100C4F305 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD736BB229E67DE100C4F305;
+			remoteInfo = ATVS;
+		};
+		AD736BE529E67DE200C4F305 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD736BAB29E67DE100C4F305 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD736BB229E67DE100C4F305;
+			remoteInfo = ATVS;
+		};
+		AD736BF229E67DE200C4F305 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD736BAB29E67DE100C4F305 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD736BEF29E67DE200C4F305;
+			remoteInfo = ATVSExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AD736C1029E67DE200C4F305 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AD736BF129E67DE200C4F305 /* ATVSExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AD736BB329E67DE100C4F305 /* ATVS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATVS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD736BB629E67DE100C4F305 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AD736BBA29E67DE100C4F305 /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		AD736BBD29E67DE100C4F305 /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
+		AD736BBF29E67DE100C4F305 /* SimplePlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		AD736BC229E67DE100C4F305 /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		AD736BC429E67DE100C4F305 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		AD736BC729E67DE100C4F305 /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
+		AD736BCA29E67DE100C4F305 /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
+		AD736BCC29E67DE100C4F305 /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
+		AD736BCE29E67DE100C4F305 /* ATVSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATVSApp.swift; sourceTree = "<group>"; };
+		AD736BD129E67DE100C4F305 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AD736BD329E67DE200C4F305 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AD736BD529E67DE200C4F305 /* ATVS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATVS.entitlements; sourceTree = "<group>"; };
+		AD736BDA29E67DE200C4F305 /* ATVSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATVSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD736BDE29E67DE200C4F305 /* ATVSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATVSTests.swift; sourceTree = "<group>"; };
+		AD736BE429E67DE200C4F305 /* ATVSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATVSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD736BE829E67DE200C4F305 /* ATVSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATVSUITests.swift; sourceTree = "<group>"; };
+		AD736BEA29E67DE200C4F305 /* ATVSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATVSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD736BF029E67DE200C4F305 /* ATVSExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ATVSExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD736BF529E67DE200C4F305 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AD736BF829E67DE200C4F305 /* ATVSExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATVSExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD736BFA29E67DE200C4F305 /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
+		AD736BFD29E67DE200C4F305 /* CrossPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatform.swift; sourceTree = "<group>"; };
+		AD736BFF29E67DE200C4F305 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		AD736C0229E67DE200C4F305 /* ATVSExtensionAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATVSExtensionAudioUnit.swift; sourceTree = "<group>"; };
+		AD736C0529E67DE200C4F305 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		AD736C0829E67DE200C4F305 /* AudioUnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitFactory.swift; sourceTree = "<group>"; };
+		AD736C0A29E67DE200C4F305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD736BB029E67DE100C4F305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BD729E67DE200C4F305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BE129E67DE200C4F305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BED29E67DE200C4F305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AD736BAA29E67DE100C4F305 = {
+			isa = PBXGroup;
+			children = (
+				AD736BB529E67DE100C4F305 /* ATVS */,
+				AD736BDD29E67DE200C4F305 /* ATVSTests */,
+				AD736BE729E67DE200C4F305 /* ATVSUITests */,
+				AD736BF429E67DE200C4F305 /* ATVSExtension */,
+				AD736BB429E67DE100C4F305 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AD736BB429E67DE100C4F305 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BB329E67DE100C4F305 /* ATVS.app */,
+				AD736BDA29E67DE200C4F305 /* ATVSTests.xctest */,
+				AD736BE429E67DE200C4F305 /* ATVSUITests.xctest */,
+				AD736BF029E67DE200C4F305 /* ATVSExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AD736BB529E67DE100C4F305 /* ATVS */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BB629E67DE100C4F305 /* ContentView.swift */,
+				AD736BCE29E67DE100C4F305 /* ATVSApp.swift */,
+				AD736BD329E67DE200C4F305 /* Assets.xcassets */,
+				AD736BD529E67DE200C4F305 /* ATVS.entitlements */,
+				AD736BB829E67DE100C4F305 /* Common */,
+				AD736BC929E67DE100C4F305 /* Model */,
+				AD736BD029E67DE100C4F305 /* Preview Content */,
+			);
+			path = ATVS;
+			sourceTree = "<group>";
+		};
+		AD736BB829E67DE100C4F305 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BC429E67DE100C4F305 /* TypeAliases.swift */,
+				AD736BB929E67DE100C4F305 /* UI */,
+				AD736BBC29E67DE100C4F305 /* Audio */,
+				AD736BC129E67DE100C4F305 /* MIDI */,
+				AD736BC629E67DE100C4F305 /* String */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AD736BB929E67DE100C4F305 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BBA29E67DE100C4F305 /* ViewControllerRepresentable.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		AD736BBC29E67DE100C4F305 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BBD29E67DE100C4F305 /* Synth.aif */,
+				AD736BBF29E67DE100C4F305 /* SimplePlayEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		AD736BC129E67DE100C4F305 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BC229E67DE100C4F305 /* MIDIManager.swift */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		AD736BC629E67DE100C4F305 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BC729E67DE100C4F305 /* StringHelpers.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		AD736BC929E67DE100C4F305 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BCA29E67DE100C4F305 /* AudioUnitHostModel.swift */,
+				AD736BCC29E67DE100C4F305 /* AudioUnitViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD736BD029E67DE100C4F305 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BD129E67DE100C4F305 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AD736BDD29E67DE200C4F305 /* ATVSTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BDE29E67DE200C4F305 /* ATVSTests.swift */,
+			);
+			path = ATVSTests;
+			sourceTree = "<group>";
+		};
+		AD736BE729E67DE200C4F305 /* ATVSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BE829E67DE200C4F305 /* ATVSUITests.swift */,
+				AD736BEA29E67DE200C4F305 /* ATVSUITestsLaunchTests.swift */,
+			);
+			path = ATVSUITests;
+			sourceTree = "<group>";
+		};
+		AD736BF429E67DE200C4F305 /* ATVSExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BF529E67DE200C4F305 /* README.md */,
+				AD736C0A29E67DE200C4F305 /* Info.plist */,
+				AD736BF729E67DE200C4F305 /* Common */,
+				AD736C0429E67DE200C4F305 /* Parameters */,
+			);
+			path = ATVSExtension;
+			sourceTree = "<group>";
+		};
+		AD736BF729E67DE200C4F305 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BF829E67DE200C4F305 /* ATVSExtension-Bridging-Header.h */,
+				AD736BF929E67DE200C4F305 /* Parameters */,
+				AD736BFC29E67DE200C4F305 /* Utility */,
+				AD736C0129E67DE200C4F305 /* Audio Unit */,
+				AD736C0729E67DE200C4F305 /* AudioUnitFactory */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AD736BF929E67DE200C4F305 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BFA29E67DE200C4F305 /* ParameterSpecBase.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		AD736BFC29E67DE200C4F305 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AD736BFD29E67DE200C4F305 /* CrossPlatform.swift */,
+				AD736BFF29E67DE200C4F305 /* String+Utils.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		AD736C0129E67DE200C4F305 /* Audio Unit */ = {
+			isa = PBXGroup;
+			children = (
+				AD736C0229E67DE200C4F305 /* ATVSExtensionAudioUnit.swift */,
+			);
+			path = "Audio Unit";
+			sourceTree = "<group>";
+		};
+		AD736C0429E67DE200C4F305 /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				AD736C0529E67DE200C4F305 /* Parameters.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		AD736C0729E67DE200C4F305 /* AudioUnitFactory */ = {
+			isa = PBXGroup;
+			children = (
+				AD736C0829E67DE200C4F305 /* AudioUnitFactory.swift */,
+			);
+			path = AudioUnitFactory;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AD736BB229E67DE100C4F305 /* ATVS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD736C1129E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVS" */;
+			buildPhases = (
+				AD736BAF29E67DE100C4F305 /* Sources */,
+				AD736BB029E67DE100C4F305 /* Frameworks */,
+				AD736BB129E67DE100C4F305 /* Resources */,
+				AD736C1029E67DE200C4F305 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD736BF329E67DE200C4F305 /* PBXTargetDependency */,
+			);
+			name = ATVS;
+			productName = ATVS;
+			productReference = AD736BB329E67DE100C4F305 /* ATVS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AD736BD929E67DE200C4F305 /* ATVSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD736C1429E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVSTests" */;
+			buildPhases = (
+				AD736BD629E67DE200C4F305 /* Sources */,
+				AD736BD729E67DE200C4F305 /* Frameworks */,
+				AD736BD829E67DE200C4F305 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD736BDC29E67DE200C4F305 /* PBXTargetDependency */,
+			);
+			name = ATVSTests;
+			productName = ATVSTests;
+			productReference = AD736BDA29E67DE200C4F305 /* ATVSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AD736BE329E67DE200C4F305 /* ATVSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD736C1729E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVSUITests" */;
+			buildPhases = (
+				AD736BE029E67DE200C4F305 /* Sources */,
+				AD736BE129E67DE200C4F305 /* Frameworks */,
+				AD736BE229E67DE200C4F305 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD736BE629E67DE200C4F305 /* PBXTargetDependency */,
+			);
+			name = ATVSUITests;
+			productName = ATVSUITests;
+			productReference = AD736BE429E67DE200C4F305 /* ATVSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		AD736BEF29E67DE200C4F305 /* ATVSExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD736C0D29E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVSExtension" */;
+			buildPhases = (
+				AD736BEC29E67DE200C4F305 /* Sources */,
+				AD736BED29E67DE200C4F305 /* Frameworks */,
+				AD736BEE29E67DE200C4F305 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ATVSExtension;
+			productName = ATVSExtension;
+			productReference = AD736BF029E67DE200C4F305 /* ATVSExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AD736BAB29E67DE100C4F305 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					AD736BB229E67DE100C4F305 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					AD736BD929E67DE200C4F305 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = AD736BB229E67DE100C4F305;
+					};
+					AD736BE329E67DE200C4F305 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = AD736BB229E67DE100C4F305;
+					};
+					AD736BEF29E67DE200C4F305 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = AD736BAE29E67DE100C4F305 /* Build configuration list for PBXProject "ATVS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AD736BAA29E67DE100C4F305;
+			productRefGroup = AD736BB429E67DE100C4F305 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD736BB229E67DE100C4F305 /* ATVS */,
+				AD736BD929E67DE200C4F305 /* ATVSTests */,
+				AD736BE329E67DE200C4F305 /* ATVSUITests */,
+				AD736BEF29E67DE200C4F305 /* ATVSExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AD736BB129E67DE100C4F305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD736BD229E67DE100C4F305 /* Preview Assets.xcassets in Resources */,
+				AD736BD429E67DE200C4F305 /* Assets.xcassets in Resources */,
+				AD736BBE29E67DE100C4F305 /* Synth.aif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BD829E67DE200C4F305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BE229E67DE200C4F305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BEE29E67DE200C4F305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD736BF629E67DE200C4F305 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD736BAF29E67DE100C4F305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD736BCB29E67DE100C4F305 /* AudioUnitHostModel.swift in Sources */,
+				AD736BCF29E67DE100C4F305 /* ATVSApp.swift in Sources */,
+				AD736BCD29E67DE100C4F305 /* AudioUnitViewModel.swift in Sources */,
+				AD736BB729E67DE100C4F305 /* ContentView.swift in Sources */,
+				AD736BBB29E67DE100C4F305 /* ViewControllerRepresentable.swift in Sources */,
+				AD736BC829E67DE100C4F305 /* StringHelpers.swift in Sources */,
+				AD736BC329E67DE100C4F305 /* MIDIManager.swift in Sources */,
+				AD736BC529E67DE100C4F305 /* TypeAliases.swift in Sources */,
+				AD736BC029E67DE100C4F305 /* SimplePlayEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BD629E67DE200C4F305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD736BDF29E67DE200C4F305 /* ATVSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BE029E67DE200C4F305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD736BEB29E67DE200C4F305 /* ATVSUITestsLaunchTests.swift in Sources */,
+				AD736BE929E67DE200C4F305 /* ATVSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD736BEC29E67DE200C4F305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD736C0629E67DE200C4F305 /* Parameters.swift in Sources */,
+				AD736C0329E67DE200C4F305 /* ATVSExtensionAudioUnit.swift in Sources */,
+				AD736BFB29E67DE200C4F305 /* ParameterSpecBase.swift in Sources */,
+				AD736C0929E67DE200C4F305 /* AudioUnitFactory.swift in Sources */,
+				AD736BFE29E67DE200C4F305 /* CrossPlatform.swift in Sources */,
+				AD736C0029E67DE200C4F305 /* String+Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD736BDC29E67DE200C4F305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD736BB229E67DE100C4F305 /* ATVS */;
+			targetProxy = AD736BDB29E67DE200C4F305 /* PBXContainerItemProxy */;
+		};
+		AD736BE629E67DE200C4F305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD736BB229E67DE100C4F305 /* ATVS */;
+			targetProxy = AD736BE529E67DE200C4F305 /* PBXContainerItemProxy */;
+		};
+		AD736BF329E67DE200C4F305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD736BEF29E67DE200C4F305 /* ATVSExtension */;
+			targetProxy = AD736BF229E67DE200C4F305 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AD736C0B29E67DE200C4F305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AD736C0C29E67DE200C4F305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AD736C0E29E67DE200C4F305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATVSExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATVSExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVS.ATVSExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATVSExtension/Common/ATVSExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD736C0F29E67DE200C4F305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATVSExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATVSExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVS.ATVSExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATVSExtension/Common/ATVSExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AD736C1229E67DE200C4F305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ATVS/ATVS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ATVS/Preview Content\"";
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = ATVS;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD736C1329E67DE200C4F305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ATVS/ATVS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ATVS/Preview Content\"";
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = ATVS;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AD736C1529E67DE200C4F305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATVS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ATVS";
+			};
+			name = Debug;
+		};
+		AD736C1629E67DE200C4F305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATVS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ATVS";
+			};
+			name = Release;
+		};
+		AD736C1829E67DE200C4F305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ATVS;
+			};
+			name = Debug;
+		};
+		AD736C1929E67DE200C4F305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5WR4G6BNMV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mzgoddard.ATVSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ATVS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD736BAE29E67DE100C4F305 /* Build configuration list for PBXProject "ATVS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD736C0B29E67DE200C4F305 /* Debug */,
+				AD736C0C29E67DE200C4F305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD736C0D29E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVSExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD736C0E29E67DE200C4F305 /* Debug */,
+				AD736C0F29E67DE200C4F305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD736C1129E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD736C1229E67DE200C4F305 /* Debug */,
+				AD736C1329E67DE200C4F305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD736C1429E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD736C1529E67DE200C4F305 /* Debug */,
+				AD736C1629E67DE200C4F305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD736C1729E67DE200C4F305 /* Build configuration list for PBXNativeTarget "ATVSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD736C1829E67DE200C4F305 /* Debug */,
+				AD736C1929E67DE200C4F305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AD736BAB29E67DE100C4F305 /* Project object */;
+}

@@ -2,7 +2,7 @@
 //  ATDriverVoiceExtensionAudioUnit.swift
 //  ATDriverVoiceExtension
 //
-//  Created by Z Goddard on 4/12/23.
+//  Created by Z Goddard on 4/3/23.
 //
 
 // NOTE:- An Audio Unit Speech Extension (ausp) is rendered offline, so it is safe to use
@@ -11,7 +11,7 @@
 import AVFoundation
 import os
 
-private let log = Logger(subsystem: "com.bocoup.atdv", category: "synth")
+private let log = Logger(subsystem: "com.bocoup.atdriver", category: "synth")
 
 public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit {
   private var outputBus: AUAudioUnitBus
@@ -22,6 +22,8 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
   private var format: AVAudioFormat
 
   private var linearGain = AUValue(0.0)
+
+  private var emitter = Emitter()
 
   @objc override init(
     componentDescription: AudioComponentDescription, options: AudioComponentInstantiationOptions
@@ -45,6 +47,8 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
     try super.init(componentDescription: componentDescription, options: options)
     _outputBusses = AUAudioUnitBusArray(
       audioUnit: self, busType: AUAudioUnitBusType.output, busses: [outputBus])
+
+    log.info("ATDriverVoiceExtensionAudioUnit initialized")
   }
 
   public override var outputBusses: AUAudioUnitBusArray {
@@ -52,7 +56,12 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
   }
 
   public override func allocateRenderResources() throws {
-    try super.allocateRenderResources()
+    do {
+      try super.allocateRenderResources()
+    } catch {
+      log.error("\(error)")
+      throw error
+    }
   }
 
   public func setupParameterTree(_ parameterTree: AUParameterTree) {
@@ -129,7 +138,7 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
 
   public override func synthesizeSpeechRequest(_ speechRequest: AVSpeechSynthesisProviderRequest) {
     self.request = speechRequest
-      log.debug("synthesizeSpeechRequest")
+    emitter.emit(.Speech, speechRequest.description)
   }
 
   public override func cancelSpeechRequest() {
@@ -139,12 +148,17 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
 
   public override var speechVoices: [AVSpeechSynthesisProviderVoice] {
     get {
-      log.debug("speechVoices")
-      return [
-        AVSpeechSynthesisProviderVoice(
-          name: "Silent", identifier: "Silent", primaryLanguages: ["en-US"],
-          supportedLanguages: ["en-US"])
-      ]
+      log.info("speechVoices")
+      return []
+      //      return [
+      //        AVSpeechSynthesisProviderVoice(
+      //          name: "ATDriverVoiceExtensionVoice", identifier: "com.bocoup.atdriver.en",
+      //          primaryLanguages: ["en-US"], supportedLanguages: ["en-US"]),
+      //
+      //          AVSpeechSynthesisProviderVoice(
+      //            name: "ATDriverVoiceExtensionVoice", identifier: "com.bocoup.atdriver.jp",
+      //            primaryLanguages: ["jp-JP"], supportedLanguages: ["jp-JP"])
+      //      ]
     }
     set {}
   }

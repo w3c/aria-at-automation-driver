@@ -1,6 +1,6 @@
 //
-//  ATDriverVoiceExtensionAudioUnit.swift
-//  ATDriverVoiceExtension
+//  ATVSExtensionAudioUnit.swift
+//  ATVSExtension
 //
 //  Created by Z Goddard on 4/12/23.
 //
@@ -9,11 +9,8 @@
 // Swift in this case. It is not recommended to use Swift in other AU types.
 
 import AVFoundation
-import os
 
-private let log = Logger(subsystem: "com.bocoup.atdv", category: "synth")
-
-public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit {
+public class ATVSExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit {
   private var outputBus: AUAudioUnitBus
   private var _outputBusses: AUAudioUnitBusArray!
 
@@ -89,7 +86,7 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
   // MARK:- Parameter Setter / Getter
   func setParameter(paramAddress: AUParameterAddress, value: AUValue) {
     switch paramAddress {
-    case ATDriverVoiceExtensionParameterAddress.gain.rawValue:
+    case ATVSExtensionParameterAddress.gain.rawValue:
       linearGain = value
     default:
       return
@@ -98,7 +95,7 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
 
   func getParameter(_ paramAddress: AUParameterAddress) -> AUValue {
     switch paramAddress {
-    case ATDriverVoiceExtensionParameterAddress.gain.rawValue:
+    case ATVSExtensionParameterAddress.gain.rawValue:
       return linearGain
     default:
       return 0.0
@@ -129,7 +126,6 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
 
   public override func synthesizeSpeechRequest(_ speechRequest: AVSpeechSynthesisProviderRequest) {
     self.request = speechRequest
-      log.debug("synthesizeSpeechRequest")
   }
 
   public override func cancelSpeechRequest() {
@@ -139,10 +135,9 @@ public class ATDriverVoiceExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
 
   public override var speechVoices: [AVSpeechSynthesisProviderVoice] {
     get {
-      log.debug("speechVoices")
       return [
         AVSpeechSynthesisProviderVoice(
-          name: "Silent", identifier: "Silent", primaryLanguages: ["en-US"],
+          name: "ATVSExtensionVoice", identifier: "ATVSExtension", primaryLanguages: ["en-US"],
           supportedLanguages: ["en-US"])
       ]
     }

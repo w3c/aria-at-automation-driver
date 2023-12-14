@@ -1,0 +1,958 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ADB4516C29E5FCCD00FD389C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4516B29E5FCCD00FD389C /* ContentView.swift */; };
+		ADB4517029E5FCCD00FD389C /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4516F29E5FCCD00FD389C /* ViewControllerRepresentable.swift */; };
+		ADB4517329E5FCCD00FD389C /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = ADB4517229E5FCCD00FD389C /* Synth.aif */; };
+		ADB4517529E5FCCD00FD389C /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4517429E5FCCD00FD389C /* SimplePlayEngine.swift */; };
+		ADB4517829E5FCCD00FD389C /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4517729E5FCCD00FD389C /* MIDIManager.swift */; };
+		ADB4517A29E5FCCD00FD389C /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4517929E5FCCD00FD389C /* TypeAliases.swift */; };
+		ADB4517D29E5FCCD00FD389C /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4517C29E5FCCD00FD389C /* StringHelpers.swift */; };
+		ADB4518029E5FCCD00FD389C /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4517F29E5FCCD00FD389C /* AudioUnitHostModel.swift */; };
+		ADB4518229E5FCCD00FD389C /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4518129E5FCCD00FD389C /* AudioUnitViewModel.swift */; };
+		ADB4518429E5FCCD00FD389C /* ATATApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4518329E5FCCD00FD389C /* ATATApp.swift */; };
+		ADB4518729E5FCCD00FD389C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB4518629E5FCCD00FD389C /* Preview Assets.xcassets */; };
+		ADB4518929E5FCCE00FD389C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADB4518829E5FCCE00FD389C /* Assets.xcassets */; };
+		ADB4519429E5FCCE00FD389C /* ATATTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4519329E5FCCE00FD389C /* ATATTests.swift */; };
+		ADB4519E29E5FCCE00FD389C /* ATATUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4519D29E5FCCE00FD389C /* ATATUITests.swift */; };
+		ADB451A029E5FCCE00FD389C /* ATATUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB4519F29E5FCCE00FD389C /* ATATUITestsLaunchTests.swift */; };
+		ADB451A629E5FCCE00FD389C /* ATATExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ADB451A529E5FCCE00FD389C /* ATATExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ADB451AB29E5FCCE00FD389C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ADB451AA29E5FCCE00FD389C /* README.md */; };
+		ADB451B029E5FCCE00FD389C /* ParameterSpecBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451AF29E5FCCE00FD389C /* ParameterSpecBase.swift */; };
+		ADB451B329E5FCCE00FD389C /* CrossPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451B229E5FCCE00FD389C /* CrossPlatform.swift */; };
+		ADB451B529E5FCCE00FD389C /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451B429E5FCCE00FD389C /* String+Utils.swift */; };
+		ADB451B829E5FCCE00FD389C /* ATATExtensionAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451B729E5FCCE00FD389C /* ATATExtensionAudioUnit.swift */; };
+		ADB451BB29E5FCCE00FD389C /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451BA29E5FCCE00FD389C /* Parameters.swift */; };
+		ADB451BE29E5FCCE00FD389C /* ATATExtensionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451BD29E5FCCE00FD389C /* ATATExtensionMainView.swift */; };
+		ADB451C029E5FCCE00FD389C /* ParameterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451BF29E5FCCE00FD389C /* ParameterSlider.swift */; };
+		ADB451C529E5FCCE00FD389C /* AudioUnitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADB451C329E5FCCE00FD389C /* AudioUnitViewController.xib */; };
+		ADB451C729E5FCCE00FD389C /* ObservableAUParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451C629E5FCCE00FD389C /* ObservableAUParameter.swift */; };
+		ADB451C929E5FCCE00FD389C /* AudioUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB451C829E5FCCE00FD389C /* AudioUnitViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ADB4519029E5FCCE00FD389C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADB4516029E5FCCD00FD389C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADB4516729E5FCCD00FD389C;
+			remoteInfo = ATAT;
+		};
+		ADB4519A29E5FCCE00FD389C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADB4516029E5FCCD00FD389C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADB4516729E5FCCD00FD389C;
+			remoteInfo = ATAT;
+		};
+		ADB451A729E5FCCE00FD389C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADB4516029E5FCCD00FD389C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADB451A429E5FCCE00FD389C;
+			remoteInfo = ATATExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ADB451D029E5FCCE00FD389C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ADB451A629E5FCCE00FD389C /* ATATExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		ADB4516829E5FCCD00FD389C /* ATAT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATAT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB4516B29E5FCCD00FD389C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ADB4516F29E5FCCD00FD389C /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		ADB4517229E5FCCD00FD389C /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
+		ADB4517429E5FCCD00FD389C /* SimplePlayEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		ADB4517729E5FCCD00FD389C /* MIDIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		ADB4517929E5FCCD00FD389C /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		ADB4517C29E5FCCD00FD389C /* StringHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
+		ADB4517F29E5FCCD00FD389C /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
+		ADB4518129E5FCCD00FD389C /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
+		ADB4518329E5FCCD00FD389C /* ATATApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATATApp.swift; sourceTree = "<group>"; };
+		ADB4518629E5FCCD00FD389C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ADB4518829E5FCCE00FD389C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADB4518A29E5FCCE00FD389C /* ATAT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATAT.entitlements; sourceTree = "<group>"; };
+		ADB4518F29E5FCCE00FD389C /* ATATTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATATTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB4519329E5FCCE00FD389C /* ATATTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATATTests.swift; sourceTree = "<group>"; };
+		ADB4519929E5FCCE00FD389C /* ATATUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATATUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB4519D29E5FCCE00FD389C /* ATATUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATATUITests.swift; sourceTree = "<group>"; };
+		ADB4519F29E5FCCE00FD389C /* ATATUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATATUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ADB451A529E5FCCE00FD389C /* ATATExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ATATExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB451AA29E5FCCE00FD389C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ADB451AD29E5FCCE00FD389C /* ATATExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATATExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		ADB451AF29E5FCCE00FD389C /* ParameterSpecBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSpecBase.swift; sourceTree = "<group>"; };
+		ADB451B229E5FCCE00FD389C /* CrossPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatform.swift; sourceTree = "<group>"; };
+		ADB451B429E5FCCE00FD389C /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		ADB451B729E5FCCE00FD389C /* ATATExtensionAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATATExtensionAudioUnit.swift; sourceTree = "<group>"; };
+		ADB451BA29E5FCCE00FD389C /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		ADB451BD29E5FCCE00FD389C /* ATATExtensionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATATExtensionMainView.swift; sourceTree = "<group>"; };
+		ADB451BF29E5FCCE00FD389C /* ParameterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterSlider.swift; sourceTree = "<group>"; };
+		ADB451C429E5FCCE00FD389C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = AudioUnitViewController.xib; sourceTree = "<group>"; };
+		ADB451C629E5FCCE00FD389C /* ObservableAUParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableAUParameter.swift; sourceTree = "<group>"; };
+		ADB451C829E5FCCE00FD389C /* AudioUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewController.swift; sourceTree = "<group>"; };
+		ADB451CA29E5FCCE00FD389C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ADB4516529E5FCCD00FD389C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB4518C29E5FCCE00FD389C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB4519629E5FCCE00FD389C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB451A229E5FCCE00FD389C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ADB4515F29E5FCCD00FD389C = {
+			isa = PBXGroup;
+			children = (
+				ADB4516A29E5FCCD00FD389C /* ATAT */,
+				ADB4519229E5FCCE00FD389C /* ATATTests */,
+				ADB4519C29E5FCCE00FD389C /* ATATUITests */,
+				ADB451A929E5FCCE00FD389C /* ATATExtension */,
+				ADB4516929E5FCCD00FD389C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ADB4516929E5FCCD00FD389C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4516829E5FCCD00FD389C /* ATAT.app */,
+				ADB4518F29E5FCCE00FD389C /* ATATTests.xctest */,
+				ADB4519929E5FCCE00FD389C /* ATATUITests.xctest */,
+				ADB451A529E5FCCE00FD389C /* ATATExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ADB4516A29E5FCCD00FD389C /* ATAT */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4516B29E5FCCD00FD389C /* ContentView.swift */,
+				ADB4518329E5FCCD00FD389C /* ATATApp.swift */,
+				ADB4518829E5FCCE00FD389C /* Assets.xcassets */,
+				ADB4518A29E5FCCE00FD389C /* ATAT.entitlements */,
+				ADB4516D29E5FCCD00FD389C /* Common */,
+				ADB4517E29E5FCCD00FD389C /* Model */,
+				ADB4518529E5FCCD00FD389C /* Preview Content */,
+			);
+			path = ATAT;
+			sourceTree = "<group>";
+		};
+		ADB4516D29E5FCCD00FD389C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4517929E5FCCD00FD389C /* TypeAliases.swift */,
+				ADB4516E29E5FCCD00FD389C /* UI */,
+				ADB4517129E5FCCD00FD389C /* Audio */,
+				ADB4517629E5FCCD00FD389C /* MIDI */,
+				ADB4517B29E5FCCD00FD389C /* String */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		ADB4516E29E5FCCD00FD389C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4516F29E5FCCD00FD389C /* ViewControllerRepresentable.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		ADB4517129E5FCCD00FD389C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4517229E5FCCD00FD389C /* Synth.aif */,
+				ADB4517429E5FCCD00FD389C /* SimplePlayEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		ADB4517629E5FCCD00FD389C /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4517729E5FCCD00FD389C /* MIDIManager.swift */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		ADB4517B29E5FCCD00FD389C /* String */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4517C29E5FCCD00FD389C /* StringHelpers.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		ADB4517E29E5FCCD00FD389C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4517F29E5FCCD00FD389C /* AudioUnitHostModel.swift */,
+				ADB4518129E5FCCD00FD389C /* AudioUnitViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ADB4518529E5FCCD00FD389C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4518629E5FCCD00FD389C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ADB4519229E5FCCE00FD389C /* ATATTests */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4519329E5FCCE00FD389C /* ATATTests.swift */,
+			);
+			path = ATATTests;
+			sourceTree = "<group>";
+		};
+		ADB4519C29E5FCCE00FD389C /* ATATUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ADB4519D29E5FCCE00FD389C /* ATATUITests.swift */,
+				ADB4519F29E5FCCE00FD389C /* ATATUITestsLaunchTests.swift */,
+			);
+			path = ATATUITests;
+			sourceTree = "<group>";
+		};
+		ADB451A929E5FCCE00FD389C /* ATATExtension */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451AA29E5FCCE00FD389C /* README.md */,
+				ADB451CA29E5FCCE00FD389C /* Info.plist */,
+				ADB451AC29E5FCCE00FD389C /* Common */,
+				ADB451B929E5FCCE00FD389C /* Parameters */,
+				ADB451BC29E5FCCE00FD389C /* UI */,
+			);
+			path = ATATExtension;
+			sourceTree = "<group>";
+		};
+		ADB451AC29E5FCCE00FD389C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451AD29E5FCCE00FD389C /* ATATExtension-Bridging-Header.h */,
+				ADB451AE29E5FCCE00FD389C /* Parameters */,
+				ADB451B129E5FCCE00FD389C /* Utility */,
+				ADB451B629E5FCCE00FD389C /* Audio Unit */,
+				ADB451C129E5FCCE00FD389C /* UI */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		ADB451AE29E5FCCE00FD389C /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451AF29E5FCCE00FD389C /* ParameterSpecBase.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		ADB451B129E5FCCE00FD389C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451B229E5FCCE00FD389C /* CrossPlatform.swift */,
+				ADB451B429E5FCCE00FD389C /* String+Utils.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		ADB451B629E5FCCE00FD389C /* Audio Unit */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451B729E5FCCE00FD389C /* ATATExtensionAudioUnit.swift */,
+			);
+			path = "Audio Unit";
+			sourceTree = "<group>";
+		};
+		ADB451B929E5FCCE00FD389C /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451BA29E5FCCE00FD389C /* Parameters.swift */,
+			);
+			path = Parameters;
+			sourceTree = "<group>";
+		};
+		ADB451BC29E5FCCE00FD389C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451BD29E5FCCE00FD389C /* ATATExtensionMainView.swift */,
+				ADB451BF29E5FCCE00FD389C /* ParameterSlider.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		ADB451C129E5FCCE00FD389C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451C629E5FCCE00FD389C /* ObservableAUParameter.swift */,
+				ADB451C829E5FCCE00FD389C /* AudioUnitViewController.swift */,
+				ADB451C229E5FCCE00FD389C /* Base.lproj */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		ADB451C229E5FCCE00FD389C /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				ADB451C329E5FCCE00FD389C /* AudioUnitViewController.xib */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ADB4516729E5FCCD00FD389C /* ATAT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADB451D129E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATAT" */;
+			buildPhases = (
+				ADB4516429E5FCCD00FD389C /* Sources */,
+				ADB4516529E5FCCD00FD389C /* Frameworks */,
+				ADB4516629E5FCCD00FD389C /* Resources */,
+				ADB451D029E5FCCE00FD389C /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADB451A829E5FCCE00FD389C /* PBXTargetDependency */,
+			);
+			name = ATAT;
+			productName = ATAT;
+			productReference = ADB4516829E5FCCD00FD389C /* ATAT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ADB4518E29E5FCCE00FD389C /* ATATTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADB451D429E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATATTests" */;
+			buildPhases = (
+				ADB4518B29E5FCCE00FD389C /* Sources */,
+				ADB4518C29E5FCCE00FD389C /* Frameworks */,
+				ADB4518D29E5FCCE00FD389C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADB4519129E5FCCE00FD389C /* PBXTargetDependency */,
+			);
+			name = ATATTests;
+			productName = ATATTests;
+			productReference = ADB4518F29E5FCCE00FD389C /* ATATTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ADB4519829E5FCCE00FD389C /* ATATUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADB451D729E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATATUITests" */;
+			buildPhases = (
+				ADB4519529E5FCCE00FD389C /* Sources */,
+				ADB4519629E5FCCE00FD389C /* Frameworks */,
+				ADB4519729E5FCCE00FD389C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADB4519B29E5FCCE00FD389C /* PBXTargetDependency */,
+			);
+			name = ATATUITests;
+			productName = ATATUITests;
+			productReference = ADB4519929E5FCCE00FD389C /* ATATUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		ADB451A429E5FCCE00FD389C /* ATATExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADB451CD29E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATATExtension" */;
+			buildPhases = (
+				ADB451A129E5FCCE00FD389C /* Sources */,
+				ADB451A229E5FCCE00FD389C /* Frameworks */,
+				ADB451A329E5FCCE00FD389C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ATATExtension;
+			productName = ATATExtension;
+			productReference = ADB451A529E5FCCE00FD389C /* ATATExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADB4516029E5FCCD00FD389C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					ADB4516729E5FCCD00FD389C = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					ADB4518E29E5FCCE00FD389C = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = ADB4516729E5FCCD00FD389C;
+					};
+					ADB4519829E5FCCE00FD389C = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = ADB4516729E5FCCD00FD389C;
+					};
+					ADB451A429E5FCCE00FD389C = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = ADB4516329E5FCCD00FD389C /* Build configuration list for PBXProject "ATAT" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ADB4515F29E5FCCD00FD389C;
+			productRefGroup = ADB4516929E5FCCD00FD389C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ADB4516729E5FCCD00FD389C /* ATAT */,
+				ADB4518E29E5FCCE00FD389C /* ATATTests */,
+				ADB4519829E5FCCE00FD389C /* ATATUITests */,
+				ADB451A429E5FCCE00FD389C /* ATATExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ADB4516629E5FCCD00FD389C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB4518729E5FCCD00FD389C /* Preview Assets.xcassets in Resources */,
+				ADB4518929E5FCCE00FD389C /* Assets.xcassets in Resources */,
+				ADB4517329E5FCCD00FD389C /* Synth.aif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB4518D29E5FCCE00FD389C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB4519729E5FCCE00FD389C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB451A329E5FCCE00FD389C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB451AB29E5FCCE00FD389C /* README.md in Resources */,
+				ADB451C529E5FCCE00FD389C /* AudioUnitViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ADB4516429E5FCCD00FD389C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB4518029E5FCCD00FD389C /* AudioUnitHostModel.swift in Sources */,
+				ADB4518429E5FCCD00FD389C /* ATATApp.swift in Sources */,
+				ADB4518229E5FCCD00FD389C /* AudioUnitViewModel.swift in Sources */,
+				ADB4516C29E5FCCD00FD389C /* ContentView.swift in Sources */,
+				ADB4517029E5FCCD00FD389C /* ViewControllerRepresentable.swift in Sources */,
+				ADB4517D29E5FCCD00FD389C /* StringHelpers.swift in Sources */,
+				ADB4517829E5FCCD00FD389C /* MIDIManager.swift in Sources */,
+				ADB4517A29E5FCCD00FD389C /* TypeAliases.swift in Sources */,
+				ADB4517529E5FCCD00FD389C /* SimplePlayEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB4518B29E5FCCE00FD389C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB4519429E5FCCE00FD389C /* ATATTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB4519529E5FCCE00FD389C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB451A029E5FCCE00FD389C /* ATATUITestsLaunchTests.swift in Sources */,
+				ADB4519E29E5FCCE00FD389C /* ATATUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADB451A129E5FCCE00FD389C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADB451BB29E5FCCE00FD389C /* Parameters.swift in Sources */,
+				ADB451BE29E5FCCE00FD389C /* ATATExtensionMainView.swift in Sources */,
+				ADB451C729E5FCCE00FD389C /* ObservableAUParameter.swift in Sources */,
+				ADB451B829E5FCCE00FD389C /* ATATExtensionAudioUnit.swift in Sources */,
+				ADB451B029E5FCCE00FD389C /* ParameterSpecBase.swift in Sources */,
+				ADB451C929E5FCCE00FD389C /* AudioUnitViewController.swift in Sources */,
+				ADB451C029E5FCCE00FD389C /* ParameterSlider.swift in Sources */,
+				ADB451B329E5FCCE00FD389C /* CrossPlatform.swift in Sources */,
+				ADB451B529E5FCCE00FD389C /* String+Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ADB4519129E5FCCE00FD389C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADB4516729E5FCCD00FD389C /* ATAT */;
+			targetProxy = ADB4519029E5FCCE00FD389C /* PBXContainerItemProxy */;
+		};
+		ADB4519B29E5FCCE00FD389C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADB4516729E5FCCD00FD389C /* ATAT */;
+			targetProxy = ADB4519A29E5FCCE00FD389C /* PBXContainerItemProxy */;
+		};
+		ADB451A829E5FCCE00FD389C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADB451A429E5FCCE00FD389C /* ATATExtension */;
+			targetProxy = ADB451A729E5FCCE00FD389C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ADB451C329E5FCCE00FD389C /* AudioUnitViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADB451C429E5FCCE00FD389C /* Base */,
+			);
+			name = AudioUnitViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ADB451CB29E5FCCE00FD389C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ADB451CC29E5FCCE00FD389C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		ADB451CE29E5FCCE00FD389C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATATExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATATExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATAT.ATATExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATATExtension/Common/ATATExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		ADB451CF29E5FCCE00FD389C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATATExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATATExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATAT.ATATExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATATExtension/Common/ATATExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		ADB451D229E5FCCE00FD389C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ATAT/ATAT.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ATAT/Preview Content\"";
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = ATAT;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATAT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		ADB451D329E5FCCE00FD389C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ATAT/ATAT.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ATAT/Preview Content\"";
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = ATAT;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					AudioToolbox,
+					"-framework",
+					AVFoundation,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATAT;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		ADB451D529E5FCCE00FD389C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATATTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATAT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ATAT";
+			};
+			name = Debug;
+		};
+		ADB451D629E5FCCE00FD389C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATATTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATAT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ATAT";
+			};
+			name = Release;
+		};
+		ADB451D829E5FCCE00FD389C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATATUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ATAT;
+			};
+			name = Debug;
+		};
+		ADB451D929E5FCCE00FD389C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATATUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ATAT;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ADB4516329E5FCCD00FD389C /* Build configuration list for PBXProject "ATAT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB451CB29E5FCCE00FD389C /* Debug */,
+				ADB451CC29E5FCCE00FD389C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADB451CD29E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATATExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB451CE29E5FCCE00FD389C /* Debug */,
+				ADB451CF29E5FCCE00FD389C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADB451D129E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATAT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB451D229E5FCCE00FD389C /* Debug */,
+				ADB451D329E5FCCE00FD389C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADB451D429E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATATTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB451D529E5FCCE00FD389C /* Debug */,
+				ADB451D629E5FCCE00FD389C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADB451D729E5FCCE00FD389C /* Build configuration list for PBXNativeTarget "ATATUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADB451D829E5FCCE00FD389C /* Debug */,
+				ADB451D929E5FCCE00FD389C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ADB4516029E5FCCD00FD389C /* Project object */;
+}
