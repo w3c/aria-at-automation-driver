@@ -2,6 +2,7 @@
 const assert = require('assert');
 const path = require('path');
 const child_process = require('child_process');
+const net = require('net');
 
 const WebSocket = require('ws');
 
@@ -21,11 +22,23 @@ suite('at-driver', () => {
       child.on('error', reject);
       child.on('close', () => reject(new Error('Server closed unexpectedly')));
     });
+
+    // child.stderr.on('data', data => console.error(data.toString()));
+
     return new Promise((resolve, reject) => {
       child.stderr.on('data', () => resolve({whenClosed}));
       whenClosed.catch(reject);
     });
   };
+  const sendVoicePacket = async (type, data) => {
+    const NAMED_PIPE = '\\\\?\\pipe\\my_pipe';
+    const stream = await new Promise((resolve) => {
+      const stream = net.connect(NAMED_PIPE);
+      stream.on('connect', () => resolve(stream));
+    });
+    await new Promise(resolve => stream.end(`${type}:${data}`, 'utf8', resolve));
+
+  }
   const connect = (port, subProtocol) => {
     const websocket = new WebSocket(`ws://localhost:${port}/session`, subProtocol);
 
@@ -179,5 +192,34 @@ suite('at-driver', () => {
         message: 'Invalid key code specified.'
       });
     });
+
+    suite('with sessionId', () => {
+      let sessionId, capabilities;
+      setup(async() => {
+        websocket.send('{"id": 527, "method": "session.new", "params": {}}');
+        const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+        assert.ok(message.result);
+        sessionId = message.result.sessionId;
+        capabilities = message.result.capabilities;
+      })
+
+      test('returns a sessionId', () => {
+        assert.notEqual(sessionId, undefined);
+      })
+
+      test('sends voice events', async () => {
+        await Promise.race([whenClosed, sendVoicePacket('speech', 'Hello, world!')]);
+
+        const message = await Promise.race([whenClosed, nextMessage(websocket)]);
+
+        assert.deepEqual(message, {
+          method: "interaction.capturedOutput",
+          params: {
+            data: "Hello, world!"
+          }
+        });
+      })
+    })
   });
 });
