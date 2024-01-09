@@ -43,6 +43,30 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD64B3952B2B995C00AC0234"
+               BuildableName = "ATDriverGenericMacOSUITests.xctest"
+               BlueprintName = "ATDriverGenericMacOSUITests"
+               ReferencedContainer = "container:ATDriverGenericMacOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD64B38B2B2B995C00AC0234"
+               BuildableName = "ATDriverGenericMacOSTests.xctest"
+               BlueprintName = "ATDriverGenericMacOSTests"
+               ReferencedContainer = "container:ATDriverGenericMacOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
