@@ -59,16 +59,6 @@ suite('at-driver', () => {
     return Promise.race([whenClosed, connect(6543, SUB_PROTOCOL)]);
   });
 
-  // test('rejects unspecified protocol', async () => {
-  //   const {whenClosed} = await run([]);
-  //   return Promise.race([whenClosed, invert(connect(4382))]);
-  // });
-
-  // test('rejects unsupported protocol', async () => {
-  //   const {whenClosed} = await run([]);
-  //   return Promise.race([whenClosed, invert(connect(4382, 'aria-at.bocoup.com'))]);
-  // });
-
   test('rejects invalid port values: unspecified', async () => {
     const {whenClosed} = await run(['--port']);
     return invert(whenClosed);
