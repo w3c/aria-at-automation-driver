@@ -22,9 +22,6 @@ suite('at-driver', () => {
       child.on('error', reject);
       child.on('close', () => reject(new Error('Server closed unexpectedly')));
     });
-
-    // child.stderr.on('data', data => console.error(data.toString()));
-
     return new Promise((resolve, reject) => {
       child.stderr.on('data', () => resolve({whenClosed}));
       whenClosed.catch(reject);
