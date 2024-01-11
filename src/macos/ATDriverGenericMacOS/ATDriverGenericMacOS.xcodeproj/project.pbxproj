@@ -34,7 +34,6 @@
 		AD64B3E02B33729C00AC0234 /* ATDriverGenericService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3DF2B33729C00AC0234 /* ATDriverGenericService.swift */; };
 		AD64B3E22B33729C00AC0234 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3E12B33729C00AC0234 /* main.swift */; };
 		AD64B3E72B33729C00AC0234 /* ATDriverGenericService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = AD64B3DB2B33729C00AC0234 /* ATDriverGenericService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AD64B3ED2B462F2700AC0234 /* ATDriverClientIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3EC2B462F2700AC0234 /* ATDriverClientIP.swift */; };
 		AD64B3EE2B4769EF00AC0234 /* ATDriverGenericServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3DD2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift */; };
 		AD64B3F12B4772AC00AC0234 /* ATDriverClientUnix.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3EF2B4772AC00AC0234 /* ATDriverClientUnix.swift */; };
 		AD64B3F32B47731000AC0234 /* ATDriverEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */; };
@@ -151,7 +150,6 @@
 		AD64B3E12B33729C00AC0234 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AD64B3E32B33729C00AC0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD64B3E42B33729C00AC0234 /* ATDriverGenericService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverGenericService.entitlements; sourceTree = "<group>"; };
-		AD64B3EC2B462F2700AC0234 /* ATDriverClientIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverClientIP.swift; sourceTree = "<group>"; };
 		AD64B3EF2B4772AC00AC0234 /* ATDriverClientUnix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverClientUnix.swift; sourceTree = "<group>"; };
 		AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverEventError.swift; sourceTree = "<group>"; };
 		AD87AD732B48EB3200C6E982 /* ATDriverGenericMacOSExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverGenericMacOSExtension.entitlements; sourceTree = "<group>"; };
@@ -383,7 +381,6 @@
 			children = (
 				AD64B3DD2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift */,
 				AD64B3DF2B33729C00AC0234 /* ATDriverGenericService.swift */,
-				AD64B3EC2B462F2700AC0234 /* ATDriverClientIP.swift */,
 				AD64B3EF2B4772AC00AC0234 /* ATDriverClientUnix.swift */,
 				AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */,
 				AD64B3E12B33729C00AC0234 /* main.swift */,
@@ -640,7 +637,6 @@
 				AD64B3DE2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift in Sources */,
 				AD64B3F12B4772AC00AC0234 /* ATDriverClientUnix.swift in Sources */,
 				AD64B3E22B33729C00AC0234 /* main.swift in Sources */,
-				AD64B3ED2B462F2700AC0234 /* ATDriverClientIP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,9 +790,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOSExtension/ATDriverGenericMacOSExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -813,6 +809,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS.ATDriverGenericMacOSExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ATDriverGenericMacOSExtension/Common/ATDriverGenericMacOSExtension-Bridging-Header.h";
@@ -826,9 +823,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOSExtension/ATDriverGenericMacOSExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -845,6 +842,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS.ATDriverGenericMacOSExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ATDriverGenericMacOSExtension/Common/ATDriverGenericMacOSExtension-Bridging-Header.h";
@@ -859,11 +857,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOS/ATDriverGenericMacOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ATDriverGenericMacOS/Preview Content\"";
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -885,6 +884,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -897,11 +897,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOS/ATDriverGenericMacOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ATDriverGenericMacOS/Preview Content\"";
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -923,6 +924,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1004,10 +1006,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericService/ATDriverGenericService.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ATDriverGenericService/Info.plist;
@@ -1017,6 +1019,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1027,10 +1030,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericService/ATDriverGenericService.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ATDriverGenericService/Info.plist;
@@ -1040,6 +1043,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
