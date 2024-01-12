@@ -11,7 +11,13 @@ jobs:
           cd src/macos/ATDriverGenericMacOS
           xcodebuild
       - run: |
+          xattr -r -d com.apple.quarantine ATDriverGenericMacOS.app
+          /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted ATDriverGenericMacOS.app
           pluginkit -e use -i com.bocoup.ATDriverGenericMacOS.ATDriverGenericMacOSExtension
           defaults write com.apple.Accessibility SpeechVoiceIdentifierForLanguage '{2 = {en = "com.bocoup.ATDriverGenericMacOS.ATDriverGenericMacOSExtension.ATDriverGenericMacOSExtension";};}'
+          say hello
+          say hello
+          say hello
+          say hello
           say hello
           log show --process ATDriverGenericService | tail -n 10
