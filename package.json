@@ -9,7 +9,9 @@
   "scripts": {
     "postinstall": "Release\\MakeVoice.exe",
     "postuninstall": "Release\\MakeVoice.exe /u",
-    "test": "mocha --ui tdd test"
+    "prettier": "prettier --write lib test",
+    "test": "prettier --check lib test && npm run test-unit",
+    "test-unit": "mocha --ui tdd test"
   },
   "files": [
     "lib",
@@ -20,7 +22,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^9.1.2"
+    "mocha": "^9.1.2",
+    "prettier": "^3.2.4"
   },
   "dependencies": {
     "robotjs": "^0.6.0",
