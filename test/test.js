@@ -30,9 +30,12 @@ suite('at-driver', () => {
     });
   };
   const sendVoicePacket = async (type, data) => {
-    const NAMED_PIPE = '\\\\?\\pipe\\my_pipe';
+    const SOCKET_PATH =
+      process.platform === 'win32'
+        ? '\\\\?\\pipe\\my_pipe'
+        : '/usr/local/var/at_driver_generic/driver.socket';
     const stream = await new Promise(resolve => {
-      const stream = net.connect(NAMED_PIPE);
+      const stream = net.connect(SOCKET_PATH);
       stream.on('connect', () => resolve(stream));
     });
     await new Promise(resolve => stream.end(`${type}:${data}`, 'utf8', resolve));
