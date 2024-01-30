@@ -5,12 +5,12 @@ const assert = require('assert');
 const {
   applescript,
   execScript,
-  keyCodeCommand,
-  parseCodePoints,
   renderScript,
   retryOnTimeout,
   runScript,
 } = require('../../../lib/helpers/macos/applescript.js');
+const { parseCodePoints } = require('../../../lib/helpers/macos/parseCodePoints.js');
+const { keyCodeCommand } = require('../../../lib/helpers/macos/keyCodeCommand.js');
 
 suite('helpers/macos/applescript', () => {
   testEach(
