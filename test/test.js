@@ -180,7 +180,7 @@ suite('at-driver', () => {
       assert.deepEqual(message, {
         id: 902,
         error: 'unknown error',
-        message: 'Invalid key code specified.',
+        message: 'unknown key (\\u64)',
       });
     });
 
