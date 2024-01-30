@@ -11,7 +11,7 @@
     "postuninstall": "Release\\MakeVoice.exe /u",
     "prettier": "prettier --write lib test",
     "test": "prettier --check lib test && npm run test-types && npm run test-unit",
-    "test-unit": "mocha --ui tdd test",
+    "test-unit": "mocha --ui tdd test/**/*.js",
     "test-types": "tsc -p tsconfig.json"
   },
   "files": [
