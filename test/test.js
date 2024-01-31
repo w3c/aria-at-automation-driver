@@ -6,6 +6,8 @@ const net = require('net');
 
 const WebSocket = require('ws');
 
+const { prepareSocketPath } = require('../lib/cli');
+
 const executable = path.join(__dirname, '..', 'bin', 'at-driver');
 const invert = promise =>
   promise.then(
@@ -30,9 +32,9 @@ suite('at-driver', () => {
     });
   };
   const sendVoicePacket = async (type, data) => {
-    const NAMED_PIPE = '\\\\?\\pipe\\my_pipe';
+    const socketPath = await prepareSocketPath();
     const stream = await new Promise(resolve => {
-      const stream = net.connect(NAMED_PIPE);
+      const stream = net.connect(socketPath);
       stream.on('connect', () => resolve(stream));
     });
     await new Promise(resolve => stream.end(`${type}:${data}`, 'utf8', resolve));
