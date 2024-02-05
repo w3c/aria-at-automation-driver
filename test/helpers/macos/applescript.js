@@ -43,7 +43,7 @@ suite('helpers/macos/applescript', () => {
       {
         description: 'throws on invalid code',
         keyCombination: ['df daf% ?'],
-        throws: /unknown key/,
+        throws: /Invalid key code/,
       },
     ],
   );
