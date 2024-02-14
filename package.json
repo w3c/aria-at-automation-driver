@@ -10,8 +10,9 @@
     "postinstall": "Release\\MakeVoice.exe",
     "postuninstall": "Release\\MakeVoice.exe /u",
     "prettier": "prettier --write lib test",
-    "test": "prettier --check lib test && npm run test-unit",
-    "test-unit": "mocha --ui tdd test"
+    "test": "prettier --check lib test && npm run test-types && npm run test-unit",
+    "test-unit": "mocha --ui tdd test",
+    "test-types": "tsc -p tsconfig.json"
   },
   "files": [
     "lib",
@@ -22,8 +23,13 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.17",
+    "@types/ws": "^8.5.10",
+    "@types/yargs": "^17.0.32",
     "mocha": "^9.1.2",
-    "prettier": "^3.2.4"
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "robotjs": "^0.6.0",
