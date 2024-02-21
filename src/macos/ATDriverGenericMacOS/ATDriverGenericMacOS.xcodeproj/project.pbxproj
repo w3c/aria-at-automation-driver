@@ -30,6 +30,15 @@
 		AD64B3B52B2B995C00AC0234 /* ATDriverGenericMacOSExtensionAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3B42B2B995C00AC0234 /* ATDriverGenericMacOSExtensionAudioUnit.swift */; };
 		AD64B3B82B2B995C00AC0234 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3B72B2B995C00AC0234 /* Parameters.swift */; };
 		AD64B3BB2B2B995C00AC0234 /* AudioUnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3BA2B2B995C00AC0234 /* AudioUnitFactory.swift */; };
+		AD64B3DE2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3DD2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift */; };
+		AD64B3E02B33729C00AC0234 /* ATDriverGenericService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3DF2B33729C00AC0234 /* ATDriverGenericService.swift */; };
+		AD64B3E22B33729C00AC0234 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3E12B33729C00AC0234 /* main.swift */; };
+		AD64B3E72B33729C00AC0234 /* ATDriverGenericService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = AD64B3DB2B33729C00AC0234 /* ATDriverGenericService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AD64B3EE2B4769EF00AC0234 /* ATDriverGenericServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3DD2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift */; };
+		AD64B3F12B4772AC00AC0234 /* ATDriverClientUnix.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3EF2B4772AC00AC0234 /* ATDriverClientUnix.swift */; };
+		AD64B3F32B47731000AC0234 /* ATDriverEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */; };
+		AD64B3F42B47731000AC0234 /* ATDriverEventError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */; };
+		AD87AD772B48ED8800C6E982 /* ATDriverGenericService.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = AD64B3DB2B33729C00AC0234 /* ATDriverGenericService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +63,20 @@
 			remoteGlobalIDString = AD64B3A12B2B995C00AC0234;
 			remoteInfo = ATDriverGenericMacOSExtension;
 		};
+		AD64B3E52B33729C00AC0234 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD64B35D2B2B995B00AC0234 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD64B3DA2B33729C00AC0234;
+			remoteInfo = ATDriverGenericService;
+		};
+		AD87AD742B48ED7800C6E982 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD64B35D2B2B995B00AC0234 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD64B3DA2B33729C00AC0234;
+			remoteInfo = ATDriverGenericService;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +89,27 @@
 				AD64B3A32B2B995C00AC0234 /* ATDriverGenericMacOSExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD64B3EB2B33729C00AC0234 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				AD64B3E72B33729C00AC0234 /* ATDriverGenericService.xpc in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD87AD762B48ED7C00C6E982 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				AD87AD772B48ED8800C6E982 /* ATDriverGenericService.xpc in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -100,6 +144,15 @@
 		AD64B3B72B2B995C00AC0234 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		AD64B3BA2B2B995C00AC0234 /* AudioUnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitFactory.swift; sourceTree = "<group>"; };
 		AD64B3BC2B2B995C00AC0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD64B3DB2B33729C00AC0234 /* ATDriverGenericService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = ATDriverGenericService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD64B3DD2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverGenericServiceProtocol.swift; sourceTree = "<group>"; };
+		AD64B3DF2B33729C00AC0234 /* ATDriverGenericService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverGenericService.swift; sourceTree = "<group>"; };
+		AD64B3E12B33729C00AC0234 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AD64B3E32B33729C00AC0234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD64B3E42B33729C00AC0234 /* ATDriverGenericService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverGenericService.entitlements; sourceTree = "<group>"; };
+		AD64B3EF2B4772AC00AC0234 /* ATDriverClientUnix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverClientUnix.swift; sourceTree = "<group>"; };
+		AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATDriverEventError.swift; sourceTree = "<group>"; };
+		AD87AD732B48EB3200C6E982 /* ATDriverGenericMacOSExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATDriverGenericMacOSExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +184,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD64B3D82B33729C00AC0234 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -141,6 +201,7 @@
 				AD64B38F2B2B995C00AC0234 /* ATDriverGenericMacOSTests */,
 				AD64B3992B2B995C00AC0234 /* ATDriverGenericMacOSUITests */,
 				AD64B3A62B2B995C00AC0234 /* ATDriverGenericMacOSExtension */,
+				AD64B3DC2B33729C00AC0234 /* ATDriverGenericService */,
 				AD64B3662B2B995B00AC0234 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,6 +213,7 @@
 				AD64B38C2B2B995C00AC0234 /* ATDriverGenericMacOSTests.xctest */,
 				AD64B3962B2B995C00AC0234 /* ATDriverGenericMacOSUITests.xctest */,
 				AD64B3A22B2B995C00AC0234 /* ATDriverGenericMacOSExtension.appex */,
+				AD64B3DB2B33729C00AC0234 /* ATDriverGenericService.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,6 +314,7 @@
 		AD64B3A62B2B995C00AC0234 /* ATDriverGenericMacOSExtension */ = {
 			isa = PBXGroup;
 			children = (
+				AD87AD732B48EB3200C6E982 /* ATDriverGenericMacOSExtension.entitlements */,
 				AD64B3A72B2B995C00AC0234 /* README.md */,
 				AD64B3BC2B2B995C00AC0234 /* Info.plist */,
 				AD64B3A92B2B995C00AC0234 /* Common */,
@@ -313,6 +376,20 @@
 			path = AudioUnitFactory;
 			sourceTree = "<group>";
 		};
+		AD64B3DC2B33729C00AC0234 /* ATDriverGenericService */ = {
+			isa = PBXGroup;
+			children = (
+				AD64B3DD2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift */,
+				AD64B3DF2B33729C00AC0234 /* ATDriverGenericService.swift */,
+				AD64B3EF2B4772AC00AC0234 /* ATDriverClientUnix.swift */,
+				AD64B3F22B47731000AC0234 /* ATDriverEventError.swift */,
+				AD64B3E12B33729C00AC0234 /* main.swift */,
+				AD64B3E32B33729C00AC0234 /* Info.plist */,
+				AD64B3E42B33729C00AC0234 /* ATDriverGenericService.entitlements */,
+			);
+			path = ATDriverGenericService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,11 +401,13 @@
 				AD64B3622B2B995B00AC0234 /* Frameworks */,
 				AD64B3632B2B995B00AC0234 /* Resources */,
 				AD64B3C22B2B995C00AC0234 /* Embed Foundation Extensions */,
+				AD64B3EB2B33729C00AC0234 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				AD64B3A52B2B995C00AC0234 /* PBXTargetDependency */,
+				AD64B3E62B33729C00AC0234 /* PBXTargetDependency */,
 			);
 			name = ATDriverGenericMacOS;
 			productName = ATDriverGenericMacOS;
@@ -378,15 +457,34 @@
 				AD64B39E2B2B995C00AC0234 /* Sources */,
 				AD64B39F2B2B995C00AC0234 /* Frameworks */,
 				AD64B3A02B2B995C00AC0234 /* Resources */,
+				AD87AD762B48ED7C00C6E982 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AD87AD752B48ED7800C6E982 /* PBXTargetDependency */,
 			);
 			name = ATDriverGenericMacOSExtension;
 			productName = ATDriverGenericMacOSExtension;
 			productReference = AD64B3A22B2B995C00AC0234 /* ATDriverGenericMacOSExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		AD64B3DA2B33729C00AC0234 /* ATDriverGenericService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD64B3E82B33729C00AC0234 /* Build configuration list for PBXNativeTarget "ATDriverGenericService" */;
+			buildPhases = (
+				AD64B3D72B33729C00AC0234 /* Sources */,
+				AD64B3D82B33729C00AC0234 /* Frameworks */,
+				AD64B3D92B33729C00AC0234 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ATDriverGenericService;
+			productName = ATDriverGenericService;
+			productReference = AD64B3DB2B33729C00AC0234 /* ATDriverGenericService.xpc */;
+			productType = "com.apple.product-type.xpc-service";
 		};
 /* End PBXNativeTarget section */
 
@@ -412,6 +510,9 @@
 					AD64B3A12B2B995C00AC0234 = {
 						CreatedOnToolsVersion = 14.3;
 					};
+					AD64B3DA2B33729C00AC0234 = {
+						CreatedOnToolsVersion = 14.3;
+					};
 				};
 			};
 			buildConfigurationList = AD64B3602B2B995B00AC0234 /* Build configuration list for PBXProject "ATDriverGenericMacOS" */;
@@ -431,6 +532,7 @@
 				AD64B38B2B2B995C00AC0234 /* ATDriverGenericMacOSTests */,
 				AD64B3952B2B995C00AC0234 /* ATDriverGenericMacOSUITests */,
 				AD64B3A12B2B995C00AC0234 /* ATDriverGenericMacOSExtension */,
+				AD64B3DA2B33729C00AC0234 /* ATDriverGenericService */,
 			);
 		};
 /* End PBXProject section */
@@ -465,6 +567,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD64B3A82B2B995C00AC0234 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD64B3D92B33729C00AC0234 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,12 +617,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD64B3F32B47731000AC0234 /* ATDriverEventError.swift in Sources */,
 				AD64B3B82B2B995C00AC0234 /* Parameters.swift in Sources */,
 				AD64B3AD2B2B995C00AC0234 /* ParameterSpecBase.swift in Sources */,
 				AD64B3B02B2B995C00AC0234 /* CrossPlatform.swift in Sources */,
 				AD64B3BB2B2B995C00AC0234 /* AudioUnitFactory.swift in Sources */,
+				AD64B3EE2B4769EF00AC0234 /* ATDriverGenericServiceProtocol.swift in Sources */,
 				AD64B3B22B2B995C00AC0234 /* String+Utils.swift in Sources */,
 				AD64B3B52B2B995C00AC0234 /* ATDriverGenericMacOSExtensionAudioUnit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD64B3D72B33729C00AC0234 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD64B3F42B47731000AC0234 /* ATDriverEventError.swift in Sources */,
+				AD64B3E02B33729C00AC0234 /* ATDriverGenericService.swift in Sources */,
+				AD64B3DE2B33729C00AC0234 /* ATDriverGenericServiceProtocol.swift in Sources */,
+				AD64B3F12B4772AC00AC0234 /* ATDriverClientUnix.swift in Sources */,
+				AD64B3E22B33729C00AC0234 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +657,16 @@
 			isa = PBXTargetDependency;
 			target = AD64B3A12B2B995C00AC0234 /* ATDriverGenericMacOSExtension */;
 			targetProxy = AD64B3A42B2B995C00AC0234 /* PBXContainerItemProxy */;
+		};
+		AD64B3E62B33729C00AC0234 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD64B3DA2B33729C00AC0234 /* ATDriverGenericService */;
+			targetProxy = AD64B3E52B33729C00AC0234 /* PBXContainerItemProxy */;
+		};
+		AD87AD752B48ED7800C6E982 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD64B3DA2B33729C00AC0234 /* ATDriverGenericService */;
+			targetProxy = AD87AD742B48ED7800C6E982 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -656,9 +789,10 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOSExtension/ATDriverGenericMacOSExtension.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -675,6 +809,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS.ATDriverGenericMacOSExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ATDriverGenericMacOSExtension/Common/ATDriverGenericMacOSExtension-Bridging-Header.h";
@@ -687,9 +822,10 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOSExtension/ATDriverGenericMacOSExtension.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -706,6 +842,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS.ATDriverGenericMacOSExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "ATDriverGenericMacOSExtension/Common/ATDriverGenericMacOSExtension-Bridging-Header.h";
@@ -720,11 +857,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOS/ATDriverGenericMacOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ATDriverGenericMacOS/Preview Content\"";
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -746,6 +884,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -758,11 +897,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ATDriverGenericMacOS/ATDriverGenericMacOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ATDriverGenericMacOS/Preview Content\"";
-				DEVELOPMENT_TEAM = UWBB3Z7TG8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -784,6 +924,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -861,6 +1002,54 @@
 			};
 			name = Release;
 		};
+		AD64B3E92B33729C00AC0234 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ATDriverGenericService/ATDriverGenericService.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATDriverGenericService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATDriverGenericService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD64B3EA2B33729C00AC0234 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ATDriverGenericService/ATDriverGenericService.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ATDriverGenericService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ATDriverGenericService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bocoup.ATDriverGenericService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -905,6 +1094,15 @@
 			buildConfigurations = (
 				AD64B3CA2B2B995C00AC0234 /* Debug */,
 				AD64B3CB2B2B995C00AC0234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD64B3E82B33729C00AC0234 /* Build configuration list for PBXNativeTarget "ATDriverGenericService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD64B3E92B33729C00AC0234 /* Debug */,
+				AD64B3EA2B33729C00AC0234 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

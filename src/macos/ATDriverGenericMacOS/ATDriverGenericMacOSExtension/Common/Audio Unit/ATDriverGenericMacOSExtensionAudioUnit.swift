@@ -9,9 +9,13 @@
 // Swift in this case. It is not recommended to use Swift in other AU types.
 
 import AVFoundation
+import os
 
 public class ATDriverGenericMacOSExtensionAudioUnit: AVSpeechSynthesisProviderAudioUnit
 {
+    private let logger = Logger(subsystem: "com.bocoup.ATDriverGeneric", category: "audio-unit")
+    private var messenger = NSXPCConnection(serviceName: "com.bocoup.ATDriverGenericService")
+
     private var outputBus: AUAudioUnitBus
     private var _outputBusses: AUAudioUnitBusArray!
     
@@ -20,6 +24,7 @@ public class ATDriverGenericMacOSExtensionAudioUnit: AVSpeechSynthesisProviderAu
     private var format:AVAudioFormat
 
 	private var linearGain = AUValue(0.0)
+    
 
     @objc override init(componentDescription: AudioComponentDescription, options: AudioComponentInstantiationOptions) throws {
         let basicDescription = AudioStreamBasicDescription(mSampleRate: 22050.0,
@@ -37,6 +42,18 @@ public class ATDriverGenericMacOSExtensionAudioUnit: AVSpeechSynthesisProviderAu
         outputBus = try AUAudioUnitBus(format: self.format)
         try super.init(componentDescription: componentDescription, options: options)
         _outputBusses = AUAudioUnitBusArray(audioUnit: self, busType: AUAudioUnitBusType.output, busses: [outputBus])
+        
+        messenger.remoteObjectInterface = NSXPCInterface(with: ATDriverGenericServiceProtocol.self)
+        messenger.resume()
+        
+        if let proxy = messenger.remoteObjectProxy as? ATDriverGenericServiceProtocol {
+            proxy.postInitEvent()
+        }
+        logger.log("initialized")
+    }
+    
+    deinit {
+        messenger.invalidate()
     }
     
     public override var outputBusses: AUAudioUnitBusArray {
@@ -121,21 +138,39 @@ public class ATDriverGenericMacOSExtensionAudioUnit: AVSpeechSynthesisProviderAu
     }
     
     public override func synthesizeSpeechRequest(_ speechRequest: AVSpeechSynthesisProviderRequest) {
+        logger.log("synthesizeSpeechRequest")
+
         self.request = speechRequest
+        guard let utterance = AVSpeechUtterance(ssmlRepresentation: speechRequest.ssmlRepresentation) else {
+            logger.error("could not parse speech request")
+            return
+        }
+        
+        if let proxy = messenger.remoteObjectProxy as? ATDriverGenericServiceProtocol {
+            proxy.postSpeechEvent(speech: utterance.speechString)
+        }
     }
     
     public override func cancelSpeechRequest() {
+        logger.log("cancelSpeechRequest")
+
         self.request = nil
-        NSLog("Stop synthesizing")
+        
+        if let proxy = messenger.remoteObjectProxy as? ATDriverGenericServiceProtocol {
+            proxy.postCancelEvent()
+        }
     }
     
     public override var speechVoices: [AVSpeechSynthesisProviderVoice] {
         get {
+            defer {
+                logger.log("speechVoices")
+            }
             return [
             AVSpeechSynthesisProviderVoice(name: "ATDriverGenericMacOSExtensionVoice", identifier: "ATDriverGenericMacOSExtension", primaryLanguages: ["en-US"], supportedLanguages: ["en-US"])
             ]
         }
         set { }
     }
-
+    
 }
