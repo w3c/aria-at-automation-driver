@@ -33,8 +33,9 @@ suite('at-driver', () => {
   };
   const sendVoicePacket = async (type, data) => {
     const socketPath = await prepareSocketPath();
-    const stream = await new Promise(resolve => {
+    const stream = await new Promise((resolve, reject) => {
       const stream = net.connect(socketPath);
+      stream.on('error', reject);
       stream.on('connect', () => resolve(stream));
     });
     await new Promise(resolve => stream.end(`${type}:${data}`, 'utf8', resolve));
