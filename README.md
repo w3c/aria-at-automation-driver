@@ -32,9 +32,13 @@ which is required by the automation voice.
 
        npm install -g @bocoup/windows-sapi-tts-engine-for-automation
 
+2. Run the install command in a terminal:
+
+       at-driver install
+
    If prompted for system administration permission, grant permission.
 
-2. Start the server by executing the following command in a terminal:
+3. Start the server by executing the following command in a terminal:
 
        at-driver
 
@@ -42,10 +46,10 @@ which is required by the automation voice.
    WebSocket server is listening for connections. The `--help` flag will cause
    the command to output advanced usage instructions (e.g. `at-driver --help`).
 
-3. Configure any screen reader to use the synthesizer named "Microsoft Speech
+4. Configure any screen reader to use the synthesizer named "Microsoft Speech
    API version 5" and the text-to-speech voice named "Bocoup Automation Voice."
 
-4. Use any WebSocket client to connect to the server. The protocol is described
+5. Use any WebSocket client to connect to the server. The protocol is described
    below. (The server will print protocol messages to its standard error stream
    for diagnostic purposes only. Neither the format nor the availability of
    this output is guaranteed, making it inappropriate for external use.)
