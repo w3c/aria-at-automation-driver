@@ -1,0 +1,10 @@
+{
+  "name": "@bocoup/at-driver-generic-darwin-universal",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "files": [
+    "ATDriverGenericMacOS.app"
+  ]
+}
