@@ -12,8 +12,16 @@ const {
 } = require('../../../lib/helpers/macos/applescript.js');
 const { parseCodePoints } = require('../../../lib/helpers/macos/parseCodePoints.js');
 const { keyCodeCommand } = require('../../../lib/helpers/macos/keyCodeCommand.js');
+const IS_MACOS = require('os').platform() === 'darwin';
 
 suite('helpers/macos/applescript', () => {
+  suiteSetup(function() {
+    if (!IS_MACOS) {
+      this.skip();
+      return;
+    }
+  });
+
   suite('parseCodePoints', () => {
     test('space', () => {
       assert.deepEqual(parseCodePoints([' ']), keyCodeCommand(['space'], []));
