@@ -56,37 +56,37 @@ suite('at-driver', () => {
   });
 
   test('WebSocket server on default port', async () => {
-    const { whenClosed } = await run([]);
+    const { whenClosed } = await run(['serve']);
     return Promise.race([whenClosed, connect(4382)]);
   });
 
   test('WebSocket server on custom port', async () => {
-    const { whenClosed } = await run(['--port', '6543']);
+    const { whenClosed } = await run(['serve', '--port', '6543']);
     return Promise.race([whenClosed, connect(6543)]);
   });
 
   test('rejects invalid port values: unspecified', async () => {
-    const { whenClosed } = await run(['--port']);
+    const { whenClosed } = await run(['serve', '--port']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: non-numeric', async () => {
-    const { whenClosed } = await run(['--port', 'seven']);
+    const { whenClosed } = await run(['serve', '--port', 'seven']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: negative', async () => {
-    const { whenClosed } = await run(['--port', '-8000']);
+    const { whenClosed } = await run(['serve', '--port', '-8000']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: non-integer', async () => {
-    const { whenClosed } = await run(['--port', '2004.3']);
+    const { whenClosed } = await run(['serve', '--port', '2004.3']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: non-decimal', async () => {
-    const { whenClosed } = await run(['--port', '0x1000']);
+    const { whenClosed } = await run(['serve', '--port', '0x1000']);
     return invert(whenClosed);
   });
 
@@ -106,7 +106,7 @@ suite('at-driver', () => {
     };
 
     setup(async () => {
-      ({ whenClosed } = await run([]));
+      ({ whenClosed } = await run(['serve']));
 
       websocket = await Promise.race([whenClosed, connect(4382)]);
     });
