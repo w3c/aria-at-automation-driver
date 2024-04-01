@@ -40,7 +40,7 @@ which is required by the automation voice.
 
 3. Start the server by executing the following command in a terminal:
 
-       at-driver
+       at-driver serve
 
    The process will write a message to the standard error stream when the
    WebSocket server is listening for connections. The `--help` flag will cause
