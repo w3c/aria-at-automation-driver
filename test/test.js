@@ -6,10 +6,10 @@ const net = require('net');
 
 const WebSocket = require('ws');
 
-const SOCKET_PATH = ({
-   win32: '\\\\?\\pipe\\my_pipe',
-   darwin: '/usr/local/var/at_driver_generic/driver.socket',
-})[process.platform];
+const SOCKET_PATH = {
+  win32: '\\\\?\\pipe\\my_pipe',
+  darwin: '/usr/local/var/at_driver_generic/driver.socket',
+}[process.platform];
 
 const executable = path.join(__dirname, '..', 'bin', 'at-driver');
 const invert = promise =>
