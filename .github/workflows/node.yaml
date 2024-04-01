@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run prettier
+      - run: npm run test-style
         continue-on-error: true
       - run: npm run test-types
         continue-on-error: true

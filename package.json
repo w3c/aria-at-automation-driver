@@ -8,9 +8,10 @@
   },
   "scripts": {
     "prettier": "prettier --write lib test",
-    "test": "prettier --check lib test && npm run test-types && npm run test-unit",
-    "test-unit": "mocha --ui tdd test/**/*.js",
-    "test-types": "tsc -p tsconfig.json"
+    "test": "npm run test-style && npm run test-types && npm run test-unit",
+    "test-style": "prettier --check lib test",
+    "test-types": "tsc -p tsconfig.json",
+    "test-unit": "mocha --ui tdd test/**/*.js"
   },
   "files": [
     "lib",
