@@ -3,6 +3,9 @@
 ###############################################################################
 * text=auto
 
+lib/**/*  text eol=lf
+test/**/* text eol=lf
+
 # Declare files that will always have CRLF line endings on checkout.
 src/automationttsengine/**/* text eol=crlf
 src/makevoice/**/*           text eol=crlf
