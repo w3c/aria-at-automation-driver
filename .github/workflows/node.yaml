@@ -3,13 +3,17 @@ name: Node.js CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [windows-2022]
         node-version: ['18.x']
+        test-command:
+          - npm run test-style
+          - npm run test-types
+          - npm run test-unit
 
     steps:
       - uses: actions/checkout@v4
@@ -18,8 +22,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run test-style
-        continue-on-error: true
-      - run: npm run test-types
-        continue-on-error: true
-      - run: npm run test-unit
+      - run: ${{ matrix.test-command }}
