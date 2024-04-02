@@ -15,7 +15,7 @@ const { keyCodeCommand } = require('../../../lib/helpers/macos/keyCodeCommand.js
 const IS_MACOS = require('os').platform() === 'darwin';
 
 suite('helpers/macos/applescript', () => {
-  suiteSetup(function() {
+  suiteSetup(function () {
     if (!IS_MACOS) {
       this.skip();
       return;
