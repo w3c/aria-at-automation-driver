@@ -52,6 +52,11 @@ public class ATDriverGenericMacOSExtensionAudioUnit: AVSpeechSynthesisProviderAu
         logger.log("initialized")
     }
     
+    public override var channelCapabilities: [NSNumber]? {
+        // Specifies that the Audio Unit supports no input channels and exactly one output channel.
+        return [0, 1]
+    }
+
     deinit {
         messenger.invalidate()
     }
