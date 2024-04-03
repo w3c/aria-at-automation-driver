@@ -60,6 +60,11 @@ public class ATDriverGenericMacOSExtensionAudioUnit: AVSpeechSynthesisProviderAu
         return _outputBusses
     }
     
+    public override var channelCapabilities: [NSNumber]? {
+        // Specifies that the Audio Unit supports no input channels and exactly one output channel.
+        return [0, 1]
+    }
+    
     public override func allocateRenderResources() throws {
         try super.allocateRenderResources()
     }
