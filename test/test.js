@@ -6,7 +6,10 @@ const net = require('net');
 
 const WebSocket = require('ws');
 
-const { prepareSocketPath } = require('../lib/cli');
+const SOCKET_PATH = {
+  win32: '\\\\?\\pipe\\my_pipe',
+  darwin: '/usr/local/var/at_driver_generic/driver.socket',
+}[process.platform];
 
 const executable = path.join(__dirname, '..', 'bin', 'at-driver');
 const invert = promise =>
@@ -32,9 +35,9 @@ suite('at-driver', () => {
     });
   };
   const sendVoicePacket = async (type, data) => {
-    const socketPath = await prepareSocketPath();
-    const stream = await new Promise(resolve => {
-      const stream = net.connect(socketPath);
+    const stream = await new Promise((resolve, reject) => {
+      const stream = net.connect(SOCKET_PATH);
+      stream.on('error', reject);
       stream.on('connect', () => resolve(stream));
     });
     await new Promise(resolve => stream.end(`${type}:${data}`, 'utf8', resolve));
@@ -53,37 +56,37 @@ suite('at-driver', () => {
   });
 
   test('WebSocket server on default port', async () => {
-    const { whenClosed } = await run([]);
+    const { whenClosed } = await run(['serve']);
     return Promise.race([whenClosed, connect(4382)]);
   });
 
   test('WebSocket server on custom port', async () => {
-    const { whenClosed } = await run(['--port', '6543']);
+    const { whenClosed } = await run(['serve', '--port', '6543']);
     return Promise.race([whenClosed, connect(6543)]);
   });
 
   test('rejects invalid port values: unspecified', async () => {
-    const { whenClosed } = await run(['--port']);
+    const { whenClosed } = await run(['serve', '--port']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: non-numeric', async () => {
-    const { whenClosed } = await run(['--port', 'seven']);
+    const { whenClosed } = await run(['serve', '--port', 'seven']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: negative', async () => {
-    const { whenClosed } = await run(['--port', '-8000']);
+    const { whenClosed } = await run(['serve', '--port', '-8000']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: non-integer', async () => {
-    const { whenClosed } = await run(['--port', '2004.3']);
+    const { whenClosed } = await run(['serve', '--port', '2004.3']);
     return invert(whenClosed);
   });
 
   test('rejects invalid port values: non-decimal', async () => {
-    const { whenClosed } = await run(['--port', '0x1000']);
+    const { whenClosed } = await run(['serve', '--port', '0x1000']);
     return invert(whenClosed);
   });
 
@@ -103,7 +106,7 @@ suite('at-driver', () => {
     };
 
     setup(async () => {
-      ({ whenClosed } = await run([]));
+      ({ whenClosed } = await run(['serve']));
 
       websocket = await Promise.race([whenClosed, connect(4382)]);
     });
@@ -201,7 +204,12 @@ suite('at-driver', () => {
         assert.notEqual(sessionId, undefined);
       });
 
-      test('sends voice events', async () => {
+      test('sends voice events', async function () {
+        if (!SOCKET_PATH) {
+          this.skip();
+          return;
+        }
+
         await Promise.race([whenClosed, sendVoicePacket('speech', 'Hello, world!')]);
 
         const message = await Promise.race([whenClosed, nextMessage(websocket)]);
