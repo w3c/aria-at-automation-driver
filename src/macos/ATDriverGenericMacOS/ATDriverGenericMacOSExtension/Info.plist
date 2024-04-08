@@ -11,18 +11,39 @@
 				<dict>
 					<key>description</key>
 					<string>ATDriverGenericMacOSExtension</string>
+					<!--
+						The "manufacturer" must be kept in-sync with other
+						references in this project:
+
+						- lib/install/macos.js
+						- src/macos/ATDriverGenericMacOS/ATDriverGenericMacOS/Model/AudioUnitHostModel.swift
+					-->
 					<key>manufacturer</key>
 					<string>BOCU</string>
 					<key>name</key>
 					<string>Bocoup LLC: ATDriverGenericMacOSExtension</string>
 					<key>sandboxSafe</key>
 					<true/>
+					<!--
+						The "subtype" must be kept in-sync with other
+						references in this project:
+
+						- lib/install/macos.js
+						- src/macos/ATDriverGenericMacOS/ATDriverGenericMacOS/Model/AudioUnitHostModel.swift
+					-->
 					<key>subtype</key>
 					<string>atdg</string>
 					<key>tags</key>
 					<array>
 						<string>Speech Synthesizer</string>
 					</array>
+					<!--
+						The "type" must be kept in-sync with other references
+						in this project:
+
+						- lib/install/macos.js
+						- src/macos/ATDriverGenericMacOS/ATDriverGenericMacOS/Model/AudioUnitHostModel.swift
+					-->
 					<key>type</key>
 					<string>ausp</string>
 					<key>version</key>
