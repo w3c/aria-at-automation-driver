@@ -28,28 +28,33 @@ which is required by the automation voice.
 
 ## Installation
 
-1. Install the project by executing the following command:
+1. Download the source code by executing the following command:
 
-       npm install -g @bocoup/windows-sapi-tts-engine-for-automation
+       git clone https://github.com/w3c/aria-at-automation-driver.git
 
-2. Run the install command in a terminal:
+2. Install the Node.js dependencies (from inside the project directory):
 
-       at-driver install
+       npm install
+
+3. Run the install command in a terminal (from inside the project directory):
+
+       ./bin/at-driver install
 
    If prompted for system administration permission, grant permission.
 
-3. Start the server by executing the following command in a terminal:
+4. Start the server by executing the following command in a terminal (from
+   inside the project directory):
 
-       at-driver serve
+       ./bin/at-driver serve
 
    The process will write a message to the standard error stream when the
    WebSocket server is listening for connections. The `--help` flag will cause
    the command to output advanced usage instructions (e.g. `at-driver --help`).
 
-4. Configure any screen reader to use the synthesizer named "Microsoft Speech
+5. Configure any screen reader to use the synthesizer named "Microsoft Speech
    API version 5" and the text-to-speech voice named "Bocoup Automation Voice."
 
-5. Use any WebSocket client to connect to the server. The protocol is described
+6. Use any WebSocket client to connect to the server. The protocol is described
    below. (The server will print protocol messages to its standard error stream
    for diagnostic purposes only. Neither the format nor the availability of
    this output is guaranteed, making it inappropriate for external use.)
