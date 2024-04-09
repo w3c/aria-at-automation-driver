@@ -28,19 +28,19 @@ which is required by the automation voice.
 
 ## Installation
 
-1. Install the project by executing the following command:
+1. Download the source code by executing the following command:
 
-       npm install -g @bocoup/windows-sapi-tts-engine-for-automation
+       git clone https://github.com/w3c/aria-at-automation-driver.git
 
 2. Run the install command in a terminal:
 
-       at-driver install
+       ./bin/at-driver install
 
    If prompted for system administration permission, grant permission.
 
 3. Start the server by executing the following command in a terminal:
 
-       at-driver serve
+       ./bin/at-driver serve
 
    The process will write a message to the standard error stream when the
    WebSocket server is listening for connections. The `--help` flag will cause
