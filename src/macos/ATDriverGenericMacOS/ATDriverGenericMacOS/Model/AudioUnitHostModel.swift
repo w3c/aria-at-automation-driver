@@ -31,6 +31,11 @@ class AudioUnitHostModel: ObservableObject {
 
     let auValString: String
 
+    /// These values must be kept in-sync with other references in this
+    /// project:
+    ///
+    /// - lib/install/macos.js
+    /// - src/macos/ATDriverGenericMacOS/ATDriverGenericMacOSExtension/Info.plist
     init(type: String = "ausp", subType: String = "atdg", manufacturer: String = "BOCU") {
         self.type = type
         self.subType = subType
