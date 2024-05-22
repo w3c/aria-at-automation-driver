@@ -54,7 +54,9 @@ suite('helpers/macos/applescript', () => {
         applescript(
           'with timeout of 5 seconds\n' +
             '    tell application "System Events"\n' +
-            '        key code 49\n' +
+            '        key down 49\n' +
+            '        \n' +
+            '        key up 49\n' +
             '    end tell\n' +
             'end timeout',
         ),
@@ -67,7 +69,11 @@ suite('helpers/macos/applescript', () => {
         applescript(
           'with timeout of 5 seconds\n' +
             '    tell application "System Events"\n' +
-            '        key code 0 using option down\n' +
+            '        key down 58\n' +
+            '        key down 0\n' +
+            '        \n' +
+            '        key up 0\n' +
+            '        key up 58\n' +
             '    end tell\n' +
             'end timeout',
         ),
@@ -80,7 +86,15 @@ suite('helpers/macos/applescript', () => {
         applescript(
           'with timeout of 5 seconds\n' +
             '    tell application "System Events"\n' +
-            '        key code 11 using {command down, option down, shift down}\n' +
+            '        key down 55\n' +
+            '        key down 58\n' +
+            '        key down 57\n' +
+            '        key down 11\n' +
+            '        \n' +
+            '        key up 11\n' +
+            '        key up 57\n' +
+            '        key up 58\n' +
+            '        key up 55\n' +
             '    end tell\n' +
             'end timeout',
         ),
