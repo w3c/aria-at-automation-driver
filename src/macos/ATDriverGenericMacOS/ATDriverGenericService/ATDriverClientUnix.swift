@@ -25,7 +25,7 @@ class ATDriverClientUnix {
     }
   }
 
-  static let pipe = "/usr/local/var/at_driver_generic/driver.socket"
+  static let pipe = "/tmp/at_driver_generic/driver.socket"
 
   func sendInitEvent() throws {
     try self._sendEvent(name: "lifecycle", data: "hello")
