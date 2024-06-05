@@ -20,17 +20,35 @@ const invert = promise =>
     () => {},
   );
 
+/**
+ * Format a string as a Markdown quote by prefixing every line with `> `.
+ *
+ * @param {string} stderr
+ *
+ * @returns {string}
+ */
+const quote = stderr =>
+  stderr
+    .trim()
+    .split('\n')
+    .map(line => `> ${line}`)
+    .join('\n');
+
 suite('at-driver', () => {
   const children = [];
   const run = args => {
     const child = child_process.spawn(process.execPath, [executable, ...args]);
+    let stderr = '';
     children.push(child);
     const whenClosed = new Promise((resolve, reject) => {
       child.on('error', reject);
-      child.on('close', () => reject(new Error('Server closed unexpectedly')));
+      child.on('close', () => reject(new Error(`Server closed unexpectedly\n\n${quote(stderr)}`)));
     });
     return new Promise((resolve, reject) => {
-      child.stderr.on('data', () => resolve({ whenClosed }));
+      child.stderr.on('data', chunk => {
+        stderr += chunk;
+        resolve({ whenClosed });
+      });
       whenClosed.catch(reject);
     });
   };
