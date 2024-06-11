@@ -8,12 +8,21 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-2022]
+        os: [windows-2022, macos-14]
         node-version: ['18.x']
         test-command:
           - npm run test-style
           - npm run test-types
           - npm run test-unit
+        exclude:
+          # The `test-style` script is platform-independent, so there is no
+          # value in executing it in multiple operating systems.
+          - os: macos-14
+            test-command: npm run test-style
+          # The `test-types` script is platform-independent, so there is no
+          # value in executing it in multiple operating systems.
+          - os: macos-14
+            test-command: npm run test-types
 
     steps:
       - uses: actions/checkout@v4
